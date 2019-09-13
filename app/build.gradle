@@ -36,12 +36,19 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':bind')
-    implementation project(path: ':runpriority')
-    implementation project(path: ':base')
-    implementation project(path: ':adapter')
-    implementation project(path: ':router-annotation')
-    implementation project(path: ':router-api')
-    annotationProcessor project(path: ':router-compiler')
-
+//    implementation project(path: ':bind')
+//    implementation project(path: ':runpriority')
+//    implementation project(path: ':base')
+//    implementation project(path: ':adapter')
+//    implementation project(path: ':router-annotation')
+//    implementation project(path: ':router-api')
+//    annotationProcessor project(path: ':router-compiler')
+    implementation 'com.github.gongbox:fss:common:1.0.0'
+    implementation 'com.github.gongbox:fss:runpriority:1.0.0'
+    implementation 'com.github.gongbox:fss:bind:1.0.0'
+    implementation 'com.github.gongbox:fss:adapter:1.0.0'
+    implementation 'com.github.gongbox:fss:base:1.0.0'
+    implementation 'com.github.gongbox.fss:router-annotation:1.0.2'
+    implementation 'com.github.gongbox.fss:router-api:1.0.2'
+    annotationProcessor 'com.github.gongbox.fss:router-compiler:1.0.2'
 }
