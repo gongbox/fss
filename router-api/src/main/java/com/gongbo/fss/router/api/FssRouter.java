@@ -33,11 +33,17 @@ public class FssRouter {
         this.openDebug = openDebug;
     }
 
+    private static FssRouter fssRouter = new FssRouter();
+
+    public static FssRouter getInstance() {
+        return fssRouter;
+    }
+
     /**
      * @param object
      * @param intent
      */
-    public static void reject(Object object, Intent intent) {
+    public void reject(Object object, Intent intent) {
         Bundle extras;
         if (object != null && intent != null && (extras = intent.getExtras()) != null) {
             for (Field field : object.getClass().getDeclaredFields()) {
@@ -64,7 +70,7 @@ public class FssRouter {
      * @param resultCode
      * @param data
      */
-    public static void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         RouteManager.onActivityResult(requestCode, resultCode, data);
     }
 }

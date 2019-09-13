@@ -10,5 +10,7 @@ import java.lang.annotation.Target;
 public @interface RouteExtra {
     String name();
 
+    String paramName() default "";
+
     Class<?> type() default Object.class;
 }

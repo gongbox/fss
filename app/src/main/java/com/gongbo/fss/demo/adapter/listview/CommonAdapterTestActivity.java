@@ -9,9 +9,11 @@ import com.gongbo.fss.adapter.listview.CommonAdapter;
 import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
 
+@Route
 @BindActivity(layout = R.layout.activity_list_view)
 public class CommonAdapterTestActivity extends BaseFssActivity {
 

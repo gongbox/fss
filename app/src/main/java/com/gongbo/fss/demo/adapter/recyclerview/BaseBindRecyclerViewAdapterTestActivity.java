@@ -14,11 +14,12 @@ import com.gongbo.fss.adapter.recyclerview.BaseRecyclerViewAdapter;
 import com.gongbo.fss.adapter.recyclerview.viewholder.BaseRecyclerViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
 import java.util.List;
 
-
+@Route
 @BindActivity(layout = R.layout.activity_recycler_view)
 public class BaseBindRecyclerViewAdapterTestActivity extends BaseFssActivity {
 

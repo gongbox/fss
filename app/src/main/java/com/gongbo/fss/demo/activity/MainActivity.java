@@ -21,6 +21,7 @@ import com.gongbo.fss.demo.adapter.recyclerview.BaseBindRecyclerViewAdapterTestA
 import com.gongbo.fss.demo.adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity;
 import com.gongbo.fss.demo.adapter.recyclerview.BaseRecyclerViewAdapterTestActivity;
 import com.gongbo.fss.demo.adapter.recyclerview.CommonRecyclerAdapterViewTestActivity;
+import com.gongbo.fss.router.FssRouteApi;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,37 +64,37 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                startActivity(new Intent(this, BaseSimpleAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseSimpleAdapterTestActivity(this);
                 break;
             case 1:
-                startActivity(new Intent(this, BaseBindSimpleAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseBindSimpleAdapterTestActivity(this);
                 break;
             case 2:
-                startActivity(new Intent(this, BaseBindingSimpleAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleAdapterTestActivity(this);
                 break;
             case 3:
-                startActivity(new Intent(this, BaseBindingSimpleSingleAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleSingleAdapterTestActivity(this);
                 break;
             case 4:
-                startActivity(new Intent(this, CommonAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToCommonAdapterTestActivity(this);
                 break;
             case 5:
-                startActivity(new Intent(this, BaseRecyclerViewAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseRecyclerViewAdapterTestActivity(this);
                 break;
             case 6:
-                startActivity(new Intent(this, BaseBindRecyclerViewAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseBindRecyclerViewAdapterTestActivity(this);
                 break;
             case 7:
-                startActivity(new Intent(this, BaseBindingRecyclerViewAdapterTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBaseBindingRecyclerViewAdapterTestActivity(this);
                 break;
             case 8:
-                startActivity(new Intent(this, CommonRecyclerAdapterViewTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToCommonRecyclerAdapterViewTestActivity(this);
                 break;
             case 9:
-                startActivity(new Intent(this, RunPriorityTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToRunPriorityTestActivity(this);
                 break;
             case 10:
-                startActivity(new Intent(this, BindTestActivity.class));
+                FssRouteApi.DefaultRouteApi.routeToBindTestActivity(this);
                 break;
         }
     }

@@ -9,11 +9,14 @@ import com.gongbo.fss.bind.annotation.BindRoute;
 import com.gongbo.fss.bind.annotation.RouteKey;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.router.annotation.Route;
+import com.gongbo.fss.router.annotation.RouteExtra;
 
 
 @BindActivity(layout = R.layout.activity_bind_test)
 @BindRoute(id = R.id.btn_route, toActivity = BindDetailActivity.class, extraFields = {"value1", "value2", "value3"})
 @BindOnClick(id = R.id.btn_test, method = "test")
+@Route
 public class BindTestActivity extends BaseFssActivity {
 
     @RouteKey(key = "EXTRA_VALUE1")

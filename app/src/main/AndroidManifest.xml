@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".adapter.listview.BaseSimpleAdapterTestActivity"/>
         <activity android:name=".adapter.listview.BaseBindSimpleAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindingSimpleAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />

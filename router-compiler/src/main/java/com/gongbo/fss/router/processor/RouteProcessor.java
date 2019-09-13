@@ -271,13 +271,14 @@ public class RouteProcessor extends BaseProcessor {
                     String routeExtraString = routeExtra.toString();
                     String paramType = routeExtraString.substring(routeExtraString.indexOf("type=") + 5, routeExtraString.indexOf(","));
 
+
                     AnnotationSpec annotationSpec = AnnotationSpec.builder(Extra.class)
                             .addMember("name", "\"" + routeExtra.name() + "\"")
                             .build();
 
                     TypeName typeName = ClassName.bestGuess(paramType);
-
-                    ParameterSpec parameterSpec = ParameterSpec.builder(typeName, routeExtra.name())
+                    String paramName = routeExtra.paramName().isEmpty() ? routeExtra.name() : routeExtra.paramName();
+                    ParameterSpec parameterSpec = ParameterSpec.builder(typeName, paramName)
                             .addAnnotation(annotationSpec)
                             .build();
                     parameterSpecs.add(parameterSpec);
