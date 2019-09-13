@@ -1,47 +1,85 @@
 apply plugin: 'com.android.application'
-
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-    defaultConfig {
-        applicationId "com.gongbo.fss.demo"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
+    signingConfigs {
+        release {
+            storeFile file('../key_store.jks')
+            storePassword '123456'
+            keyAlias = 'key_fss'
+            keyPassword '123456'
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    apply from: rootProject.file('project_config.gradle')
+
+    defaultConfig {
+        applicationId "com.fss.demo"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //NAVIGATE_PREFIX 路由方法前缀
+                //NAVIGATE_SUFFIX 路由方法后缀
+                //API_PREFIX 路由接口名常量前缀
+                //API_SUFFIX 路由接口名常量后缀
+                //GROUP_PREFIX 路由分组常量前缀
+                //GROUP_SUFFIX 路由分组常量后缀
+                //DEFAULT_GROUP 默认分组名
+//                arguments = [
+//                        NAVIGATE_PREFIX    : "navigateTo",
+//                        NAVIGATE_SUFFIX    : "",
+//                        BUILD_INTENT_PREFIX: "buildIntentFor",
+//                        BUILD_INTENT_SUFFIX: "",
+//                        API_PREFIX         : "I",
+//                        API_SUFFIX         : "RouteApi",
+//                        GROUP_PREFIX       : "",
+//                        GROUP_SUFFIX       : "",
+//                        DEFAULT_GROUP      : "default",
+//                ]
+            }
         }
     }
     dataBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation library.appcompat
+    implementation library.constraint
+    implementation library.recyclerview
+
+    implementation project(path: ':common')
     implementation project(path: ':bind')
     implementation project(path: ':runpriority')
     implementation project(path: ':base')
-    implementation project(path: ':adapter')
-    implementation project(path: ':router-annotation')
+    implementation project(path: ':adapter-listview')
+    implementation project(path: ':adapter-recyclerview')
     implementation project(path: ':router-api')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor project(path: ':router-compiler')
 
+//    def fss_version = '+'
+//    implementation "com.github.gongbox.fss:adapter:$fss_version" //适配器
+//    implementation "com.github.gongbox.fss:bind:$fss_version"
+//    implementation "com.github.gongbox.fss:runpriority:$fss_version"
+//    implementation "com.github.gongbox.fss:base:$fss_version"
+//    implementation "com.github.gongbox.fss:router-api:$fss_version"
+//    annotationProcessor "com.github.gongbox.fss:router-compiler:$fss_version"
 }

@@ -5,25 +5,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/inclue_title_bar" />
+
     <Button
         android:id="@+id/btn_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="click" />
+        android:text="@string/click" />
 
     <Button
         android:id="@+id/btn_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="test" />
+        android:text="@string/test" />
 
     <Button
         android:id="@+id/btn_route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="route" />
+        android:text="@string/route_to_binddetailactivity" />
+
+    <Button
+        android:id="@+id/btn_route_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/route_to_bindfragmenttest" />
 
 </LinearLayout>

@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gongbo.fss.demo">
+    package="com.fss.demo">
 
     <application
+        android:name=".FssApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".route.RouteCallbackActivity"></activity>
+        <activity android:name=".route.RouteActionActivity">
+            <intent-filter>
+                <action android:name="com.fss.route.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".route.RouteExtraTestActivity" />
+        <activity android:name=".bind.fragment.BindFragmentActivity" />
+        <activity android:name=".adapter.AdapterActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".adapter.listview.BaseBindSimpleAdapterTestActivity" />
-        <activity android:name=".adapter.listview.BaseBindingSimpleAdapterTestActivity" />
-        <activity android:name=".adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingSingleAdapterTestActivity" />
         <activity android:name=".adapter.listview.CommonAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.CommonRecyclerAdapterViewTestActivity" />
-        <activity android:name=".activity.RunPriorityTestActivity" />
-        <activity android:name=".activity.BindDetailActivity" />
-        <activity android:name=".activity.BindTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewSingleAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindingAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.CommonAdapterTestActivity" />
+        <activity android:name=".runpriority.RunPriorityTestActivity" />
+        <activity android:name=".bind.activity.BindDetailActivity">
+            <intent-filter>
+                <action android:name="com.fss.bind.detail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".bind.BindTestActivity" />
+        <activity android:name=".route.RouteMainActivity" />
+        <activity android:name=".route.RouteDetailActivity">
+            <intent-filter>
+                <action android:name="com.fss.route.detail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".route.service.RouteTestService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

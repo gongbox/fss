@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.gongbox'
+
+android {
+    apply from: rootProject.file('project_config.gradle')
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly library.recyclerview
+    compileOnly library.databinding
+
+    api project(path: ':common')
+    api project(path: ':bind')
+}
