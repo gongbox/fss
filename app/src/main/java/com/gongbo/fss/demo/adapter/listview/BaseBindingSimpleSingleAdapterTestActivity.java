@@ -5,11 +5,11 @@ import android.widget.ListView;
 
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.demo.databinding.LayoutBindingListItemBinding;
 import com.gongbo.fss.adapter.listview.BaseBindingSimpleSingleAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.BR;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.databinding.LayoutBindingListItemBinding;
 
 import java.util.Arrays;
 import java.util.List;
