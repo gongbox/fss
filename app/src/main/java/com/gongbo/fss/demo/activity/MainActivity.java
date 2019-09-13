@@ -5,10 +5,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.base.BaseFssActivity;
+
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
+import com.gongbo.fss.adapter.listview.CommonAdapter;
+import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.adapter.listview.BaseBindSimpleAdapterTestActivity;
 import com.gongbo.fss.demo.adapter.listview.BaseBindingSimpleAdapterTestActivity;
@@ -48,13 +50,13 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
     @Override
     protected void initView() {
         super.initView();
-//        listView.setAdapter(adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
-//            @Override
-//            protected void setView(CommonViewHolder holder, String s, int position) {
-//                holder.setText(R.id.tv_text, s);
-//            }
-//        });
-//        listView.setOnItemClickListener(this);
+        listView.setAdapter(adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
+            @Override
+            protected void setView(CommonViewHolder holder, String s, int position) {
+                holder.setText(R.id.tv_text, s);
+            }
+        });
+        listView.setOnItemClickListener(this);
     }
 
     @Override
