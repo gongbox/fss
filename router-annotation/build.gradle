@@ -1,6 +1,9 @@
-apply plugin: 'java-library'
+apply plugin: 'com.android.library'
+
 apply plugin: 'com.github.dcendents.android-maven'
+
 group='com.github.gongbox'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
