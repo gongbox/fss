@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.gongbox'
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    implementation project(':router-annotation')
+    implementation 'com.squareup:javapoet:1.8.0'
+
+    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'org.apache.commons:commons-collections4:4.1'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
