@@ -32,6 +32,8 @@
         <activity android:name="com.gongbo.fss.demo.runpriority.RunPriorityTestActivity" />
         <activity android:name="com.gongbo.fss.demo.bind.BindDetailActivity" />
         <activity android:name="com.gongbo.fss.demo.bind.BindTestActivity" />
+        <activity android:name=".route.RouteMainActivity" />
+        <activity android:name=".route.RouteDetailActivity" />
     </application>
 
 </manifest>
