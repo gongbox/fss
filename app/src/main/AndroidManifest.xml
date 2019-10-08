@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".adapter.listview.BaseSimpleAdapterTestActivity"/>
+        <activity android:name=".adapter.listview.BaseSimpleAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindSimpleAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindingSimpleAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />
@@ -29,6 +29,8 @@
         <activity android:name=".activity.BindDetailActivity" />
         <activity android:name=".activity.BindTestActivity" />
         <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewSingleAdapterTestActivity" />
+        <activity android:name=".route.RouteTestActivity" />
+        <activity android:name=".route.RouteDetailActivity" />
     </application>
 
 </manifest>

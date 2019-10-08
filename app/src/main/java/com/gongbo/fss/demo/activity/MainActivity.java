@@ -1,26 +1,15 @@
 package com.gongbo.fss.demo.activity;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.adapter.listview.CommonAdapter;
 import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
+import com.gongbo.fss.bind.annotation.BindActivity;
+import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.adapter.listview.BaseBindSimpleAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.listview.BaseBindingSimpleAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.listview.BaseBindingSimpleSingleAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.listview.BaseSimpleAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.listview.CommonAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.recyclerview.BaseRecyclerViewAdapterTestActivity;
-import com.gongbo.fss.demo.adapter.recyclerview.CommonRecyclerAdapterViewTestActivity;
 import com.gongbo.fss.router.FssRouteApi;
 
 import java.util.Arrays;
@@ -45,7 +34,8 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
             "BaseBindingRecyclerViewAdapter",
             "CommonRecyclerViewAdapter",
             "RunPriorityTestActivity",
-            "BindTestActivity"
+            "BindTestActivity",
+            "RouteTestActivity"
     );
 
     @Override
@@ -60,41 +50,51 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
         listView.setOnItemClickListener(this);
     }
 
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                FssRouteApi.DefaultRouteApi.routeToBaseSimpleAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseSimpleAdapterTestActivity(this);
                 break;
             case 1:
-                FssRouteApi.DefaultRouteApi.routeToBaseBindSimpleAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseBindSimpleAdapterTestActivity(this);
                 break;
             case 2:
-                FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseBindingSimpleAdapterTestActivity(this);
                 break;
             case 3:
-                FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleSingleAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseBindingSimpleSingleAdapterTestActivity(this);
                 break;
             case 4:
-                FssRouteApi.DefaultRouteApi.routeToCommonAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToCommonAdapterTestActivity(this);
                 break;
             case 5:
-                FssRouteApi.DefaultRouteApi.routeToBaseRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseRecyclerViewAdapterTestActivity(this);
                 break;
             case 6:
-                FssRouteApi.DefaultRouteApi.routeToBaseBindRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseBindRecyclerViewAdapterTestActivity(this);
                 break;
             case 7:
-                FssRouteApi.DefaultRouteApi.routeToBaseBindingRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBaseBindingRecyclerViewAdapterTestActivity(this);
                 break;
             case 8:
-                FssRouteApi.DefaultRouteApi.routeToCommonRecyclerAdapterViewTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToCommonRecyclerAdapterViewTestActivity(this);
                 break;
             case 9:
-                FssRouteApi.DefaultRouteApi.routeToRunPriorityTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToRunPriorityTestActivity(this);
                 break;
             case 10:
-                FssRouteApi.DefaultRouteApi.routeToBindTestActivity(this);
+                FssRouteApi.getDefaultRouteApi().routeToBindTestActivity(this);
+                break;
+            case 11:
+                FssRouteApi.getDefaultRouteApi().routeToRouteTestActivity(this);
                 break;
         }
     }

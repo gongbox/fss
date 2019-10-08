@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Repeatable(value = Routes.class)
 public @interface Route {
-
     String group() default "";
 
     String name() default "";

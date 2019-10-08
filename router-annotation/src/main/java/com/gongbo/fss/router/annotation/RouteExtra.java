@@ -13,4 +13,6 @@ public @interface RouteExtra {
     String paramName() default "";
 
     Class<?> type() default Object.class;
+
+    String desc() default "";
 }

@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
@@ -118,6 +119,9 @@ public class RouteHandler implements InvocationHandler {
 
         switch (routeType) {
             case ACTIVITY:
+
+                Log.i(TAG, bundle.toString());
+
                 // Build intent
                 intent.putExtras(bundle);
 
@@ -191,7 +195,7 @@ public class RouteHandler implements InvocationHandler {
                 try {
                     Object instance = fragmentMeta.getConstructor().newInstance();
 //                    if (instance instanceof Fragment) {
-                        ((Fragment) instance).setArguments(bundle);
+                    ((Fragment) instance).setArguments(bundle);
 //                    } else if (instance instanceof android.support.v4.app.Fragment) {
 //                        ((android.support.v4.app.Fragment) instance).setArguments(bundle);
 //                    }

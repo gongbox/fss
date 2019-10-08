@@ -22,5 +22,5 @@ public enum TypeKind {
     STRING,
     SERIALIZABLE,
     PARCELABLE,
-    OBJECT;
+    OBJECT
 }

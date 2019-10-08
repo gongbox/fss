@@ -22,6 +22,7 @@ import com.squareup.javapoet.TypeSpec;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.text.StrBuilder;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -48,6 +49,7 @@ import static com.gongbo.fss.router.utils.Consts.PACKAGE_OF_GENERATE_DOCS;
 import static com.gongbo.fss.router.utils.StringUtils.capitalizeString;
 import static com.gongbo.fss.router.utils.StringUtils.formatApiFieldName;
 import static com.gongbo.fss.router.utils.StringUtils.formatToStaticField;
+import static com.gongbo.fss.router.utils.StringUtils.getFieldValue;
 import static com.gongbo.fss.router.utils.StringUtils.joinString;
 
 /**
@@ -64,25 +66,9 @@ public class RouteProcessor extends BaseProcessor {
     private static final String ROUTE_API_PACKAGE = "com.gongbo.fss.router";
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
 
-    private Writer docWriter;       // Writer used for write doc
-
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-
-        if (generateDoc) {
-            try {
-                docWriter = mFiler.createResource(
-                        StandardLocation.SOURCE_OUTPUT,
-                        PACKAGE_OF_GENERATE_DOCS,
-                        "arouter-map-of-" + moduleName + ".json"
-                ).openWriter();
-            } catch (IOException e) {
-                logger.error("Create doc writer failed, because " + e.getMessage());
-            }
-        }
-
-//        iProvider = elementUtils.getTypeElement(Consts.IPROVIDER).asType();
         logger.info(">>> RouteProcessor init. <<<");
     }
 
@@ -106,6 +92,7 @@ public class RouteProcessor extends BaseProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         if (CollectionUtils.isNotEmpty(annotations)) {
             Map<String, List<RouteInfo>> routeInfoMap = new HashMap<>();
+            Set<String> groups = new HashSet<>();
 
             Set<? extends Element> routeElements = roundEnv.getElementsAnnotatedWith(Route.class);
             Set<? extends Element> routesElements = roundEnv.getElementsAnnotatedWith(Routes.class);
@@ -132,11 +119,13 @@ public class RouteProcessor extends BaseProcessor {
                         getRouteInfos(routeInfoMap, route.group()).add(new RouteInfo(typeElement, route));
                     }
                     if (routes != null && routes.value().length > 0) {
-                        for (Route config : routes.value()) {
-                            getRouteInfos(routeInfoMap, config.group()).add(new RouteInfo(typeElement, config));
+                        for (Route routeItem : routes.value()) {
+                            getRouteInfos(routeInfoMap, routeItem.group()).add(new RouteInfo(typeElement, routeItem));
                         }
                     }
                 }
+
+                groups = routeInfoMap.keySet();
 
                 this.parseRoutes(routeInfoMap);
             } catch (Exception e) {
@@ -158,7 +147,7 @@ public class RouteProcessor extends BaseProcessor {
                     typeElementList.add(typeElement);
                 }
 
-                this.parseRouteApis(typeElementList, routeInfoMap.keySet());
+                this.parseRouteApis(typeElementList, groups);
             } catch (Exception e) {
                 logger.error(e);
             }
@@ -267,10 +256,11 @@ public class RouteProcessor extends BaseProcessor {
 
                 List<ParameterSpec> parameterSpecs = new ArrayList<>();
                 parameterSpecs.add(ParameterSpec.builder(ClassName.bestGuess("android.content.Context"), "packageContext").build());
-                for (RouteExtra routeExtra : routeExtras) {
-                    String routeExtraString = routeExtra.toString();
-                    String paramType = routeExtraString.substring(routeExtraString.indexOf("type=") + 5, routeExtraString.indexOf(","));
 
+                StringBuilder paramDesc = new StringBuilder();
+
+                for (RouteExtra routeExtra : routeExtras) {
+                    String paramType = getFieldValue(routeExtra.toString(), "type");
 
                     AnnotationSpec annotationSpec = AnnotationSpec.builder(Extra.class)
                             .addMember("name", "\"" + routeExtra.name() + "\"")
@@ -282,6 +272,10 @@ public class RouteProcessor extends BaseProcessor {
                             .addAnnotation(annotationSpec)
                             .build();
                     parameterSpecs.add(parameterSpec);
+
+                    if (!routeExtra.desc().isEmpty()) {
+                        paramDesc.append("@").append(paramName).append(" ").append(routeExtra.desc());
+                    }
                 }
 
                 if (route.withResultCallBack()) {
@@ -302,10 +296,15 @@ public class RouteProcessor extends BaseProcessor {
                     name = route.name().isEmpty() ? "routeTo" + routeInfo.typeElement.getSimpleName() : route.name();
                 }
 
+                String paramDoc = paramDesc.toString();
+                if (!paramDoc.isEmpty()) {
+                    paramDoc = "\n" + paramDoc + "\n";
+                }
 
                 MethodSpec methodSpec = MethodSpec.methodBuilder(name)
                         .addAnnotations(methodAnnotationSpecs)
                         .addJavadoc(route.desc())
+                        .addJavadoc(paramDoc)
                         .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                         .addParameters(parameterSpecs)
                         .returns(returnType)
@@ -332,6 +331,7 @@ public class RouteProcessor extends BaseProcessor {
 
             logger.info(">>> Found routeApis, size is " + elements.size() + " <<<");
             List<FieldSpec> fieldSpecs = new ArrayList<>();
+            List<MethodSpec> methodSpecs = new ArrayList<>();
 
             ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.RouteManager");
 
@@ -351,14 +351,30 @@ public class RouteProcessor extends BaseProcessor {
                 FieldSpec fieldSpec = FieldSpec.builder(TypeName.get(element.asType()), apiName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .build();
                 fieldSpecs.add(fieldSpec);
+
+
+                MethodSpec methodSpec = MethodSpec.methodBuilder("get" + fieldSpec.name)
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(fieldSpec.type)
+                        .addStatement("return " + fieldSpec.name)
+                        .build();
+                methodSpecs.add(methodSpec);
             }
 
+            logger.info(">>>>>>>>>>>>>>>>>>>>>>>" + groups.toString());
             for (String group : groups) {
                 String groupApiName = group.isEmpty() ? "DefaultRouteApi" : capitalizeString(group) + "RouteApi";
                 ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", "I" + groupApiName);
                 FieldSpec fieldSpec = FieldSpec.builder(groupRouteApiImpl, groupApiName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .build();
                 fieldSpecs.add(fieldSpec);
+
+                MethodSpec methodSpec = MethodSpec.methodBuilder("get" + capitalizeString(group))
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(fieldSpec.type)
+                        .addStatement("return " + fieldSpec.name)
+                        .build();
+                methodSpecs.add(methodSpec);
             }
 
             CodeBlock.Builder builder = CodeBlock.builder();
@@ -370,6 +386,7 @@ public class RouteProcessor extends BaseProcessor {
                     .classBuilder(FSS_ROUTE_API_NAME)
                     .addModifiers(Modifier.PUBLIC)
                     .addFields(fieldSpecs)
+                    .addMethods(methodSpecs)
                     .addStaticBlock(builder.build())
                     .build();
 
@@ -385,11 +402,6 @@ public class RouteProcessor extends BaseProcessor {
         List<RouteInfo> routeInfos = new ArrayList<>();
         map.put(group, routeInfos);
         return routeInfos;
-    }
-
-    @Override
-    public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.latestSupported();
     }
 
 }

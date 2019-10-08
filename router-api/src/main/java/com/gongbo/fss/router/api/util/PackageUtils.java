@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import static com.gongbo.fss.router.api.launcher.FssRouter.logger;
-import static com.gongbo.fss.router.api.util.Consts.AROUTER_SP_CACHE_KEY;
+import static com.gongbo.fss.router.api.util.Consts.FSS_ROUTER_SP_CACHE_KEY;
 import static com.gongbo.fss.router.api.util.Consts.LAST_VERSION_CODE;
 import static com.gongbo.fss.router.api.util.Consts.LAST_VERSION_NAME;
 
@@ -28,7 +28,7 @@ public class PackageUtils {
             String versionName = packageInfo.versionName;
             int versionCode = packageInfo.versionCode;
 
-            SharedPreferences sp = context.getSharedPreferences(AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
+            SharedPreferences sp = context.getSharedPreferences(FSS_ROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
             if (!versionName.equals(sp.getString(LAST_VERSION_NAME, null)) || (versionCode != sp.getInt(LAST_VERSION_CODE, -1))) {
                 // new version
                 NEW_VERSION_NAME = versionName;
@@ -45,7 +45,7 @@ public class PackageUtils {
 
     public static void updateVersion(Context context) {
         if (!android.text.TextUtils.isEmpty(NEW_VERSION_NAME) && NEW_VERSION_CODE != 0) {
-            SharedPreferences sp = context.getSharedPreferences(AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
+            SharedPreferences sp = context.getSharedPreferences(FSS_ROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
             sp.edit().putString(LAST_VERSION_NAME, NEW_VERSION_NAME).putInt(LAST_VERSION_CODE, NEW_VERSION_CODE).apply();
         }
     }

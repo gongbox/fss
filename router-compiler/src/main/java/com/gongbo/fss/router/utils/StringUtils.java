@@ -84,4 +84,14 @@ public class StringUtils {
     public static boolean isNotEmpty(CharSequence charSequence) {
         return charSequence != null && charSequence.length() > 0;
     }
+
+    public static String getFieldValue(String string, String fieldName) {
+        String substring = string.substring(string.indexOf(fieldName + "="));
+        int index = substring.indexOf(",");
+        if (index > 0) {
+            return substring.substring(fieldName.length() + 1, index);
+        } else {
+            return substring.substring(fieldName.length() + 1, substring.indexOf("}"));
+        }
+    }
 }

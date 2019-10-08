@@ -16,10 +16,10 @@ import com.gongbo.fss.router.annotation.RouteExtra;
 @BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.btn_finish)
 @BindBindingParam(key = "EXTRA_VALUE1", id = BR.value1)
 @Route(routeExtras = {
-        @RouteExtra(name = "EXTRA_VALUE1", paramName = "value1", type = String.class),
+        @RouteExtra(name = "EXTRA_VALUE1", paramName = "value1", type = String.class, desc = "tesdt"),
         @RouteExtra(name = "EXTRA_VALUE2", paramName = "value2", type = String.class),
         @RouteExtra(name = "EXTRA_VALUE3", paramName = "value3", type = Integer.class)
-})
+}, desc = "ssfdd")
 public class BindDetailActivity extends BaseBindingFssActivity<ActivityBindDetailBinding> {
 
     @BindBindingParam(key = "EXTRA_VALUE2", id = BR.value2)

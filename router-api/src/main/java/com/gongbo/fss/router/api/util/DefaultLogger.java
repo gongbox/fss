@@ -18,7 +18,7 @@ public class DefaultLogger implements ILogger {
     private static boolean isShowStackTrace = false;
     private static boolean isMonitorMode = false;
 
-    private String defaultTag = "ARouter";
+    private String defaultTag = "FssRouter";
 
     public void showLog(boolean showLog) {
         isShowLog = showLog;

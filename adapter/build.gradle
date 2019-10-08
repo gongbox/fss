@@ -42,7 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.material:material:1.1.0-alpha10'
-    implementation project(path: ':common')
-    implementation project(path: ':bind')
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+    api project(path: ':common')
+    api project(path: ':bind')
 }
