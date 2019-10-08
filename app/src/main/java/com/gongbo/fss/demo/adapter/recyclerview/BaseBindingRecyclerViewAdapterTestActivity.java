@@ -7,11 +7,10 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.adapter.recyclerview.BaseBindingRecyclerViewAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.demo.BR;
+import com.gongbo.fss.bind.annotation.BindActivity;
+import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 

@@ -1,14 +1,13 @@
-package com.gongbo.fss.demo.activity;
+package com.gongbo.fss.demo.runpriority;
 
-import android.renderscript.RenderScript;
 import android.util.Log;
 
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
+import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.runpriority.Priority;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.demo.R;
 
 @Route
 @BindActivity(layout = R.layout.activity_run_priority_test)

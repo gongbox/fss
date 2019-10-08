@@ -1,22 +1,20 @@
-package com.gongbo.fss.demo.activity;
+package com.gongbo.fss.demo.bind;
 
 import android.view.View;
 import android.widget.Toast;
 
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindRoute;
 import com.gongbo.fss.bind.annotation.RouteKey;
-import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.router.annotation.RouteExtra;
 
-
+@Route
 @BindActivity(layout = R.layout.activity_bind_test)
 @BindRoute(id = R.id.btn_route, toActivity = BindDetailActivity.class, extraFields = {"value1", "value2", "value3"})
 @BindOnClick(id = R.id.btn_test, method = "test")
-@Route
 public class BindTestActivity extends BaseFssActivity {
 
     @RouteKey(key = "EXTRA_VALUE1")

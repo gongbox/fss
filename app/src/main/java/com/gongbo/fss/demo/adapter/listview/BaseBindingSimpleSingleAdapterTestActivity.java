@@ -3,17 +3,17 @@ package com.gongbo.fss.demo.adapter.listview;
 import android.content.Context;
 import android.widget.ListView;
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.adapter.listview.BaseBindingSimpleSingleAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.demo.BR;
+import com.gongbo.fss.bind.annotation.BindActivity;
+import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.databinding.LayoutBindingListItemBinding;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
 import java.util.List;
+
 @Route
 @BindActivity(layout = R.layout.activity_list_view)
 public class BaseBindingSimpleSingleAdapterTestActivity extends BaseFssActivity {

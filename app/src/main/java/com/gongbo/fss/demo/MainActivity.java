@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.activity;
+package com.gongbo.fss.demo;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,12 +9,13 @@ import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.FssRouteApi;
+import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Route
 @BindActivity(layout = R.layout.activity_list_view)
 public class MainActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
 
@@ -50,52 +51,47 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
         listView.setOnItemClickListener(this);
     }
 
-    /**
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                FssRouteApi.getDefaultRouteApi().routeToBaseSimpleAdapterTestActivity(this);
+                FssRouteApi.DefaultRouteApi.routeToBaseSimpleAdapterTestActivity(this);
                 break;
             case 1:
-                FssRouteApi.getDefaultRouteApi().routeToBaseBindSimpleAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseBindSimpleAdapterTestActivity(this);
                 break;
             case 2:
-                FssRouteApi.getDefaultRouteApi().routeToBaseBindingSimpleAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleAdapterTestActivity(this);
                 break;
             case 3:
-                FssRouteApi.getDefaultRouteApi().routeToBaseBindingSimpleSingleAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleSingleAdapterTestActivity(this);
                 break;
             case 4:
-                FssRouteApi.getDefaultRouteApi().routeToCommonAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToCommonAdapterTestActivity(this);
                 break;
             case 5:
-                FssRouteApi.getDefaultRouteApi().routeToBaseRecyclerViewAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseRecyclerViewAdapterTestActivity(this);
                 break;
             case 6:
-                FssRouteApi.getDefaultRouteApi().routeToBaseBindRecyclerViewAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseBindRecyclerViewAdapterTestActivity(this);
                 break;
             case 7:
-                FssRouteApi.getDefaultRouteApi().routeToBaseBindingRecyclerViewAdapterTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBaseBindingRecyclerViewAdapterTestActivity(this);
                 break;
             case 8:
-                FssRouteApi.getDefaultRouteApi().routeToCommonRecyclerAdapterViewTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToCommonRecyclerAdapterViewTestActivity(this);
                 break;
             case 9:
-                FssRouteApi.getDefaultRouteApi().routeToRunPriorityTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToRunPriorityTestActivity(this);
                 break;
             case 10:
-                FssRouteApi.getDefaultRouteApi().routeToBindTestActivity(this);
+                 FssRouteApi.DefaultRouteApi.routeToBindTestActivity(this);
                 break;
             case 11:
-                FssRouteApi.getDefaultRouteApi().routeToRouteTestActivity(this);
+                FssRouteApi.DefaultRouteApi.routeToRouteMainActivity(this);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + position);
         }
     }
 }
