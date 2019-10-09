@@ -22,10 +22,8 @@ import com.squareup.javapoet.TypeSpec;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.text.StrBuilder;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,15 +35,12 @@ import java.util.Set;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
-import javax.tools.StandardLocation;
 
-import static com.gongbo.fss.router.utils.Consts.PACKAGE_OF_GENERATE_DOCS;
 import static com.gongbo.fss.router.utils.StringUtils.capitalizeString;
 import static com.gongbo.fss.router.utils.StringUtils.formatApiFieldName;
 import static com.gongbo.fss.router.utils.StringUtils.formatToStaticField;
@@ -333,7 +328,7 @@ public class RouteProcessor extends BaseProcessor {
             List<FieldSpec> fieldSpecs = new ArrayList<>();
             List<MethodSpec> methodSpecs = new ArrayList<>();
 
-            ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.RouteManager");
+            ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.manager.RouteManager");
 
 
             for (TypeElement element : elements) {

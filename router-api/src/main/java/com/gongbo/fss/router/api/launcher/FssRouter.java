@@ -1,186 +1,145 @@
 package com.gongbo.fss.router.api.launcher;
 
-import android.app.Application;
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 
-import com.gongbo.fss.router.api.util.Consts;
-import com.gongbo.fss.router.api.callback.NavigationCallback;
-import com.gongbo.fss.router.api.exception.InitException;
-import com.gongbo.fss.router.api.facade.Postcard;
-import com.gongbo.fss.router.api.template.ILogger;
+import com.gongbo.fss.router.annotation.Autowired;
+import com.gongbo.fss.router.api.log.ILogger;
+import com.gongbo.fss.router.api.manager.RouteManager;
+import com.gongbo.fss.router.api.util.ReflectUtils;
 
-import java.util.concurrent.ThreadPoolExecutor;
+import java.lang.reflect.Field;
 
-/**
- * ARouter facade
- *
- * @author Alex <a href="mailto:zhilong.liu@aliyun.com">Contact me.</a>
- * @version 1.0
- * @since 16/8/16 14:36
- */
-public final class FssRouter {
-    // Key of raw uri
-    public static final String RAW_URI = "NTeRQWvye18AkPd6G";
+public class FssRouter {
+
     public static final String AUTO_INJECT = "wmHzgDrsfdsdfs4241";
 
-    private volatile static FssRouter instance = null;
-    private volatile static boolean hasInit = false;
-    public static ILogger logger;
+    //是否开启日志
+    private boolean openLog = false;
 
-    private FssRouter() {
+    private boolean openDebug = false;
+
+    private boolean autoInject = false;
+
+    public boolean isOpenLog() {
+        return openLog;
     }
 
-    /**
-     * Init, it must be call before used router.
-     */
-    public static void init(Application application) {
-        if (!hasInit) {
-            logger = _FssRouter.logger;
-            _FssRouter.logger.info(Consts.TAG, "FssRouter init start.");
-            hasInit = _FssRouter.init(application);
-
-            if (hasInit) {
-                _FssRouter.afterInit();
-            }
-
-            _FssRouter.logger.info(Consts.TAG, "FssRouter init over.");
-        }
+    public void setOpenLog(boolean openLog) {
+        this.openLog = openLog;
     }
 
-    /**
-     * Get instance of router. A
-     * All feature U use, will be starts here.
-     */
+    public boolean isOpenDebug() {
+        return openDebug;
+    }
+
+    public void setOpenDebug(boolean openDebug) {
+        this.openDebug = openDebug;
+    }
+
+    public void enableAutoInject() {
+        autoInject = true;
+    }
+
+    public boolean canAutoInject() {
+        return autoInject;
+    }
+
+    private static FssRouter fssRouter = new FssRouter();
+
     public static FssRouter getInstance() {
-        if (!hasInit) {
-            throw new InitException("FssRouter::Init::Invoke init(context) first!");
-        } else {
-            if (instance == null) {
-                synchronized (FssRouter.class) {
-                    if (instance == null) {
-                        instance = new FssRouter();
+        return fssRouter;
+    }
+
+    /**
+     * @param object
+     * @param intent
+     */
+    public void reject(Object object, Intent intent) {
+        Bundle extras;
+        if (object != null && intent != null && (extras = intent.getExtras()) != null) {
+            for (Field field : object.getClass().getDeclaredFields()) {
+                Autowired autowired = field.getAnnotation(Autowired.class);
+                if (autowired != null) {
+                    //获取name
+                    String name = TextUtils.isEmpty(autowired.name()) ? field.getName() : autowired.name();
+                    //获取value
+                    Object value = extras.get(name);
+                    if (value != null) {
+                        ReflectUtils.setFieldValue(object, field, value);
+                    } else if (autowired.required()) {
+                        throw new RuntimeException("the field:" + field.getName() + " reject failed!");
                     }
                 }
             }
-            return instance;
         }
     }
 
-    public static synchronized void openDebug() {
-        _FssRouter.openDebug();
-    }
-
-    public static boolean debuggable() {
-        return _FssRouter.debuggable();
-    }
-
-    public static synchronized void openLog() {
-        _FssRouter.openLog();
-    }
-
-    public static synchronized void printStackTrace() {
-        _FssRouter.printStackTrace();
-    }
-
-    public static synchronized void setExecutor(ThreadPoolExecutor tpe) {
-        _FssRouter.setExecutor(tpe);
-    }
-
-    public synchronized void destroy() {
-        _FssRouter.destroy();
-        hasInit = false;
-    }
-
     /**
-     * The interface is not stable enough, use 'FssRouter.inject();';
-     */
-    @Deprecated
-    public static synchronized void enableAutoInject() {
-        _FssRouter.enableAutoInject();
-    }
-
-    @Deprecated
-    public static boolean canAutoInject() {
-        return _FssRouter.canAutoInject();
-    }
-
-    /**
-     * The interface is not stable enough, use 'FssRouter.inject();';
-     */
-    @Deprecated
-    public static void attachBaseContext() {
-        _FssRouter.attachBaseContext();
-    }
-
-    public static synchronized void monitorMode() {
-        _FssRouter.monitorMode();
-    }
-
-    public static boolean isMonitorMode() {
-        return _FssRouter.isMonitorMode();
-    }
-
-    public static void setLogger(ILogger userLogger) {
-        _FssRouter.setLogger(userLogger);
-    }
-
-    /**
-     * Inject params and services.
-     */
-    public void inject(Object thiz) {
-        _FssRouter.inject(thiz);
-    }
-
-    /**
-     * Build the roadmap, draw a postcard.
+     * 处理回调函数
      *
-     * @param path Where you go.
+     * @param requestCode
+     * @param resultCode
+     * @param data
      */
-    public Postcard build(String path) {
-        return _FssRouter.getInstance().build(path);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        RouteManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * Build the roadmap, draw a postcard.
-     *
-     * @param path  Where you go.
-     * @param group The group of path.
-     */
-    @Deprecated
-    public Postcard build(String path, String group) {
-        return _FssRouter.getInstance().build(path, group);
-    }
+    public static ILogger logger = new ILogger() {
 
-    /**
-     * Build the roadmap, draw a postcard.
-     *
-     * @param url the path
-     */
-    public Postcard build(Uri url) {
-        return _FssRouter.getInstance().build(url);
-    }
+        @Override
+        public void showLog(boolean isShowLog) {
 
-    /**
-     * Launch the navigation by type
-     *
-     * @param service interface of service
-     * @param <T>     return type
-     * @return instance of service
-     */
-    public <T> T navigation(Class<? extends T> service) {
-        return _FssRouter.getInstance().navigation(service);
-    }
+        }
 
-    /**
-     * Launch the navigation.
-     *
-     * @param mContext    .
-     * @param postcard    .
-     * @param requestCode Set for startActivityForResult
-     * @param callback    cb
-     */
-    public Object navigation(Context mContext, Postcard postcard, int requestCode, NavigationCallback callback) {
-        return _FssRouter.getInstance().navigation(mContext, postcard, requestCode, callback);
-    }
+        @Override
+        public void showStackTrace(boolean isShowStackTrace) {
+
+        }
+
+        @Override
+        public void debug(String tag, String message) {
+            if (isShowLog) {
+                Log.d(tag, message);
+            }
+        }
+
+        @Override
+        public void info(String tag, String message) {
+            if (isShowLog) {
+                Log.i(tag, message);
+            }
+        }
+
+        @Override
+        public void warning(String tag, String message) {
+            if (isShowLog) {
+                Log.w(tag, message);
+            }
+        }
+
+        @Override
+        public void error(String tag, String message) {
+            if (isShowLog) {
+                Log.e(tag, message);
+            }
+        }
+
+        @Override
+        public void monitor(String message) {
+        }
+
+        @Override
+        public boolean isMonitorMode() {
+            return false;
+        }
+
+        @Override
+        public String getDefaultTag() {
+            return null;
+        }
+    };
 }

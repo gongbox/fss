@@ -6,13 +6,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Text utils
- *
- * @author Alex <a href="mailto:zhilong.liu@aliyun.com">Contact me.</a>
- * @version 1.0
- * @since 16/9/9 14:40
- */
 public class TextUtils {
 
     public static boolean isEmpty(final CharSequence cs) {

@@ -3,8 +3,8 @@ package com.gongbo.fss.router.api.thread;
 
 import androidx.annotation.NonNull;
 
-import com.gongbo.fss.router.api.util.Consts;
 import com.gongbo.fss.router.api.launcher.FssRouter;
+import com.gongbo.fss.router.api.util.Consts;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

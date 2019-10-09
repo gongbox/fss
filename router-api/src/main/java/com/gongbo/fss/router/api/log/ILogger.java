@@ -1,15 +1,7 @@
-package com.gongbo.fss.router.api.template;
-
+package com.gongbo.fss.router.api.log;
 
 import com.gongbo.fss.router.api.util.Consts;
 
-/**
- * Logger
- *
- * @author 正纬 <a href="mailto:zhilong.liu@aliyun.com">Contact me.</a>
- * @version 1.0
- * @since 16/5/16 下午5:39
- */
 public interface ILogger {
 
     boolean isShowLog = false;

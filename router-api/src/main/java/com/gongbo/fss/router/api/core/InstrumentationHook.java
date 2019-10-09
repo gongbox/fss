@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 
+import com.gongbo.fss.router.api.launcher.FssRouter;
 import com.gongbo.fss.router.api.util.Consts;
 import com.gongbo.fss.router.api.util.TextUtils;
-import com.gongbo.fss.router.api.launcher.FssRouter;
 
 import java.lang.reflect.Field;
 
 
 /**
  * Use ARouter.getInstance().inject(this) now!
- *
+ * <p>
  * Hook the instrumentation, inject values for activity's field.
  * Support normal activity only, not contain unit test.
  *
@@ -46,7 +46,7 @@ public class InstrumentationHook extends Instrumentation {
         Class<?> targetActivity = cl.loadClass(className);
         Object instanceOfTarget = targetActivity.newInstance();
 
-        if (FssRouter.canAutoInject()) {
+        if (FssRouter.getInstance().canAutoInject()) {
             String[] autoInjectParams = intent.getStringArrayExtra(FssRouter.AUTO_INJECT);
             if (null != autoInjectParams && autoInjectParams.length > 0) {
                 for (String paramsName : autoInjectParams) {
