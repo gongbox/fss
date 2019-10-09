@@ -1,8 +1,9 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.processor;
 
 
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindOnClicks;
+import com.gongbo.fss.bind.util.OnClickUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -15,7 +16,7 @@ public class BindOnClickProcessor {
      * 绑定点击事件
      * @param obj
      */
-    static void bindOnClick(Object obj) {
+    public static void bindOnClick(Object obj) {
         BindOnClicks bindOnClicks = obj.getClass().getAnnotation(BindOnClicks.class);
         if (bindOnClicks != null) {
             for (BindOnClick bindOnClick : bindOnClicks.value()) {
@@ -45,7 +46,7 @@ public class BindOnClickProcessor {
      * @param obj
      * @param bindOnClick
      */
-    static void bindOnClick(Object obj, BindOnClick bindOnClick) {
+    private static void bindOnClick(Object obj, BindOnClick bindOnClick) {
         OnClickUtils.bindOnClick(obj, bindOnClick.id(), bindOnClick.method());
     }
 
@@ -56,7 +57,7 @@ public class BindOnClickProcessor {
      * @param method
      * @param bindOnClicks
      */
-    static void bindOnClick(Object obj, final Method method, List<BindOnClick> bindOnClicks) {
+    public static void bindOnClick(Object obj, final Method method, List<BindOnClick> bindOnClicks) {
         Set<Integer> ids = new HashSet<>();
         for (BindOnClick bindOnClick : bindOnClicks) {
             for (int id : bindOnClick.id()) {

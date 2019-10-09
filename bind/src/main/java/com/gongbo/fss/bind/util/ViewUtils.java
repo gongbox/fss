@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.util;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -7,8 +7,8 @@ import android.view.View;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
-class ViewUtils {
-    static View getView(@NonNull Object obj, @IdRes int id) {
+public class ViewUtils {
+    public static View getView(@NonNull Object obj, @IdRes int id) {
         if (obj instanceof Activity) {
             return getView((Activity) obj, id);
         }
@@ -45,7 +45,7 @@ class ViewUtils {
      * @param id
      * @return
      */
-    private static View getView(View view, @IdRes int id) {
+    public static View getView(View view, @IdRes int id) {
         return view == null ? null : view.findViewById(id);
     }
 }

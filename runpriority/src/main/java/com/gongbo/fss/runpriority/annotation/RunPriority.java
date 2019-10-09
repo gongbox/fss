@@ -1,9 +1,6 @@
 package com.gongbo.fss.runpriority.annotation;
 
 
-
-
-
 import com.gongbo.fss.runpriority.Priority;
 
 import java.lang.annotation.ElementType;

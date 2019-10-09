@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.util;
 
 import android.view.View;
 
@@ -11,7 +11,7 @@ import com.gongbo.fss.common.util.ReflectUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-class OnClickUtils {
+public class OnClickUtils {
     /**
      * 绑定点击事件
      *
@@ -19,7 +19,7 @@ class OnClickUtils {
      * @param ids
      * @param method
      */
-    static void bindOnClick(@NonNull Object obj, @IdRes int[] ids, @NonNull Method method) {
+    public static void bindOnClick(@NonNull Object obj, @IdRes int[] ids, @NonNull Method method) {
         View.OnClickListener onClickListener = view -> {
             if (!method.isAccessible()) {
                 method.setAccessible(true);
@@ -54,7 +54,7 @@ class OnClickUtils {
      * @param ids
      * @param methodName
      */
-    static void bindOnClick(Object obj, @IdRes int[] ids, String methodName) {
+    public static void bindOnClick(Object obj, @IdRes int[] ids, String methodName) {
         if (!methodName.isEmpty()) {
             Method method = ReflectUtils.findMethod(obj.getClass(), methodName, new Class[]{}, new Class[]{View.class});
             if (method != null) {

@@ -1,5 +1,4 @@
-package com.gongbo.fss.bind;
-
+package com.gongbo.fss.bind.util;
 
 
 import androidx.databinding.ViewDataBinding;
@@ -9,7 +8,7 @@ import com.gongbo.fss.common.util.ReflectUtils;
 import java.lang.reflect.Field;
 
 
-class DataBindingUtils {
+public class DataBindingUtils {
     /**
      * 绑定databinding变量
      *
@@ -17,8 +16,8 @@ class DataBindingUtils {
      * @param bindingId
      * @param value
      */
-    static void bindingVariable(Object obj, int bindingId, Object value) {
-        Field bindingField = ReflectUtils.getField(obj.getClass(), "binding");
+    public static void bindingVariable(Object obj, String bindingFieldName, int bindingId, Object value) {
+        Field bindingField = ReflectUtils.getField(obj.getClass(), bindingFieldName);
         ViewDataBinding binding = null;
         if (bindingField != null) {
             binding = ReflectUtils.getFieldValue(obj, bindingField);

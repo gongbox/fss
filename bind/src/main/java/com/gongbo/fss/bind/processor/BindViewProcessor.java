@@ -1,13 +1,16 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.processor;
 
 import android.view.View;
+
+
+import com.gongbo.fss.bind.util.*;
 
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 
-class BindViewProcessor {
+public class BindViewProcessor {
 
     /**
      * 绑定view
@@ -16,7 +19,7 @@ class BindViewProcessor {
      * @param field
      * @param bindView
      */
-    static void bindView(Object obj, Field field, BindView bindView) {
+    public static void bindView(Object obj, Field field, BindView bindView) {
         View view = ViewUtils.getView(obj, bindView.id());
         if (view != null) {
             ReflectUtils.setFieldValue(obj, field, view);
@@ -32,7 +35,7 @@ class BindViewProcessor {
      * @param field
      * @param bindView
      */
-    static void bindView(Object obj, View v, Field field, BindView bindView) {
+    public static void bindView(Object obj, View v, Field field, BindView bindView) {
         View view = ViewUtils.getView(v, bindView.id());
         if (view != null) {
             ReflectUtils.setFieldValue(obj, field, view);

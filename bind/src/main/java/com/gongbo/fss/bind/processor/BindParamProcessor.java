@@ -1,12 +1,13 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.processor;
 
 
 import com.gongbo.fss.bind.annotation.BindParam;
+import com.gongbo.fss.bind.util.ParamUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 
-class BindParamProcessor {
+public class BindParamProcessor {
 
     /**
      * 绑定参数
@@ -15,7 +16,7 @@ class BindParamProcessor {
      * @param field
      * @param bindParam
      */
-    static void bindParam(Object obj, Field field, BindParam bindParam) {
+    public static void bindParam(Object obj, Field field, BindParam bindParam) {
         Object value = ParamUtils.getParam(obj, bindParam.key());
         if (value != null) {
             ReflectUtils.setFieldValue(obj, field, value);

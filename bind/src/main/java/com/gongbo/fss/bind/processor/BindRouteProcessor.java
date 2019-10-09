@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.processor;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,14 +9,15 @@ import androidx.fragment.app.Fragment;
 
 import com.gongbo.fss.bind.annotation.BindRoute;
 import com.gongbo.fss.bind.annotation.BindRoutes;
-import com.gongbo.fss.bind.annotation.RouteKey;
+import com.gongbo.fss.bind.annotation.BindRouteExtra;
+import com.gongbo.fss.bind.util.ViewUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
 
-class BindRouteProcessor {
+public class BindRouteProcessor {
 
     /**
      * 绑定路由
@@ -42,7 +43,7 @@ class BindRouteProcessor {
      * @param obj
      * @param bindRoute
      */
-    static void bindRoute(Object obj, BindRoute bindRoute) {
+    private static void bindRoute(Object obj, BindRoute bindRoute) {
         View view = ViewUtils.getView(obj, bindRoute.id());
         if (view != null) {
             view.setOnClickListener(v -> {
@@ -94,8 +95,8 @@ class BindRouteProcessor {
             if (field != null) {
                 Object value = ReflectUtils.getFieldValue(obj, field);
                 if (value instanceof Serializable) {
-                    RouteKey routeKey = field.getAnnotation(RouteKey.class);
-                    String key = routeKey == null ? fieldName : routeKey.key();
+                    BindRouteExtra bindRouteExtra = field.getAnnotation(BindRouteExtra.class);
+                    String key = bindRouteExtra == null ? fieldName : bindRouteExtra.key();
                     bundle.putSerializable(key, (Serializable) value);
                 } else {
                     throw new RuntimeException("构造参数失败，原因：" + obj.getClass().getCanonicalName() + "类中的字段" + fieldName + "没有序列化");

@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind;
+package com.gongbo.fss.bind.util;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-class ParamUtils {
+public class ParamUtils {
     /**
      * 根据key值获取参数
      *
@@ -14,7 +14,7 @@ class ParamUtils {
      * @param key
      * @return
      */
-    static Object getParam(Object obj, String key) {
+    public static Object getParam(Object obj, String key) {
         if (obj instanceof Activity) {
             Bundle bundle = null;
             Intent intent = ((Activity) obj).getIntent();
