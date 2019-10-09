@@ -22,7 +22,7 @@ public abstract class BaseFssActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentLayout(FssBind.getLayoutId(this));
+         setContentLayout(FssBind.getLayoutId(this));
         FssBind.bind(this, BaseFssActivity.class);
         RunPriorityUtils.callAll(this, "initView", "initListener", "initData");
     }
