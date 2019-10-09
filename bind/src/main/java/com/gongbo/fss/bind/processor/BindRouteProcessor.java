@@ -1,10 +1,15 @@
 package com.gongbo.fss.bind.processor;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.view.View;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.gongbo.fss.bind.annotation.BindRoute;
@@ -47,34 +52,76 @@ public class BindRouteProcessor {
         View view = ViewUtils.getView(obj, bindRoute.id());
         if (view != null) {
             view.setOnClickListener(v -> {
-                Activity activity = null;
-                Bundle bundle = null;
-                int requestCode = bindRoute.requestCode();
-                if (obj instanceof Activity) {
-                    activity = (Activity) obj;
+                final Context currentContext;
+                final Bundle bundle;
+                Intent intent = new Intent();
+                if (obj instanceof Context) {
+                    currentContext = (Context) obj;
                 } else if (obj instanceof Fragment) {
                     Fragment fragment = (Fragment) obj;
-                    activity = fragment.getActivity();
+                    currentContext = fragment.getActivity();
                 } else if (obj instanceof android.app.Fragment) {
                     android.app.Fragment fragment = (android.app.Fragment) obj;
-                    activity = fragment.getActivity();
+                    currentContext = fragment.getActivity();
+                } else {
+                    throw new RuntimeException("无法获取到Context");
                 }
 
-                if (activity == null) {
-                    throw new RuntimeException("无法获取到Activity");
-                }
-
-                Intent intent = new Intent(activity, bindRoute.toActivity());
                 if (bindRoute.extraFields().length > 0) {
                     bundle = buildExtras(obj, bindRoute.extraFields());
                     intent.putExtras(bundle);
+                } else {
+                    bundle = null;
                 }
 
-                if (requestCode != -1) {
-                    activity.startActivityForResult(intent, requestCode);
-                } else {
-                    activity.startActivity(intent);
+                //要跳转的Activity
+                Class<?> toClass = bindRoute.toActivity();
+                //要跳转的action
+                String action = bindRoute.action();
+                //请求的requestCode
+                final int requestCode = bindRoute.requestCode();
+                //
+                String[] categories = bindRoute.category();
+                //
+                int flags = bindRoute.flags();
+
+                final int enterAnim = bindRoute.enterAnim();
+                final int exitAnim = bindRoute.exitAnim();
+
+                if (toClass != Object.class) {
+                    intent.setClass(currentContext, toClass);
                 }
+                if (!TextUtils.isEmpty(action)) {
+                    intent.setAction(action);
+                }
+                for (String category : categories) {
+                    intent.addCategory(category);
+                }
+
+                if (-1 != flags) {
+                    intent.setFlags(flags);
+                } else if (!(currentContext instanceof Activity)) {    // Non activity, need less one flag.
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+
+                // Navigation in main looper.
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        if (requestCode > 0) {  // Need start for result
+                            ActivityCompat.startActivityForResult((Activity) currentContext, intent, requestCode, bundle);
+                        } else {
+                            ActivityCompat.startActivity(currentContext, intent, bundle);
+                        }
+
+                        if ((0 != enterAnim || 0 != exitAnim) && currentContext instanceof Activity) {    // Old version.
+                            ((Activity) currentContext).overridePendingTransition(enterAnim, exitAnim);
+                        }
+                    }
+                });
+
             });
         } else {
             throw new RuntimeException("绑定Route失败，原因：在" + obj.getClass().getCanonicalName() + "类中获取不到id为" + bindRoute.id() + "的view");

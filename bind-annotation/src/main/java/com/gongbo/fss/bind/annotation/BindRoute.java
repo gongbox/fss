@@ -12,9 +12,19 @@ import java.lang.annotation.Target;
 public @interface BindRoute {
     int id();//id为View的Id集合
 
-    Class toActivity(); //要跳转的Activity
+    Class toActivity() default Object.class; //要跳转的Activity
+
+    String action() default "";
+
+    String[] category() default {};
+
+    int flags() default 0;
 
     int requestCode() default -1;    //请求码
 
     String[] extraFields() default {};  //路由参数
+
+    int enterAnim() default 0;
+
+    int exitAnim() default 0;
 }
