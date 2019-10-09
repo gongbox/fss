@@ -29,9 +29,6 @@ android {
         targetCompatibility = 1.8
     }
 
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
@@ -41,6 +38,7 @@ dependencies {
     testImplementation 'junit:junit:4.13-beta-3'
     androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
+    implementation 'androidx.databinding:databinding-runtime:3.5.1'
 
     api project(path: ':common')
     api project(path: ':bind-annotation')
