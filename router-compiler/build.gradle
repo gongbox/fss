@@ -12,7 +12,7 @@ dependencies {
     implementation project(':router-annotation')
     implementation 'com.squareup:javapoet:1.8.0'
 
-    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
     implementation 'org.apache.commons:commons-collections4:4.1'
 }
 
