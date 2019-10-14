@@ -1,8 +1,8 @@
 package com.gongbo.fss.bind.processor;
 
 
-import com.gongbo.fss.bind.annotation.BindBindingParam;
-import com.gongbo.fss.bind.annotation.BindBindingParams;
+import com.gongbo.fss.bind.annotation.BindBindingExtra;
+import com.gongbo.fss.bind.annotation.BindBindingExtras;
 import com.gongbo.fss.bind.util.DataBindingUtils;
 import com.gongbo.fss.bind.util.ParamUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
@@ -16,15 +16,15 @@ public class BindBindingParamProcessor {
      * @param obj
      */
     public static void bindBindingParam(Object obj) {
-        BindBindingParams bindBindingParams = obj.getClass().getAnnotation(BindBindingParams.class);
-        if (bindBindingParams != null) {
-            for (BindBindingParam bindBindingParam : bindBindingParams.value()) {
-                bindBindingParam(obj, bindBindingParam);
+        BindBindingExtras bindBindingExtras = obj.getClass().getAnnotation(BindBindingExtras.class);
+        if (bindBindingExtras != null) {
+            for (BindBindingExtra bindBindingExtra : bindBindingExtras.value()) {
+                bindBindingParam(obj, bindBindingExtra);
             }
         }
-        BindBindingParam bindBindingParam = obj.getClass().getAnnotation(BindBindingParam.class);
-        if (bindBindingParam != null) {
-            bindBindingParam(obj, bindBindingParam);
+        BindBindingExtra bindBindingExtra = obj.getClass().getAnnotation(BindBindingExtra.class);
+        if (bindBindingExtra != null) {
+            bindBindingParam(obj, bindBindingExtra);
         }
     }
 
@@ -33,25 +33,25 @@ public class BindBindingParamProcessor {
      *
      * @param obj
      * @param field
-     * @param bindBindingParam
+     * @param bindBindingExtra
      */
-    public static void bindBindingParam(Object obj, Field field, BindBindingParam bindBindingParam) {
-        Object value = ParamUtils.getParam(obj, bindBindingParam.key());
+    public static void bindBindingParam(Object obj, Field field, BindBindingExtra bindBindingExtra) {
+        Object value = ParamUtils.getParam(obj, bindBindingExtra.name());
         if (value != null) {
             ReflectUtils.setFieldValue(obj, field, value);
         }
-        DataBindingUtils.bindingVariable(obj, bindBindingParam.bindingFieldName(), bindBindingParam.id(), value);
+        DataBindingUtils.bindingVariable(obj, bindBindingExtra.bindingFieldName(), bindBindingExtra.id(), value);
     }
 
     /**
      * 绑定参数到databinding变量
      *
      * @param obj
-     * @param bindBindingParam
+     * @param bindBindingExtra
      */
-    private static void bindBindingParam(Object obj, BindBindingParam bindBindingParam) {
-        Object value = ParamUtils.getParam(obj, bindBindingParam.key());
-        DataBindingUtils.bindingVariable(obj, bindBindingParam.bindingFieldName(), bindBindingParam.id(), value);
+    private static void bindBindingParam(Object obj, BindBindingExtra bindBindingExtra) {
+        Object value = ParamUtils.getParam(obj, bindBindingExtra.name());
+        DataBindingUtils.bindingVariable(obj, bindBindingExtra.bindingFieldName(), bindBindingExtra.id(), value);
     }
 
 

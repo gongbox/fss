@@ -6,10 +6,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindBindingParam;
+import com.gongbo.fss.bind.annotation.BindBindingExtra;
 import com.gongbo.fss.bind.annotation.BindFragment;
 import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.bind.annotation.BindParam;
+import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.bind.processor.BindActivityProcessor;
 import com.gongbo.fss.bind.processor.BindBindingParamProcessor;
@@ -57,15 +57,15 @@ public final class FssBind {
                 continue;
             }
             //绑定参数
-            BindBindingParam bindBindingParam = field.getAnnotation(BindBindingParam.class);
-            if (bindBindingParam != null) {
-                BindBindingParamProcessor.bindBindingParam(obj, field, bindBindingParam);
+            BindBindingExtra bindBindingExtra = field.getAnnotation(BindBindingExtra.class);
+            if (bindBindingExtra != null) {
+                BindBindingParamProcessor.bindBindingParam(obj, field, bindBindingExtra);
                 continue;
             }
             //绑定参数
-            BindParam bindParam = field.getAnnotation(BindParam.class);
-            if (bindParam != null) {
-                BindParamProcessor.bindParam(obj, field, bindParam);
+            BindExtra bindExtra = field.getAnnotation(BindExtra.class);
+            if (bindExtra != null) {
+                BindParamProcessor.bindParam(obj, field, bindExtra);
             }
         }
 
@@ -135,8 +135,8 @@ public final class FssBind {
                 for (Annotation annotation : fieldItem.getDeclaredAnnotations()) {
                     Class annotationClass = annotation.annotationType();
                     //包含指定注解的添加
-                    if (annotationClass == BindView.class || annotationClass == BindParam.class
-                            || annotationClass == BindBindingParam.class) {
+                    if (annotationClass == BindView.class || annotationClass == BindExtra.class
+                            || annotationClass == BindBindingExtra.class) {
                         //如果集合里没有该字段，则添加
                         if (!bindFields.any(field -> ReflectUtils.compare(fieldItem, field))) {
                             bindFields.add(fieldItem);

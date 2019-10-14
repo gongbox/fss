@@ -1,7 +1,7 @@
 package com.gongbo.fss.bind.processor;
 
 
-import com.gongbo.fss.bind.annotation.BindParam;
+import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.bind.util.ParamUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
 
@@ -14,10 +14,10 @@ public class BindParamProcessor {
      *
      * @param obj
      * @param field
-     * @param bindParam
+     * @param bindExtra
      */
-    public static void bindParam(Object obj, Field field, BindParam bindParam) {
-        Object value = ParamUtils.getParam(obj, bindParam.key());
+    public static void bindParam(Object obj, Field field, BindExtra bindExtra) {
+        Object value = ParamUtils.getParam(obj, bindExtra.name());
         if (value != null) {
             ReflectUtils.setFieldValue(obj, field, value);
         }
