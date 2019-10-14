@@ -22,7 +22,7 @@ public @interface BindRoute {
 
     int requestCode() default -1;    //请求码
 
-    String[] extraFields() default {};  //路由参数
+    String[] extras() default {};  //路由参数
 
     int enterAnim() default 0;
 
