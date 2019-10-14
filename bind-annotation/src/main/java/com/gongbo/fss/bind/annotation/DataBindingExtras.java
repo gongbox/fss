@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface BindBindingExtras {
-    BindBindingExtra[] value() default {};
+public @interface DataBindingExtras {
+    DataBindingExtra[] value() default {};
 }

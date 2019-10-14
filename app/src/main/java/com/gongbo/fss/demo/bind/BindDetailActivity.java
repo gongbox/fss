@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.gongbo.fss.base.BaseBindingFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindBindingExtra;
+import com.gongbo.fss.bind.annotation.DataBindingExtra;
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.demo.BR;
@@ -15,10 +15,10 @@ import com.gongbo.fss.router.annotation.Route;
 
 @Route
 @BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.btn_finish)
-@BindBindingExtra(name = "value", id = BR.value1)
+@DataBindingExtra(name = "value", id = BR.value1)
 public class BindDetailActivity extends BaseBindingFssActivity<ActivityBindDetailBinding> {
 
-    @BindBindingExtra(name = "value2", id = BR.value2)
+    @DataBindingExtra(name = "value2", id = BR.value2)
     private String value2;
 
     @BindExtra(name = "value3")

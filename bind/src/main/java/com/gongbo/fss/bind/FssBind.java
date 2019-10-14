@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindBindingExtra;
+import com.gongbo.fss.bind.annotation.DataBindingExtra;
 import com.gongbo.fss.bind.annotation.BindFragment;
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindExtra;
@@ -57,9 +57,9 @@ public final class FssBind {
                 continue;
             }
             //绑定参数
-            BindBindingExtra bindBindingExtra = field.getAnnotation(BindBindingExtra.class);
-            if (bindBindingExtra != null) {
-                BindBindingParamProcessor.bindBindingParam(obj, field, bindBindingExtra);
+            DataBindingExtra dataBindingExtra = field.getAnnotation(DataBindingExtra.class);
+            if (dataBindingExtra != null) {
+                BindBindingParamProcessor.bindBindingParam(obj, field, dataBindingExtra);
                 continue;
             }
             //绑定参数
@@ -136,7 +136,7 @@ public final class FssBind {
                     Class annotationClass = annotation.annotationType();
                     //包含指定注解的添加
                     if (annotationClass == BindView.class || annotationClass == BindExtra.class
-                            || annotationClass == BindBindingExtra.class) {
+                            || annotationClass == DataBindingExtra.class) {
                         //如果集合里没有该字段，则添加
                         if (!bindFields.any(field -> ReflectUtils.compare(fieldItem, field))) {
                             bindFields.add(fieldItem);

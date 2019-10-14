@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD})
-@Repeatable(BindBindingExtras.class)
-public @interface BindBindingExtra {
+@Repeatable(DataBindingExtras.class)
+public @interface DataBindingExtra {
     String name();
 
     int id() default -1;
