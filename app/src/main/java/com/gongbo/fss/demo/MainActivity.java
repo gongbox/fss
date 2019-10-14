@@ -9,11 +9,12 @@ import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.router.FssRouteApi;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
 
 @Route
 @BindActivity(layout = R.layout.activity_list_view)
@@ -55,40 +56,40 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                FssRouteApi.DefaultRouteApi.routeToBaseSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseSimpleAdapterTestActivity(this);
                 break;
             case 1:
-                 FssRouteApi.DefaultRouteApi.routeToBaseBindSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindSimpleAdapterTestActivity(this);
                 break;
             case 2:
-                 FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindingSimpleAdapterTestActivity(this);
                 break;
             case 3:
-                 FssRouteApi.DefaultRouteApi.routeToBaseBindingSimpleSingleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindingSimpleSingleAdapterTestActivity(this);
                 break;
             case 4:
-                 FssRouteApi.DefaultRouteApi.routeToCommonAdapterTestActivity(this);
+                DefaultRouteApi.navigateToCommonAdapterTestActivity(this);
                 break;
             case 5:
-                 FssRouteApi.DefaultRouteApi.routeToBaseRecyclerViewAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseRecyclerViewAdapterTestActivity(this);
                 break;
             case 6:
-                 FssRouteApi.DefaultRouteApi.routeToBaseBindRecyclerViewAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindRecyclerViewAdapterTestActivity(this);
                 break;
             case 7:
-                 FssRouteApi.DefaultRouteApi.routeToBaseBindingRecyclerViewAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindingRecyclerViewAdapterTestActivity(this);
                 break;
             case 8:
-                 FssRouteApi.DefaultRouteApi.routeToCommonRecyclerAdapterViewTestActivity(this);
+                DefaultRouteApi.navigateToCommonRecyclerAdapterViewTestActivity(this);
                 break;
             case 9:
-                 FssRouteApi.DefaultRouteApi.routeToRunPriorityTestActivity(this);
+                DefaultRouteApi.navigateToRunPriorityTestActivity(this);
                 break;
             case 10:
-                 FssRouteApi.DefaultRouteApi.routeToBindTestActivity(this);
+                DefaultRouteApi.navigateToBindTestActivity(this);
                 break;
             case 11:
-                FssRouteApi.DefaultRouteApi.routeToRouteMainActivity(this);
+                DefaultRouteApi.navigateToRouteMainActivity(this);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + position);
