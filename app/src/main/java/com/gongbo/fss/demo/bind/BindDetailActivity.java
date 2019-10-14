@@ -15,13 +15,13 @@ import com.gongbo.fss.router.annotation.Route;
 
 @Route
 @BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.btn_finish)
-@BindBindingParam(key = "EXTRA_VALUE1", id = BR.value1)
+@BindBindingParam(key = "value", id = BR.value1)
 public class BindDetailActivity extends BaseBindingFssActivity<ActivityBindDetailBinding> {
 
-    @BindBindingParam(key = "EXTRA_VALUE2", id = BR.value2)
+    @BindBindingParam(key = "value2", id = BR.value2)
     private String value2;
 
-    @BindParam(key = "EXTRA_VALUE3")
+    @BindParam(key = "value3")
     private Integer value3;
 
     public BindDetailActivity() {
