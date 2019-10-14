@@ -288,7 +288,7 @@ public class RouteProcessor extends BaseProcessor {
                     name = route.name().isEmpty() ? "buildIntentFor" + routeInfo.typeElement.getSimpleName() : route.name();
                 } else {
                     returnType = TypeName.VOID;
-                    name = route.name().isEmpty() ? "routeTo" + routeInfo.typeElement.getSimpleName() : route.name();
+                    name = route.name().isEmpty() ? "navigateTo" + routeInfo.typeElement.getSimpleName() : route.name();
                 }
 
                 String paramDoc = paramDesc.toString();
@@ -311,7 +311,6 @@ public class RouteProcessor extends BaseProcessor {
 
         TypeSpec typeSpec = TypeSpec
                 .interfaceBuilder(apiFileName)
-                .addAnnotation(RouteApi.class)
                 .addModifiers(Modifier.PUBLIC)
                 .addMethods(methodSpecs)
                 .addFields(fieldSpecs)
@@ -330,7 +329,7 @@ public class RouteProcessor extends BaseProcessor {
 
             ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.manager.RouteManager");
 
-
+            //遍历自定义Api接口，生成对应的字段及get方法
             for (TypeElement element : elements) {
 
                 //获取名字
@@ -343,40 +342,58 @@ public class RouteProcessor extends BaseProcessor {
                     apiName = formatApiFieldName(element.getSimpleName().toString());
                 }
 
+                //FssRouteApi中添加对应的字段
                 FieldSpec fieldSpec = FieldSpec.builder(TypeName.get(element.asType()), apiName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .build();
                 fieldSpecs.add(fieldSpec);
 
+                logger.info(">>>FssRouteApi中添加对应的字段：" + apiName);
 
+                //FssRouteApi中添加对应的get方法
                 MethodSpec methodSpec = MethodSpec.methodBuilder("get" + fieldSpec.name)
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(fieldSpec.type)
                         .addStatement("return " + fieldSpec.name)
                         .build();
                 methodSpecs.add(methodSpec);
+
+                logger.info(">>>FssRouteApi中添加对应的get方法：" + "get" + fieldSpec.name);
             }
 
-            logger.info(">>>>>>>>>>>>>>>>>>>>>>>" + groups.toString());
+            //遍历所有group
             for (String group : groups) {
+                //group名字转换
                 String groupApiName = group.isEmpty() ? "DefaultRouteApi" : capitalizeString(group) + "RouteApi";
+
+                logger.info(">>>>>>>>>>>>>>>>>>>>>>>：" + groupApiName);
+
                 ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", "I" + groupApiName);
+
+                //FssRouteApi中添加对应的字段
                 FieldSpec fieldSpec = FieldSpec.builder(groupRouteApiImpl, groupApiName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .build();
                 fieldSpecs.add(fieldSpec);
 
-                MethodSpec methodSpec = MethodSpec.methodBuilder("get" + capitalizeString(group))
+                logger.info(">>>FssRouteApi中添加对应的字段：" + groupApiName);
+
+                //FssRouteApi中添加对应的get方法
+                MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupApiName)
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(fieldSpec.type)
                         .addStatement("return " + fieldSpec.name)
                         .build();
                 methodSpecs.add(methodSpec);
+
+                logger.info(">>>FssRouteApi中添加对应的get方法：" + "get" + groupApiName);
             }
 
+            //添加静态代码块初始化字段
             CodeBlock.Builder builder = CodeBlock.builder();
             for (FieldSpec fieldSpec : fieldSpecs) {
                 builder.addStatement(fieldSpec.name + " = $T.createRouteApi($T.class)", fssRouteManagerClassName, fieldSpec.type);
             }
 
+            //构造FssRouteApi
             TypeSpec typeSpec = TypeSpec
                     .classBuilder(FSS_ROUTE_API_NAME)
                     .addModifiers(Modifier.PUBLIC)
