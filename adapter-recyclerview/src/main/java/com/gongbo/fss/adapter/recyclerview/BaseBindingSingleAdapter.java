@@ -10,9 +10,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.gongbo.fss.adapter.recyclerview.viewholder.DataBindingViewHolder;
 import com.gongbo.fss.common.kotlin.Pair;
-import com.gongbo.fss.adapter.recyclerview.viewholder.BindingViewHolder;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ import java.util.List;
 /**
  * Created by gongbo on 2018/6/6.
  */
-public class BaseBindingRecyclerViewSingleAdapter<M, VB extends ViewDataBinding> extends RecyclerView.Adapter<BindingViewHolder<VB>> {
+public class BaseBindingSingleAdapter<M, VB extends ViewDataBinding> extends RecyclerView.Adapter<DataBindingViewHolder<VB>> {
 
-    protected List<M> mDatas;
+    protected List<M> mDataList;
     protected LayoutInflater mLayoutInflater;
     protected Context mContext;
     protected SparseIntArray mLayoutIds;
@@ -30,48 +29,48 @@ public class BaseBindingRecyclerViewSingleAdapter<M, VB extends ViewDataBinding>
 
     public static final int EMPTY_VIEW = -1;
 
-    public BaseBindingRecyclerViewSingleAdapter(Context context, List<M> datas, int bindingId) {
-        this.mDatas = datas;
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId) {
+        this.mDataList = datas;
         this.mContext = context;
         this.mLayoutInflater = LayoutInflater.from(context);
         this.mLayoutIds = new SparseIntArray();
         this.mBindingId = bindingId;
     }
 
-    public BaseBindingRecyclerViewSingleAdapter(Context context, List<M> datas, int bindingId, int layoutId) {
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId, int layoutId) {
         this(context, datas, bindingId);
         addLayout(0, layoutId);
     }
 
-    public BaseBindingRecyclerViewSingleAdapter(Context context, List<M> datas, int bindingId, Pair<Integer, Integer>... layoutIds) {
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId, Pair<Integer, Integer>... layoutIds) {
         this(context, datas, bindingId);
         for (Pair<Integer, Integer> pair : layoutIds) {
             addLayout(pair.first, pair.second);
         }
     }
 
-    public void addLayout(int type, int layoutId) {
+    protected void addLayout(int type, int layoutId) {
         mLayoutIds.append(type, layoutId);
     }
 
-    public int getLayout(int type) {
+    protected int getLayout(int type) {
         return mLayoutIds.get(type);
     }
 
-    public void updateData(List<M> datas) {
-        this.mDatas = datas;
+    public void notifyDataSetChanged(List<M> datas) {
+        this.mDataList = datas;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public BindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DataBindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         VB viewDataBinding = DataBindingUtil.inflate(mLayoutInflater, getLayout(viewType), parent, false);
-        return new BindingViewHolder<>(viewDataBinding);
+        return new DataBindingViewHolder<>(viewDataBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BindingViewHolder<VB> holder, int position) {
+    public void onBindViewHolder(@NonNull DataBindingViewHolder<VB> holder, int position) {
         if (getItemViewType(position) != EMPTY_VIEW) {
             onBindView(holder.getBinding(), getItem(position), position);
         }
@@ -82,7 +81,7 @@ public class BaseBindingRecyclerViewSingleAdapter<M, VB extends ViewDataBinding>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BindingViewHolder<VB> holder, int position, @NonNull List<Object> payloads) {
+    public void onBindViewHolder(@NonNull DataBindingViewHolder<VB> holder, int position, @NonNull List<Object> payloads) {
         if (getItemViewType(position) != EMPTY_VIEW) {
             onBindView(holder.getBinding(), getItem(position), position, payloads);
         }
@@ -95,7 +94,7 @@ public class BaseBindingRecyclerViewSingleAdapter<M, VB extends ViewDataBinding>
 
     @Override
     public int getItemViewType(int position) {
-        if (mDatas == null || mDatas.isEmpty() && getLayout(EMPTY_VIEW) != 0) {
+        if (mDataList == null || mDataList.isEmpty() && getLayout(EMPTY_VIEW) != 0) {
             return EMPTY_VIEW;
         }
         return super.getItemViewType(position);
@@ -103,11 +102,11 @@ public class BaseBindingRecyclerViewSingleAdapter<M, VB extends ViewDataBinding>
 
     @Override
     public int getItemCount() {
-        return mDatas == null || mDatas.isEmpty() ? (getLayout(EMPTY_VIEW) == 0 ? 0 : 1) : mDatas.size();
+        return mDataList == null || mDataList.isEmpty() ? (getLayout(EMPTY_VIEW) == 0 ? 0 : 1) : mDataList.size();
     }
 
     public M getItem(int position) {
-        return mDatas.get(position);
+        return mDataList.get(position);
     }
 
 }

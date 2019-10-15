@@ -12,11 +12,11 @@ import androidx.annotation.NonNull;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public class RecyclerViewCommonViewHolder extends BaseRecyclerViewHolder {
+public class CommonViewHolder extends BaseViewHolder {
 
     private SparseArray<View> mViews = new SparseArray<>();
 
-    public RecyclerViewCommonViewHolder(@NonNull View itemView) {
+    public CommonViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 

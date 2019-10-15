@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Created by $USER_NAME on 2018/9/10.
  */
-public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
+public class DataBindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
     private T binding;
 
-    public BindingViewHolder(T binding) {
+    public DataBindingViewHolder(T binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

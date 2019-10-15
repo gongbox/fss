@@ -1,6 +1,7 @@
 package com.gongbo.fss.adapter.recyclerview;
 
 import android.content.Context;
+import android.util.Pair;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.gongbo.fss.common.kotlin.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -19,28 +18,30 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected List<M> mDatas;
+    protected List<M> mDataList;
     protected LayoutInflater mLayoutInflater;
     protected Context mContext;
     protected SparseIntArray mLayoutIds;
+    private Constructor mViewHolderConstructor;
+    private int mViewHolderConstructorType;
 
     public static final int EMPTY_VIEW = -1;
 
-    public BaseRecyclerViewAdapter(Context context, List<M> datas) {
-        this.mDatas = datas;
+    public BaseAdapter(Context context, List<M> datas) {
+        this.mDataList = datas;
         this.mContext = context;
         this.mLayoutInflater = LayoutInflater.from(context);
         this.mLayoutIds = new SparseIntArray();
     }
 
-    public BaseRecyclerViewAdapter(Context context, List<M> datas, int layoutId) {
+    public BaseAdapter(Context context, List<M> datas, int layoutId) {
         this(context, datas);
         addLayout(0, layoutId);
     }
 
-    public BaseRecyclerViewAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
+    public BaseAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
         this(context, datas);
         for (Pair<Integer, Integer> pair : layoutIds) {
             addLayout(pair.first, pair.second);
@@ -56,13 +57,13 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
     }
 
     public void updateData(List<M> datas) {
-        this.mDatas = datas;
+        this.mDataList = datas;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (mDatas == null || mDatas.isEmpty() && getLayout(EMPTY_VIEW) != 0) {
+        if (mDataList == null || mDataList.isEmpty() && getLayout(EMPTY_VIEW) != 0) {
             return EMPTY_VIEW;
         }
         return super.getItemViewType(position);
@@ -70,11 +71,11 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return mDatas == null || mDatas.isEmpty() ? (getLayout(EMPTY_VIEW) == 0 ? 0 : 1) : mDatas.size();
+        return mDataList == null || mDataList.isEmpty() ? (getLayout(EMPTY_VIEW) == 0 ? 0 : 1) : mDataList.size();
     }
 
     public M getItem(int position) {
-        return mDatas.get(position);
+        return mDataList.get(position);
     }
 
     @Override
@@ -84,7 +85,6 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
         }
     }
 
-    private Constructor mViewHolderConstructor;
 
     @NonNull
     @Override
@@ -99,6 +99,7 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
                     constructor.setAccessible(true);
                 }
                 mViewHolderConstructor = constructor;
+                mViewHolderConstructorType = 0;
             } catch (NoSuchMethodException e) {
                 try {
                     Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
@@ -106,6 +107,7 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
                         constructor.setAccessible(true);
                     }
                     mViewHolderConstructor = constructor;
+                    mViewHolderConstructorType = 1;
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
@@ -113,9 +115,8 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
         }
 
         if (mViewHolderConstructor != null) {
-
             try {
-                if (mViewHolderConstructor.getParameterTypes().length == 1) {
+                if (mViewHolderConstructorType == 0) {
                     return (VH) mViewHolderConstructor.newInstance(view);
                 } else {
                     return (VH) mViewHolderConstructor.newInstance(this, view);
@@ -127,9 +128,10 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+        } else {
+            throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
         }
-
-        throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
+        throw new RuntimeException("Cann't instance ViewHolder in class:" + this.getClass().getCanonicalName());
     }
 
     public void onBindView(@NonNull VH holder, M m, int position) {
