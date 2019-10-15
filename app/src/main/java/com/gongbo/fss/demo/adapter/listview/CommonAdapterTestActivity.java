@@ -11,7 +11,8 @@ import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 @Route
 @BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
@@ -25,9 +26,13 @@ public class CommonAdapterTestActivity extends BaseFssActivity {
     @Override
     protected void initView() {
         super.initView();
-        adapter = new CommonAdapter<String>(this, Arrays.asList("1", "2", "3"), R.layout.layout_list_item) {
+        List<String> datas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            datas.add(i + "");
+        }
+        adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
             @Override
-            protected void setView(CommonViewHolder holder, String str, int position) {
+            protected void onBindView(CommonViewHolder holder, String str, int position) {
                 TextView textView = holder.getView(R.id.tv_text);
                 textView.setText(str);
                 //可以用holder.setText(R.id.tv_text, str);代替

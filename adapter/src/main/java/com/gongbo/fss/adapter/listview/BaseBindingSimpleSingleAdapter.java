@@ -29,7 +29,6 @@ public class BaseBindingSimpleSingleAdapter<M, VB extends ViewDataBinding> exten
     protected LayoutInflater mLayoutInflater;
     protected SparseIntArray mLayoutIds;
     protected int mBindingId;
-    protected ListView mListView;
 
     public BaseBindingSimpleSingleAdapter(Context context, List<M> datas, int bindingId) {
         this.mDatas = datas;
@@ -104,63 +103,4 @@ public class BaseBindingSimpleSingleAdapter<M, VB extends ViewDataBinding> exten
         viewDataBinding.setVariable(mBindingId, m);
     }
 
-    /**
-     * 使能高度自适应
-     *
-     * @param mListView
-     * @param status
-     */
-    public void enableAutoHeight(ListView mListView, boolean status) {
-        if (status) {
-            this.mListView = mListView;
-        } else {
-            this.mListView = null;
-        }
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-        if (mListView != null) {
-            updateListViewHeightBasedOnChildren();
-        }
-    }
-
-    /**
-     * 自适应高度
-     */
-    public void updateListViewHeightBasedOnChildren() {
-        int totalHeight = 0;
-
-        for (int i = 0; i < this.getCount(); i++) {
-            View listItem = this.getView(i, null, mListView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = mListView.getLayoutParams();
-
-        params.height = totalHeight
-                + (mListView.getDividerHeight() * (this.getCount() - 1));
-
-        ((ViewGroup.MarginLayoutParams) params).setMargins(10, 10, 10, 10); // 可删除
-
-        mListView.setLayoutParams(params);
-    }
-
-    /**
-     * 更新单个数据
-     *
-     * @param listView
-     * @param position
-     */
-    public void notifyItemChanged(ListView listView, int position) {
-        int firstVisiblePosition = listView.getFirstVisiblePosition();
-        int lastVisiblePosition = listView.getLastVisiblePosition();
-
-        if (position >= firstVisiblePosition && position <= lastVisiblePosition) {
-            View view = listView.getChildAt(position - firstVisiblePosition);
-            getView(position, view, listView);
-        }
-    }
 }

@@ -11,6 +11,7 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.databinding.LayoutBindingListItemBinding;
 import com.gongbo.fss.router.annotation.Route;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,11 @@ public class BaseBindingSimpleSingleAdapterTestActivity extends BaseFssActivity 
     @Override
     protected void initView() {
         super.initView();
-        listView.setAdapter(adapter = new BindingSingleAdapter(this, Arrays.asList("1", "2", "3")));
+        List<String> datas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            datas.add(i + "");
+        }
+        listView.setAdapter(adapter = new BindingSingleAdapter(this,datas));
     }
 
     static class BindingSingleAdapter extends BaseBindingSimpleSingleAdapter<String, LayoutBindingListItemBinding> {

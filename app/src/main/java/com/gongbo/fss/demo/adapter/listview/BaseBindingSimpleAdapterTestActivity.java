@@ -12,7 +12,7 @@ import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Route
@@ -27,7 +27,11 @@ public class BaseBindingSimpleAdapterTestActivity extends BaseFssActivity {
     @Override
     protected void initView() {
         super.initView();
-        listView.setAdapter(adapter = new BindingAdapter(this, Arrays.asList("1", "2", "3")));
+        List<String> datas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            datas.add(i + "");
+        }
+        listView.setAdapter(adapter = new BindingAdapter(this, datas));
     }
 
     static class BindingAdapter extends BaseBindingSimpleAdapter<String> {

@@ -12,7 +12,9 @@ import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Route
 @BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
@@ -26,7 +28,11 @@ public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
     @Override
     protected void initView() {
         super.initView();
-        adapter = new CommonRecyclerViewAdapter<String>(this, Arrays.asList("1", "2", "3"), R.layout.layout_list_item) {
+        List<String> datas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            datas.add(i + "");
+        }
+        adapter = new CommonRecyclerViewAdapter<String>(this, datas, R.layout.layout_list_item) {
             @Override
             public void onBindView(@NonNull RecyclerViewCommonViewHolder holder, String s, int position) {
                 super.onBindView(holder, s, position);

@@ -5,12 +5,11 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 
 import androidx.annotation.LayoutRes;
 
-import com.gongbo.fss.common.kotlin.Pair;
 import com.gongbo.fss.adapter.listview.viewholder.BaseViewHolder;
+import com.gongbo.fss.common.kotlin.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -25,8 +24,6 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
     protected List<M> mDatas;
     protected Context mContext;
     protected SparseIntArray mLayoutIds;
-
-    protected ListView mListView;
 
     public BaseSimpleAdapter(Context context, List<M> datas) {
         this.mDatas = datas;
@@ -46,11 +43,11 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
         }
     }
 
-    public void addLayout(int type, int layoutId) {
+    protected void addLayout(int type, int layoutId) {
         mLayoutIds.append(type, layoutId);
     }
 
-    public int getLayout(int type) {
+    protected int getLayout(int type) {
         return mLayoutIds.get(type);
     }
 
@@ -85,105 +82,55 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
             holder = (VH) convertView.getTag();
         }
         M data = getItem(position);
-        setView(holder, data, position);
+        onBindView(holder, data, position);
 
         return convertView;
     }
 
-    protected VH getViewHolder(View convertView) {
-        //获取第二个范型参数的类型，该类型即为ViewHolder类型
-        Class<?> viewHolderClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+    private Constructor mViewHolderConstructor;
 
-        try {
-            Constructor constructor = viewHolderClass.getConstructor(View.class);
-            if (!constructor.isAccessible()) {
-                constructor.setAccessible(true);
-            }
-            return (VH) constructor.newInstance(convertView);
-        } catch (NoSuchMethodException e) {
+    protected VH getViewHolder(View convertView) {
+        if (mViewHolderConstructor == null) {
+            Class<?> viewHolderClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
             try {
-                Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
+                Constructor constructor = viewHolderClass.getConstructor(View.class);
                 if (!constructor.isAccessible()) {
                     constructor.setAccessible(true);
                 }
-                return (VH) constructor.newInstance(this, convertView);
-            } catch (NoSuchMethodException e1) {
-                e1.printStackTrace();
-            } catch (IllegalAccessException e1) {
-                e1.printStackTrace();
-            } catch (InstantiationException e1) {
-                e1.printStackTrace();
-            } catch (InvocationTargetException e1) {
-                e1.printStackTrace();
+                mViewHolderConstructor = constructor;
+            } catch (NoSuchMethodException e) {
+                try {
+                    Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
+                    if (!constructor.isAccessible()) {
+                        constructor.setAccessible(true);
+                    }
+                    mViewHolderConstructor = constructor;
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
+
+        if (mViewHolderConstructor != null) {
+
+            try {
+                if (mViewHolderConstructor.getParameterTypes().length == 1) {
+                    return (VH) mViewHolderConstructor.newInstance(convertView);
+                } else {
+                    return (VH) mViewHolderConstructor.newInstance(this, convertView);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
         throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
     }
 
-    protected abstract void setView(VH holder, M m, int position);
+    protected abstract void onBindView(VH holder, M m, int position);
 
-    /**
-     * 使能高度自适应
-     *
-     * @param mListView
-     * @param status
-     */
-    public void enableAutoHeight(ListView mListView, boolean status) {
-        if (status) {
-            this.mListView = mListView;
-        } else {
-            this.mListView = null;
-        }
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-        if (mListView != null) {
-            updateListViewHeightBasedOnChildren();
-        }
-    }
-
-    /**
-     * 自适应高度
-     */
-    public void updateListViewHeightBasedOnChildren() {
-        int totalHeight = 0;
-
-        for (int i = 0; i < this.getCount(); i++) {
-            View listItem = this.getView(i, null, mListView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = mListView.getLayoutParams();
-
-        params.height = totalHeight
-                + (mListView.getDividerHeight() * (this.getCount() - 1));
-
-        ((ViewGroup.MarginLayoutParams) params).setMargins(10, 10, 10, 10); // 可删除
-
-        mListView.setLayoutParams(params);
-    }
-
-    /**
-     * 更新单个数据
-     * @param listView
-     * @param position
-     */
-    public void notifyItemChanged(ListView listView, int position) {
-        int firstVisiblePosition = listView.getFirstVisiblePosition();
-        int lastVisiblePosition = listView.getLastVisiblePosition();
-
-        if (position >= firstVisiblePosition && position <= lastVisiblePosition) {
-            View view = listView.getChildAt(position - firstVisiblePosition);
-            getView(position, view, listView);
-        }
-    }
 }

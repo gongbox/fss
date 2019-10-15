@@ -16,6 +16,7 @@ import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,8 +32,12 @@ public class BaseBindRecyclerViewAdapterTestActivity extends BaseFssActivity {
     @Override
     protected void initView() {
         super.initView();
+        List<String> datas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            datas.add(i + "");
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(adapter = new BindAdapter(this, Arrays.asList("1", "2", "3")));
+        recyclerView.setAdapter(adapter = new BindAdapter(this,datas));
     }
 
     static class BindAdapter extends BaseRecyclerViewAdapter<String, BindAdapter.BindViewHolder> {

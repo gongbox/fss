@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.gongbo.fss.common.kotlin.Pair;
 
 import java.lang.reflect.Constructor;
@@ -85,41 +84,51 @@ public abstract class BaseRecyclerViewAdapter<M, VH extends RecyclerView.ViewHol
         }
     }
 
+    private Constructor mViewHolderConstructor;
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(getLayout(viewType), parent, false);
-        //获取第二个范型参数的类型，该类型即为ViewHolder类型
-        Class<?> viewHolderClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
-        try {
-            Constructor constructor = viewHolderClass.getConstructor(View.class);
-            if (!constructor.isAccessible()) {
-                constructor.setAccessible(true);
-            }
-            return (VH) constructor.newInstance(view);
-        } catch (NoSuchMethodException e) {
+
+        if (mViewHolderConstructor == null) {
+            Class<?> viewHolderClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
             try {
-                Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
+                Constructor constructor = viewHolderClass.getConstructor(View.class);
                 if (!constructor.isAccessible()) {
                     constructor.setAccessible(true);
                 }
-                return (VH) constructor.newInstance(this, view);
-            } catch (NoSuchMethodException e1) {
-                e1.printStackTrace();
-            } catch (IllegalAccessException e1) {
-                e1.printStackTrace();
-            } catch (InstantiationException e1) {
-                e1.printStackTrace();
-            } catch (InvocationTargetException e1) {
-                e1.printStackTrace();
+                mViewHolderConstructor = constructor;
+            } catch (NoSuchMethodException e) {
+                try {
+                    Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
+                    if (!constructor.isAccessible()) {
+                        constructor.setAccessible(true);
+                    }
+                    mViewHolderConstructor = constructor;
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
+
+        if (mViewHolderConstructor != null) {
+
+            try {
+                if (mViewHolderConstructor.getParameterTypes().length == 1) {
+                    return (VH) mViewHolderConstructor.newInstance(view);
+                } else {
+                    return (VH) mViewHolderConstructor.newInstance(this, view);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
         throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
     }
 

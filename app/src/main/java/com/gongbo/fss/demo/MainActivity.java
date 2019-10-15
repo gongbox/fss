@@ -42,7 +42,7 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
         imgBack.setVisibility(View.GONE);
         listView.setAdapter(adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
             @Override
-            protected void setView(CommonViewHolder holder, String s, int position) {
+            protected void onBindView(CommonViewHolder holder, String s, int position) {
                 holder.setText(R.id.tv_text, s);
             }
         });
