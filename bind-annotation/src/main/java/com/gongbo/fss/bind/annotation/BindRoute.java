@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Repeatable(BindRoutes.class)
 public @interface BindRoute {
-    int id();//id为View的Id集合
+    int id();//id为View的Id
 
     Class toActivity() default Object.class; //要跳转的Activity
 
