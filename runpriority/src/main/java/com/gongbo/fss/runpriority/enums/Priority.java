@@ -1,4 +1,4 @@
-package com.gongbo.fss.runpriority;
+package com.gongbo.fss.runpriority.enums;
 
 //运行优先级级别，优先级越高越先执行
 public class Priority {

@@ -1,6 +1,7 @@
 package com.gongbo.fss.runpriority;
 
 import com.gongbo.fss.runpriority.annotation.RunPriority;
+import com.gongbo.fss.runpriority.enums.Priority;
 import com.gongbo.fss.runpriority.model.RunPriorityInfo;
 
 import org.junit.Test;
