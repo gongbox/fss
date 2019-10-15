@@ -19,7 +19,7 @@ public class RunPriorityUtils {
      *
      * @param runPriorityInfo 方法信息
      */
-    public static void callAll(RunPriorityInfo runPriorityInfo) {
+    public static void call(RunPriorityInfo runPriorityInfo) {
         List<CallMethodInfo> callMethodInfos = runPriorityInfo.getCallMethodInfos();
         if (callMethodInfos == null || callMethodInfos.isEmpty()) {
             return;
@@ -85,12 +85,12 @@ public class RunPriorityUtils {
      * @param obj         当前对象
      * @param methodNames 要调用的方法集
      */
-    public static void callAll(Object obj, String... methodNames) {
+    public static void call(Object obj, String... methodNames) {
         RunPriorityInfo runPriorityInfo = new RunPriorityInfo.Builder(obj)
                 .addMethods(methodNames)
                 .build();
 
-        callAll(runPriorityInfo);
+        call(runPriorityInfo);
     }
 
 }

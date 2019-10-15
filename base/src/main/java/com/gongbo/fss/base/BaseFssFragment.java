@@ -40,7 +40,7 @@ public abstract class BaseFssFragment extends Fragment {
                 .addMethod("initListener")
                 .build();
         //调用运行优先级方法，默认调用顺序为:initView() -> initData() -> initListener(),子类可使用@RunPriority注解自定义调用顺序
-        RunPriorityUtils.callAll(runPriorityInfo);
+        RunPriorityUtils.call(runPriorityInfo);
     }
 
     protected void initView() {
