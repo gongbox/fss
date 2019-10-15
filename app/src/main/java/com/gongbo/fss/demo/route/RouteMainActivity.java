@@ -7,7 +7,7 @@ import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
-import static com.gongbo.fss.router.FssRouteApi.MainRouteApi;
+import static com.gongbo.fss.router.FssRouteApi.TestRouteApi;
 
 @Route
 @BindActivity(layout = R.layout.activity_route_main, finish = R.id.img_back)
@@ -15,11 +15,11 @@ public class RouteMainActivity extends BaseActivity {
 
     @BindOnClick(id = R.id.btn_to_detail)
     private void gotoDetail() {
-        MainRouteApi.navigateToRouteDetailActivity(this);
+        DefaultRouteApi.navigateToRouteDetailActivity(this, "1234");
     }
 
     @BindOnClick(id = R.id.btn_to_service)
     private void gotoService() {
-        DefaultRouteApi.navigateToRouteTestService(this);
+        TestRouteApi.navigateToRouteTestService(this, "12465");
     }
 }

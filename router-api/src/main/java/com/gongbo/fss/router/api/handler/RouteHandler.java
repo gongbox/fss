@@ -176,18 +176,10 @@ public class RouteHandler implements InvocationHandler {
                         if ((0 != enterAnim || 0 != exitAnim) && currentContext instanceof Activity) {    // Old version.
                             ((Activity) currentContext).overridePendingTransition(enterAnim, exitAnim);
                         }
-
-//                        if (null != callback) { // Navigation over.
-//                            callback.onArrival(postcard);
-//                        }
                     }
                 });
 
                 break;
-//            case PROVIDER:
-//                return postcard.getProvider();
-//            case BOARDCAST:
-//            case CONTENT_PROVIDER:
             case FRAGMENT:
                 if (method.getReturnType() == void.class) {
                     return null;
@@ -195,17 +187,17 @@ public class RouteHandler implements InvocationHandler {
                 Class fragmentMeta = routeFragment.clazz();
                 try {
                     Object instance = fragmentMeta.getConstructor().newInstance();
-//                    if (instance instanceof Fragment) {
-                    ((Fragment) instance).setArguments(bundle);
-//                    } else if (instance instanceof android.support.v4.app.Fragment) {
-//                        ((android.support.v4.app.Fragment) instance).setArguments(bundle);
-//                    }
+                    if (instance instanceof Fragment) {
+                        ((Fragment) instance).setArguments(bundle);
+                    } else if (instance instanceof androidx.fragment.app.Fragment) {
+                        ((androidx.fragment.app.Fragment) instance).setArguments(bundle);
+                    }
 
                     return instance;
                 } catch (Exception ex) {
-//                    logger.error(TAG, "Fetch fragment instance error, " + TextUtils.formatStackTrace(ex.getStackTrace()));
+
                 }
-//            case METHOD:
+                break;
             case SERVICE:
                 // Build intent
                 intent.putExtras(bundle);
@@ -222,6 +214,7 @@ public class RouteHandler implements InvocationHandler {
                     intent.setAction(action);
                 }
                 currentContext.startService(intent);
+                break;
             default:
                 return null;
         }

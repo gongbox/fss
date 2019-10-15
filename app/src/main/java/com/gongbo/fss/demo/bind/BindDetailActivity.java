@@ -21,9 +21,6 @@ public class BindDetailActivity extends BaseBindingActivity<ActivityBindDetailBi
     @BindExtra
     private Integer value3;
 
-    public BindDetailActivity() {
-    }
-
     @BindOnClick(id = R.id.btn_show_value)
     private void onClick() {
         showToast(value3 + "");

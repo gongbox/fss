@@ -7,6 +7,8 @@ import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.runpriority.Priority;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
 
+import java.util.logging.Handler;
+
 @Route
 @BindActivity(layout = R.layout.activity_run_priority_test, finish = R.id.img_back)
 public class RunPriorityTestActivity extends BaseActivity {

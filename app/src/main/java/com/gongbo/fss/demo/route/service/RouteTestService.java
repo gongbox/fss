@@ -20,6 +20,10 @@ public class RouteTestService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(getApplicationContext(), "route service", Toast.LENGTH_SHORT).show();
+
+        String value = intent.getStringExtra("value");
+        Toast.makeText(getApplicationContext(), "value:" + value, Toast.LENGTH_SHORT).show();
+
         return super.onStartCommand(intent, flags, startId);
     }
 

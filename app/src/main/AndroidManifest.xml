@@ -30,13 +30,17 @@
         <activity android:name=".bind.BindDetailActivity">
             <intent-filter>
                 <action android:name="com.gongbo.fss.bind.detail" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".bind.BindTestActivity" />
         <activity android:name=".route.RouteMainActivity" />
-        <activity android:name=".route.RouteDetailActivity" />
+        <activity android:name=".route.RouteDetailActivity" >
+            <intent-filter>
+                <action android:name="com.gongbo.fss.route.detail" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".route.service.RouteTestService"

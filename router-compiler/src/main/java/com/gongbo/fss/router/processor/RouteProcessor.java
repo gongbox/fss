@@ -250,7 +250,7 @@ public class RouteProcessor extends BaseProcessor {
                 }
 
                 List<ParameterSpec> parameterSpecs = new ArrayList<>();
-                parameterSpecs.add(ParameterSpec.builder(ClassName.bestGuess("android.content.Context"), "packageContext").build());
+                parameterSpecs.add(ParameterSpec.builder(ClassName.bestGuess("android.content.Context"), "context").build());
 
                 StringBuilder paramDesc = new StringBuilder();
 
