@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.gongbo.fss.adapter.listview.BaseSimpleAdapter;
+import com.gongbo.fss.adapter.listview.BaseAdapter;
 import com.gongbo.fss.adapter.listview.viewholder.BaseViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
@@ -14,7 +14,6 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Route
@@ -36,7 +35,7 @@ public class BaseBindSimpleAdapterTestActivity extends BaseFssActivity {
         listView.setAdapter(adapter = new BindAdapter(this, datas));
     }
 
-    static class BindAdapter extends BaseSimpleAdapter<String, BindAdapter.BindViewHolder> {
+    static class BindAdapter extends BaseAdapter<String, BindAdapter.BindViewHolder> {
 
         public BindAdapter(Context context, List<String> datas) {
             super(context, datas, R.layout.layout_list_item);

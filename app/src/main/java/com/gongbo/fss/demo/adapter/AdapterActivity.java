@@ -28,15 +28,15 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
     private CommonAdapter<String> adapter;
 
     private List<String> datas = Arrays.asList(
-            "BaseSimpleAdapter",
+            "BaseAdapter",
             "BaseBindSimpleAdapter",
-            "BaseBindingSimpleAdapter",
-            "BaseBindingSimpleSingleAdapter",
+            "BaseBindingAdapter",
+            "BaseBindingSingleAdapter",
             "CommonAdapter",
-            "BaseRecyclerViewAdapter",
+            "BaseAdapter",
             "BaseBindRecyclerViewAdapter",
-            "BaseBindingRecyclerViewAdapter",
-            "CommonRecyclerViewAdapter"
+            "BaseBindingAdapter",
+            "CommonRecyclerAdapter"
     );
 
     @Override

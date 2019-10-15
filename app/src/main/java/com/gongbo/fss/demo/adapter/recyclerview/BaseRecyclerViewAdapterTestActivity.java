@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gongbo.fss.adapter.recyclerview.BaseRecyclerViewAdapter;
-import com.gongbo.fss.adapter.recyclerview.viewholder.BaseRecyclerViewHolder;
+import com.gongbo.fss.adapter.recyclerview.BaseAdapter;
+import com.gongbo.fss.adapter.recyclerview.viewholder.BaseViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
@@ -26,7 +26,7 @@ public class BaseRecyclerViewAdapterTestActivity extends BaseFssActivity {
     @BindView(id = R.id.recycler_view)
     private RecyclerView recyclerView;
 
-    private Adapter adapter;
+    private BaseAdapter adapter;
 
     @Override
     protected void initView() {
@@ -39,7 +39,7 @@ public class BaseRecyclerViewAdapterTestActivity extends BaseFssActivity {
         recyclerView.setAdapter(adapter = new Adapter(this, datas));
     }
 
-    static class Adapter extends BaseRecyclerViewAdapter<String, Adapter.ViewHolder> {
+    static class Adapter extends BaseAdapter<String, Adapter.ViewHolder> {
 
         public Adapter(Context context, List<String> datas) {
             super(context, datas, R.layout.layout_list_item);
@@ -51,7 +51,7 @@ public class BaseRecyclerViewAdapterTestActivity extends BaseFssActivity {
             holder.tvText.setText(s);
         }
 
-        class ViewHolder extends BaseRecyclerViewHolder {
+        class ViewHolder extends BaseViewHolder {
             TextView tvText;
 
             public ViewHolder(View view) {

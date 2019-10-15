@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gongbo.fss.adapter.recyclerview.CommonRecyclerViewAdapter;
-import com.gongbo.fss.adapter.recyclerview.viewholder.RecyclerViewCommonViewHolder;
+import com.gongbo.fss.adapter.recyclerview.CommonRecyclerAdapter;
+import com.gongbo.fss.adapter.recyclerview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
@@ -13,7 +13,6 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Route
@@ -23,7 +22,7 @@ public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
     @BindView(id = R.id.recycler_view)
     private RecyclerView recyclerView;
 
-    private CommonRecyclerViewAdapter<String> adapter;
+    private CommonRecyclerAdapter<String> adapter;
 
     @Override
     protected void initView() {
@@ -32,9 +31,9 @@ public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
         for (int i = 0; i < 20; i++) {
             datas.add(i + "");
         }
-        adapter = new CommonRecyclerViewAdapter<String>(this, datas, R.layout.layout_list_item) {
+        adapter = new CommonRecyclerAdapter<String>(this, datas, R.layout.layout_list_item) {
             @Override
-            public void onBindView(@NonNull RecyclerViewCommonViewHolder holder, String s, int position) {
+            public void onBindView(@NonNull CommonViewHolder holder, String s, int position) {
                 super.onBindView(holder, s, position);
                 holder.setText(R.id.tv_text, s);
             }

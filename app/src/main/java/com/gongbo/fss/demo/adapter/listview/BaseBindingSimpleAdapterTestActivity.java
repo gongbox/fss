@@ -1,11 +1,8 @@
 package com.gongbo.fss.demo.adapter.listview;
 
-import android.content.Context;
 import android.widget.ListView;
 
-import androidx.databinding.ViewDataBinding;
-
-import com.gongbo.fss.adapter.listview.BaseBindingSimpleAdapter;
+import com.gongbo.fss.adapter.listview.BaseBindingAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
@@ -22,7 +19,7 @@ public class BaseBindingSimpleAdapterTestActivity extends BaseFssActivity {
     @BindView(id = R.id.list_view)
     private ListView listView;
 
-    private BindingAdapter adapter;
+    private BaseBindingAdapter adapter;
 
     @Override
     protected void initView() {
@@ -31,19 +28,7 @@ public class BaseBindingSimpleAdapterTestActivity extends BaseFssActivity {
         for (int i = 0; i < 20; i++) {
             datas.add(i + "");
         }
-        listView.setAdapter(adapter = new BindingAdapter(this, datas));
-    }
-
-    static class BindingAdapter extends BaseBindingSimpleAdapter<String> {
-
-        public BindingAdapter(Context context, List<String> datas) {
-            super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
-        }
-
-        @Override
-        protected void onBindView(ViewDataBinding viewDataBinding, String s, int position) {
-            super.onBindView(viewDataBinding, s, position);
-        }
+        listView.setAdapter(adapter = new BaseBindingAdapter<>(this, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item));
     }
 }
 

@@ -1,12 +1,9 @@
 package com.gongbo.fss.demo.adapter.recyclerview;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gongbo.fss.adapter.recyclerview.BaseBindingRecyclerViewSingleAdapter;
+import com.gongbo.fss.adapter.recyclerview.BaseBindingSingleAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
@@ -15,7 +12,6 @@ import com.gongbo.fss.demo.databinding.LayoutBindingListItemBinding;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Route
@@ -25,7 +21,7 @@ public class BaseBindingRecyclerViewSingleAdapterTestActivity extends BaseFssAct
     @BindView(id = R.id.recycler_view)
     private RecyclerView recyclerView;
 
-    private BindingSingleAdapter adapter;
+    private BaseBindingSingleAdapter adapter;
 
     @Override
     protected void initView() {
@@ -35,18 +31,8 @@ public class BaseBindingRecyclerViewSingleAdapterTestActivity extends BaseFssAct
             datas.add(i + "");
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(adapter = new BindingSingleAdapter(this, datas));
+        recyclerView.setAdapter(adapter = new BaseBindingSingleAdapter<String, LayoutBindingListItemBinding>(this, datas,
+                com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item));
     }
 
-    static class BindingSingleAdapter extends BaseBindingRecyclerViewSingleAdapter<String, LayoutBindingListItemBinding> {
-
-        public BindingSingleAdapter(Context context, List<String> datas) {
-            super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
-        }
-
-        @Override
-        public void onBindView(@NonNull LayoutBindingListItemBinding viewDataBinding, String str, int position) {
-            super.onBindView(viewDataBinding, str, position);
-        }
-    }
 }
