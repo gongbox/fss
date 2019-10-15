@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".adapter.AdapterActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,30 +17,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.gongbo.fss.demo.adapter.listview.BaseSimpleAdapterTestActivity" />
-
-        <activity android:name="com.gongbo.fss.demo.adapter.listview.BaseBindSimpleAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.listview.BaseBindingSimpleAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.listview.CommonAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.recyclerview.BaseRecyclerViewAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.adapter.recyclerview.CommonRecyclerAdapterViewTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.runpriority.RunPriorityTestActivity" />
-        <activity android:name="com.gongbo.fss.demo.bind.BindDetailActivity">
+        <activity android:name=".adapter.listview.BaseSimpleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindSimpleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingSimpleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.CommonAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseRecyclerViewAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.CommonRecyclerAdapterViewTestActivity" />
+        <activity android:name=".runpriority.RunPriorityTestActivity" />
+        <activity android:name=".bind.BindDetailActivity">
             <intent-filter>
                 <action android:name="com.gongbo.fss.bind.detail" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.gongbo.fss.demo.bind.BindTestActivity" />
+        <activity android:name=".bind.BindTestActivity" />
         <activity android:name=".route.RouteMainActivity" />
         <activity android:name=".route.RouteDetailActivity" />
+
         <service
             android:name=".route.service.RouteTestService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
     </application>
 
 </manifest>

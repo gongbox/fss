@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/inclue_title_bar" />
+
     <Button
         android:id="@+id/btn_click"
         android:layout_width="wrap_content"
