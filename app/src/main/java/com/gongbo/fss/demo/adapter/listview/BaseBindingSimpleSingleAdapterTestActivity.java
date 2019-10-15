@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_list_view)
+@BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class BaseBindingSimpleSingleAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)
@@ -28,17 +28,17 @@ public class BaseBindingSimpleSingleAdapterTestActivity extends BaseFssActivity 
         super.initView();
         listView.setAdapter(adapter = new BindingSingleAdapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class BindingSingleAdapter extends BaseBindingSimpleSingleAdapter<String, LayoutBindingListItemBinding> {
+    static class BindingSingleAdapter extends BaseBindingSimpleSingleAdapter<String, LayoutBindingListItemBinding> {
 
-    public BindingSingleAdapter(Context context, List<String> datas) {
-        super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
-    }
+        public BindingSingleAdapter(Context context, List<String> datas) {
+            super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
+        }
 
-    @Override
-    protected void onBindView(LayoutBindingListItemBinding viewDataBinding, String s, int position) {
-        super.onBindView(viewDataBinding, s, position);
+        @Override
+        protected void onBindView(LayoutBindingListItemBinding viewDataBinding, String s, int position) {
+            super.onBindView(viewDataBinding, s, position);
+        }
     }
 }
 

@@ -15,7 +15,7 @@ import com.gongbo.fss.router.annotation.Route;
 import java.util.Arrays;
 
 @Route
-@BindActivity(layout = R.layout.activity_recycler_view)
+@BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
 public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.recycler_view)

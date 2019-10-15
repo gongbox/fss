@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_recycler_view)
+@BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
 public class BaseBindingRecyclerViewAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.recycler_view)
@@ -32,16 +32,16 @@ public class BaseBindingRecyclerViewAdapterTestActivity extends BaseFssActivity 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter = new BindingAdapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class BindingAdapter extends BaseBindingRecyclerViewAdapter<String> {
+    static class BindingAdapter extends BaseBindingRecyclerViewAdapter<String> {
 
-    public BindingAdapter(Context context, List<String> datas) {
-        super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
-    }
+        public BindingAdapter(Context context, List<String> datas) {
+            super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
+        }
 
-    @Override
-    public void onBindView(@NonNull ViewDataBinding viewDataBinding, String str, int position) {
-        super.onBindView(viewDataBinding, str, position);
+        @Override
+        public void onBindView(@NonNull ViewDataBinding viewDataBinding, String str, int position) {
+            super.onBindView(viewDataBinding, str, position);
+        }
     }
 }

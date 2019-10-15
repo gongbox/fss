@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_recycler_view)
+@BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
 public class BaseBindingRecyclerViewSingleAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.recycler_view)
@@ -32,16 +32,16 @@ public class BaseBindingRecyclerViewSingleAdapterTestActivity extends BaseFssAct
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter = new BindingSingleAdapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class BindingSingleAdapter extends BaseBindingRecyclerViewSingleAdapter<String, LayoutBindingListItemBinding> {
+    static class BindingSingleAdapter extends BaseBindingRecyclerViewSingleAdapter<String, LayoutBindingListItemBinding> {
 
-    public BindingSingleAdapter(Context context, List<String> datas) {
-        super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
-    }
+        public BindingSingleAdapter(Context context, List<String> datas) {
+            super(context, datas, com.gongbo.fss.demo.BR.value, R.layout.layout_binding_list_item);
+        }
 
-    @Override
-    public void onBindView(@NonNull LayoutBindingListItemBinding viewDataBinding, String str, int position) {
-        super.onBindView(viewDataBinding, str, position);
+        @Override
+        public void onBindView(@NonNull LayoutBindingListItemBinding viewDataBinding, String str, int position) {
+            super.onBindView(viewDataBinding, str, position);
+        }
     }
 }

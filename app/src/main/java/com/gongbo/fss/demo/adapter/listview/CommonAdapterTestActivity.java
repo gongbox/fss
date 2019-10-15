@@ -14,7 +14,7 @@ import com.gongbo.fss.router.annotation.Route;
 import java.util.Arrays;
 
 @Route
-@BindActivity(layout = R.layout.activity_list_view)
+@BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class CommonAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)

@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_recycler_view)
+@BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
 public class BaseRecyclerViewAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.recycler_view)
@@ -34,26 +34,26 @@ public class BaseRecyclerViewAdapterTestActivity extends BaseFssActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter = new Adapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class Adapter extends BaseRecyclerViewAdapter<String, Adapter.ViewHolder> {
+    static class Adapter extends BaseRecyclerViewAdapter<String, Adapter.ViewHolder> {
 
-    public Adapter(Context context, List<String> datas) {
-        super(context, datas, R.layout.layout_list_item);
-    }
+        public Adapter(Context context, List<String> datas) {
+            super(context, datas, R.layout.layout_list_item);
+        }
 
-    @Override
-    public void onBindView(@NonNull ViewHolder holder, String s, int position) {
-        super.onBindView(holder, s, position);
-        holder.tvText.setText(s);
-    }
+        @Override
+        public void onBindView(@NonNull ViewHolder holder, String s, int position) {
+            super.onBindView(holder, s, position);
+            holder.tvText.setText(s);
+        }
 
-    class ViewHolder extends BaseRecyclerViewHolder {
-        TextView tvText;
+        class ViewHolder extends BaseRecyclerViewHolder {
+            TextView tvText;
 
-        public ViewHolder(View view) {
-            super(view);
-            this.tvText = findViewById(R.id.tv_text);
+            public ViewHolder(View view) {
+                super(view);
+                this.tvText = findViewById(R.id.tv_text);
+            }
         }
     }
 }

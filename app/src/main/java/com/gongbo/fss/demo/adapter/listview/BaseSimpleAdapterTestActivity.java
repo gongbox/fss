@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_list_view)
+@BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class BaseSimpleAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)
@@ -30,25 +30,25 @@ public class BaseSimpleAdapterTestActivity extends BaseFssActivity {
         super.initView();
         listView.setAdapter(adapter = new Adapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class Adapter extends BaseSimpleAdapter<String, Adapter.ViewHolder> {
+    static class Adapter extends BaseSimpleAdapter<String, Adapter.ViewHolder> {
 
-    public Adapter(Context context, List<String> datas) {
-        super(context, datas, R.layout.layout_list_item);
-    }
+        public Adapter(Context context, List<String> datas) {
+            super(context, datas, R.layout.layout_list_item);
+        }
 
-    @Override
-    protected void setView(ViewHolder holder, String s, int position) {
-        holder.tvText.setText(s);
-    }
+        @Override
+        protected void setView(ViewHolder holder, String s, int position) {
+            holder.tvText.setText(s);
+        }
 
-    static class ViewHolder extends BaseViewHolder {
-        TextView tvText;
+        static class ViewHolder extends BaseViewHolder {
+            TextView tvText;
 
-        public ViewHolder(View view) {
-            super(view);
-            this.tvText = findViewById(R.id.tv_text);
+            public ViewHolder(View view) {
+                super(view);
+                this.tvText = findViewById(R.id.tv_text);
+            }
         }
     }
 }

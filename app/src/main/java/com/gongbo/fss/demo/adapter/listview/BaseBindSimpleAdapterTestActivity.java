@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Route
-@BindActivity(layout = R.layout.activity_list_view)
+@BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class BaseBindSimpleAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)
@@ -30,25 +30,25 @@ public class BaseBindSimpleAdapterTestActivity extends BaseFssActivity {
         super.initView();
         listView.setAdapter(adapter = new BindAdapter(this, Arrays.asList("1", "2", "3")));
     }
-}
 
-class BindAdapter extends BaseSimpleAdapter<String, BindAdapter.BindViewHolder> {
+    static class BindAdapter extends BaseSimpleAdapter<String, BindAdapter.BindViewHolder> {
 
-    public BindAdapter(Context context, List<String> datas) {
-        super(context, datas, R.layout.layout_list_item);
-    }
+        public BindAdapter(Context context, List<String> datas) {
+            super(context, datas, R.layout.layout_list_item);
+        }
 
-    @Override
-    protected void setView(BindViewHolder holder, String s, int position) {
-        holder.tvText.setText(s);
-    }
+        @Override
+        protected void setView(BindViewHolder holder, String s, int position) {
+            holder.tvText.setText(s);
+        }
 
-    class BindViewHolder extends BaseViewHolder {
-        @BindView(id = R.id.tv_text)
-        TextView tvText;
+        class BindViewHolder extends BaseViewHolder {
+            @BindView(id = R.id.tv_text)
+            TextView tvText;
 
-        public BindViewHolder(View itemView) {
-            super(itemView);
+            public BindViewHolder(View itemView) {
+                super(itemView);
+            }
         }
     }
 }
