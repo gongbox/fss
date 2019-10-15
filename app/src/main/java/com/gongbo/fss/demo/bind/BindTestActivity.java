@@ -10,7 +10,7 @@ import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_test)
+@BindActivity(layout = R.layout.activity_bind_test, finish = R.id.img_back)
 @BindRoute(id = R.id.btn_route,
         action = "com.gongbo.fss.bind.detail",
         extras = {":@value", "value2:789", "value3:(int)[234]"},

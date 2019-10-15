@@ -6,7 +6,7 @@ import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route
-@BindActivity(layout = R.layout.activity_route_detail,finish = R.id.btn_finish)
+@BindActivity(layout = R.layout.activity_route_detail, finish = R.id.img_back)
 public class RouteDetailActivity extends BaseActivity {
 
 }

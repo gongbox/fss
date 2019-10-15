@@ -11,7 +11,7 @@ import com.gongbo.fss.router.annotation.Route;
 
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.btn_finish)
+@BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.img_back)
 @BindExtra(name = "value", id = BR.value1)
 public class BindDetailActivity extends BaseBindingActivity<ActivityBindDetailBinding> {
 
