@@ -25,7 +25,7 @@ public class DataBindingUtils {
         if (binding != null) {
             if (value != null) {
                 if (bindingId == -1) {
-                    throw new RuntimeException("");
+                    throw new RuntimeException("没有找到对应的bindingId");
                 }
                 binding.setVariable(bindingId, value);
             }

@@ -8,6 +8,13 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
 public class ViewUtils {
+    /**
+     * 根据id获取view
+     *
+     * @param obj
+     * @param id
+     * @return
+     */
     public static View getView(@NonNull Object obj, @IdRes int id) {
         if (obj instanceof Activity) {
             return getView((Activity) obj, id);
@@ -23,7 +30,7 @@ public class ViewUtils {
         if (obj instanceof View) {
             return getView((View) obj, id);
         }
-        throw new RuntimeException("this class must be Activity or Fragment or View");
+        throw new RuntimeException(obj.getClass().getCanonicalName() + " must be Activity or Fragment or View");
     }
 
 

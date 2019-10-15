@@ -6,13 +6,13 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.DataBindingExtra;
+import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.bind.annotation.BindFragment;
 import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.bind.annotation.BindExtra;
+import com.gongbo.fss.bind.annotation.BindParam;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.bind.processor.BindActivityProcessor;
-import com.gongbo.fss.bind.processor.BindBindingParamProcessor;
+import com.gongbo.fss.bind.processor.BindExtraProcessor;
 import com.gongbo.fss.bind.processor.BindOnClickProcessor;
 import com.gongbo.fss.bind.processor.BindParamProcessor;
 import com.gongbo.fss.bind.processor.BindRouteProcessor;
@@ -57,15 +57,15 @@ public final class FssBind {
                 continue;
             }
             //绑定参数
-            DataBindingExtra dataBindingExtra = field.getAnnotation(DataBindingExtra.class);
-            if (dataBindingExtra != null) {
-                BindBindingParamProcessor.bindBindingParam(obj, field, dataBindingExtra);
+            BindExtra bindExtra = field.getAnnotation(BindExtra.class);
+            if (bindExtra != null) {
+                BindExtraProcessor.bindExtra(obj, field, bindExtra);
                 continue;
             }
             //绑定参数
-            BindExtra bindExtra = field.getAnnotation(BindExtra.class);
-            if (bindExtra != null) {
-                BindParamProcessor.bindParam(obj, field, bindExtra);
+            BindParam bindParam = field.getAnnotation(BindParam.class);
+            if (bindParam != null) {
+                BindParamProcessor.bindParam(obj, field, bindParam);
             }
         }
 
@@ -79,7 +79,7 @@ public final class FssBind {
         }
 
         //绑定参数
-        BindBindingParamProcessor.bindBindingParam(obj);
+        BindExtraProcessor.bindExtra(obj);
         long time = System.currentTimeMillis() - beforeTime;
         Log.i("Bind", time + "ms");
     }
@@ -135,8 +135,8 @@ public final class FssBind {
                 for (Annotation annotation : fieldItem.getDeclaredAnnotations()) {
                     Class annotationClass = annotation.annotationType();
                     //包含指定注解的添加
-                    if (annotationClass == BindView.class || annotationClass == BindExtra.class
-                            || annotationClass == DataBindingExtra.class) {
+                    if (annotationClass == BindView.class || annotationClass == BindParam.class
+                            || annotationClass == BindExtra.class) {
                         //如果集合里没有该字段，则添加
                         if (!bindFields.any(field -> ReflectUtils.compare(fieldItem, field))) {
                             bindFields.add(fieldItem);

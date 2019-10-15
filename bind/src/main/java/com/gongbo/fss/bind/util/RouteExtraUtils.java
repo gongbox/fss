@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexUtils {
+public class RouteExtraUtils {
 
-    public static class NameTypeValue {
+    public static class RouteExtraInfo {
         public String name;
         public String type;
         public boolean isField;
@@ -14,7 +14,7 @@ public class RegexUtils {
 
         @Override
         public String toString() {
-            return "NameTypeValue{" +
+            return "RouteExtraInfo{" +
                     "name='" + name + '\'' +
                     ", type='" + type + '\'' +
                     ", isField=" + isField +
@@ -86,15 +86,15 @@ public class RegexUtils {
         return null;
     }
 
-    public static NameTypeValue getNameTypeValue(String text) {
-        NameTypeValue nameTypeValue = new NameTypeValue();
-        nameTypeValue.name = getName(text);
-        nameTypeValue.isField = isField(text);
-        if (!nameTypeValue.isField) {
-            nameTypeValue.type = getType(text);
+    public static RouteExtraInfo getNameTypeValue(String text) {
+        RouteExtraInfo routeExtraInfo = new RouteExtraInfo();
+        routeExtraInfo.name = getName(text);
+        routeExtraInfo.isField = isField(text);
+        if (!routeExtraInfo.isField) {
+            routeExtraInfo.type = getType(text);
         }
-        nameTypeValue.values = getValues(text);
-        return nameTypeValue;
+        routeExtraInfo.values = getValues(text);
+        return routeExtraInfo;
     }
 
     public static void main(String[] args) {
@@ -113,13 +113,13 @@ public class RegexUtils {
 //        text ="name:@value";
 //        String name = getName("name:value");
 //        System.out.println(name);
-//        NameTypeValue nameTypeValue = getNameTypeValue(text);
+//        RouteExtraInfo nameTypeValue = getNameTypeValue(text);
 //        System.out.println(nameTypeValue);
         boolean check = check(text);
         System.out.println(check);
         if (check) {
-            NameTypeValue nameTypeValue = getNameTypeValue(text);
-            System.out.println(nameTypeValue);
+            RouteExtraInfo routeExtraInfo = getNameTypeValue(text);
+            System.out.println(routeExtraInfo);
         }
     }
 }

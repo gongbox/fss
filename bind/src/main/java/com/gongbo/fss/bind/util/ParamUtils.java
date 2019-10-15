@@ -31,7 +31,7 @@ public class ParamUtils {
             Bundle bundle = ((android.app.Fragment) obj).getArguments();
             return getParam(bundle, key);
         }
-        throw new RuntimeException("this class must be Activity or Fragment");
+        throw new RuntimeException(obj.getClass().getCanonicalName() + " must be Activity or Fragment");
     }
 
     /**

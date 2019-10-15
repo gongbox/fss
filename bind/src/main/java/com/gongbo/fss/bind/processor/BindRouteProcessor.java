@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.gongbo.fss.bind.annotation.BindRoute;
 import com.gongbo.fss.bind.annotation.BindRoutes;
-import com.gongbo.fss.bind.util.RegexUtils;
+import com.gongbo.fss.bind.util.RouteExtraUtils;
 import com.gongbo.fss.bind.util.ViewUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
 
@@ -124,7 +124,7 @@ public class BindRouteProcessor {
 
             });
         } else {
-            throw new RuntimeException("绑定Route失败，原因：在" + obj.getClass().getCanonicalName() + "类中获取不到id为" + bindRoute.id() + "的view");
+            throw new RuntimeException("绑定路由失败，原因：在" + obj.getClass().getCanonicalName() + "类中获取不到id为" + bindRoute.id() + "的view");
         }
     }
 
@@ -138,19 +138,19 @@ public class BindRouteProcessor {
     private static Bundle buildExtras(Object obj, String[] extras) {
         Bundle bundle = new Bundle();
         for (String extra : extras) {
-            if (!RegexUtils.check(extra)) {
-                throw new RuntimeException("you declared a wrong pattern:" + extra);
+            if (!RouteExtraUtils.check(extra)) {
+                throw new RuntimeException("你声明了一个错误的路由参数信息:" + extra + "，在类：" + obj.getClass().getCanonicalName());
             }
-            RegexUtils.NameTypeValue nameTypeValue = RegexUtils.getNameTypeValue(extra);
-            if (!nameTypeValue.isField && nameTypeValue.values != null && nameTypeValue.values.length > 0) {
-                String[] values = nameTypeValue.values;
-                if (nameTypeValue.type != null && !nameTypeValue.type.isEmpty()) {
-                    switch (nameTypeValue.type.toLowerCase()) {
+            RouteExtraUtils.RouteExtraInfo routeExtraInfo = RouteExtraUtils.getNameTypeValue(extra);
+            if (!routeExtraInfo.isField && routeExtraInfo.values != null && routeExtraInfo.values.length > 0) {
+                String[] values = routeExtraInfo.values;
+                if (routeExtraInfo.type != null && !routeExtraInfo.type.isEmpty()) {
+                    switch (routeExtraInfo.type.toLowerCase()) {
                         case "int":
                         case "integer":
                         case "java.lang.integer": {
                             int[] formatValues = new int[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = 0;
                                 } else {
@@ -158,16 +158,16 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putIntArray(nameTypeValue.name, formatValues);
+                                bundle.putIntArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putInt(nameTypeValue.name, formatValues[0]);
+                                bundle.putInt(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "long":
                         case "java.lang.long": {
                             long[] formatValues = new long[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = 0L;
                                 } else {
@@ -175,16 +175,16 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putLongArray(nameTypeValue.name, formatValues);
+                                bundle.putLongArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putLong(nameTypeValue.name, formatValues[0]);
+                                bundle.putLong(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "float":
                         case "java.lang.float": {
                             float[] formatValues = new float[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = 0.0f;
                                 } else {
@@ -192,16 +192,16 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putFloatArray(nameTypeValue.name, formatValues);
+                                bundle.putFloatArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putFloat(nameTypeValue.name, formatValues[0]);
+                                bundle.putFloat(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "double":
                         case "java.lang.double": {
                             double[] formatValues = new double[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = 0L;
                                 } else {
@@ -209,16 +209,16 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putDoubleArray(nameTypeValue.name, formatValues);
+                                bundle.putDoubleArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putDouble(nameTypeValue.name, formatValues[0]);
+                                bundle.putDouble(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "char":
                         case "java.lang.char": {
                             char[] formatValues = new char[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = (char) 0;
                                 } else {
@@ -226,16 +226,16 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putCharArray(nameTypeValue.name, formatValues);
+                                bundle.putCharArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putChar(nameTypeValue.name, formatValues[0]);
+                                bundle.putChar(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "byte":
                         case "java.lang.byte": {
                             byte[] formatValues = new byte[values.length];
-                            for (int i = 0; i < nameTypeValue.values.length; i++) {
+                            for (int i = 0; i < routeExtraInfo.values.length; i++) {
                                 if (values[i] == null || "null".equals(values[i])) {
                                     formatValues[i] = (char) 0;
                                 } else {
@@ -243,18 +243,18 @@ public class BindRouteProcessor {
                                 }
                             }
                             if (formatValues.length > 1) {
-                                bundle.putByteArray(nameTypeValue.name, formatValues);
+                                bundle.putByteArray(routeExtraInfo.name, formatValues);
                             } else {
-                                bundle.putByte(nameTypeValue.name, formatValues[0]);
+                                bundle.putByte(routeExtraInfo.name, formatValues[0]);
                             }
                         }
                         break;
                         case "string":
                         case "java.lang.string":
                             if (values.length > 1) {
-                                bundle.putStringArray(nameTypeValue.name, values);
+                                bundle.putStringArray(routeExtraInfo.name, values);
                             } else {
-                                bundle.putString(nameTypeValue.name, values[0]);
+                                bundle.putString(routeExtraInfo.name, values[0]);
                             }
                             break;
                         default:
@@ -262,14 +262,14 @@ public class BindRouteProcessor {
                     }
                 } else {
                     if (values.length > 1) {
-                        bundle.putStringArray(nameTypeValue.name, values);
+                        bundle.putStringArray(routeExtraInfo.name, values);
                     } else {
-                        bundle.putString(nameTypeValue.name, values[0]);
+                        bundle.putString(routeExtraInfo.name, values[0]);
                     }
                 }
-            } else if (nameTypeValue.isField) {
-                String fieldName = nameTypeValue.values[0];
-                String name = nameTypeValue.name == null || nameTypeValue.name.isEmpty() ? fieldName : nameTypeValue.name;
+            } else if (routeExtraInfo.isField) {
+                String fieldName = routeExtraInfo.values[0];
+                String name = routeExtraInfo.name == null || routeExtraInfo.name.isEmpty() ? fieldName : routeExtraInfo.name;
 
                 Field field = ReflectUtils.getField(obj.getClass(), fieldName);
                 if (field != null) {
