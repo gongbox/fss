@@ -1,7 +1,8 @@
 package com.gongbo.fss.runpriority.annotation;
 
 
-import com.gongbo.fss.runpriority.enums.Priority;
+
+import com.gongbo.fss.runpriority.constant.Priority;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

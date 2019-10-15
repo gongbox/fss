@@ -4,8 +4,8 @@ import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.runpriority.enums.Priority;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
+import com.gongbo.fss.runpriority.constant.Priority;
 
 @Route
 @BindActivity(layout = R.layout.activity_run_priority_test, finish = R.id.img_back)

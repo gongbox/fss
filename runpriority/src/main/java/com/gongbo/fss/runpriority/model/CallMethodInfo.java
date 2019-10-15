@@ -1,6 +1,7 @@
 package com.gongbo.fss.runpriority.model;
 
-import com.gongbo.fss.runpriority.enums.Priority;
+
+import com.gongbo.fss.runpriority.constant.Priority;
 
 import java.lang.reflect.Method;
 
