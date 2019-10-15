@@ -42,5 +42,6 @@ dependencies {
 
     api project(path: ':runpriority')
     api project(path: ':bind')
-    api project(path: ':adapter')
+    api project(path: ':adapter-listview')
+    api project(path: ':adapter-recyclerview')
 }

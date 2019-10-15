@@ -1,2 +1,2 @@
-include ':app', ':common', ':bind', ':runpriority', ':router-annotation', ':router-compiler', ':router-api', ':router-annotation', ':runpriority', ':base', ':adapter', ':bind-annotation'
+include ':app', ':common', ':bind', ':runpriority', ':router-annotation', ':router-compiler', ':router-api', ':router-annotation', ':runpriority', ':base', ':bind-annotation', ':adapter-listview', ':adapter-recyclerview', ':adapter'
 rootProject.name='fss'
