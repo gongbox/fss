@@ -21,12 +21,16 @@ public abstract class BaseFssFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(FssBind.getLayoutId(this), container, false);
+        //获取布局
+        int layoutId = FssBind.getLayoutId(this);
+        //根据布局填充
+        return inflater.inflate(layoutId, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //绑定参数（只绑定BaseFssFragment及其子类的参数）
         FssBind.bind(this, BaseFssFragment.class);
 
         //构造运行优先级方法

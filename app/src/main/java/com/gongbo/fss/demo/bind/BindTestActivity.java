@@ -11,8 +11,16 @@ import com.gongbo.fss.router.annotation.Route;
 
 @Route
 @BindActivity(layout = R.layout.activity_bind_test)
-@BindRoute(id = R.id.btn_route, toActivity = BindDetailActivity.class,
-        extras = {":@value", "value2:789", "value3:(int)[234]"})
+@BindRoute(id = R.id.btn_route,
+        action = "com.gongbo.fss.bind.detail",
+        extras = {":@value", "value2:789", "value3:(int)[234]"},
+        enterAnim = android.R.anim.slide_in_left
+)
+//@BindRoute(id = R.id.btn_route,
+//        toActivity = BindDetailActivity.class,
+//        extras = {":@value", "value2:789", "value3:(int)[234]"},
+//        enterAnim = android.R.anim.slide_in_left
+//)
 @BindOnClick(id = R.id.btn_test, method = "test")
 public class BindTestActivity extends BaseActivity {
 

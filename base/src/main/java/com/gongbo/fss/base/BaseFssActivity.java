@@ -23,7 +23,11 @@ public abstract class BaseFssActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentLayout(FssBind.getLayoutId(this));
+        //获取布局
+        int layoutId = FssBind.getLayoutId(this);
+        //设置布局
+        setContentLayout(layoutId);
+        //绑定参数（只绑定BaseFssActivity及其子类的参数）
         FssBind.bind(this, BaseFssActivity.class);
 
         //构造运行优先级方法
