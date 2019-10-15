@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 
 import androidx.annotation.LayoutRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-
 
 import com.gongbo.fss.common.kotlin.Pair;
 
@@ -22,28 +20,28 @@ import java.util.List;
  * Created by gongbo on 2018/5/21.
  * 列表视图适配器
  */
-public class BaseBindingSimpleSingleAdapter<M, VB extends ViewDataBinding> extends BaseAdapter {
+public class BaseBindingSingleAdapter<M, VB extends ViewDataBinding> extends BaseAdapter {
 
-    protected List<M> mDatas;
+    protected List<M> mDataList;
     protected Context mContext;
     protected LayoutInflater mLayoutInflater;
     protected SparseIntArray mLayoutIds;
     protected int mBindingId;
 
-    public BaseBindingSimpleSingleAdapter(Context context, List<M> datas, int bindingId) {
-        this.mDatas = datas;
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId) {
+        this.mDataList = datas;
         this.mContext = context;
         this.mLayoutInflater = LayoutInflater.from(context);
         this.mLayoutIds = new SparseIntArray();
         this.mBindingId = bindingId;
     }
 
-    public BaseBindingSimpleSingleAdapter(Context context, List<M> datas, int bindingId, @LayoutRes int layoutId) {
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId, @LayoutRes int layoutId) {
         this(context, datas, bindingId);
         addLayout(0, layoutId);
     }
 
-    public BaseBindingSimpleSingleAdapter(Context context, List<M> datas, int bindingId, Pair<Integer, Integer>... layoutIds) {
+    public BaseBindingSingleAdapter(Context context, List<M> datas, int bindingId, Pair<Integer, Integer>... layoutIds) {
         this(context, datas, bindingId);
         for (Pair<Integer, Integer> pair : layoutIds) {
             addLayout(pair.first, pair.second);
@@ -58,19 +56,19 @@ public class BaseBindingSimpleSingleAdapter<M, VB extends ViewDataBinding> exten
         return mLayoutIds.get(type);
     }
 
-    public void updateData(List<M> datas) {
-        this.mDatas = datas;
+    public void notifyDataSetChanged(List<M> datas) {
+        this.mDataList = datas;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mDatas == null ? 0 : mDatas.size();
+        return mDataList == null ? 0 : mDataList.size();
     }
 
     @Override
     public M getItem(int position) {
-        return mDatas.get(position);
+        return mDataList.get(position);
     }
 
     @Override

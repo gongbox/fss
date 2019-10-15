@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import androidx.annotation.LayoutRes;
 
@@ -20,23 +19,25 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends BaseAdapter {
-    protected List<M> mDatas;
+public abstract class BaseAdapter<M, VH extends BaseViewHolder> extends android.widget.BaseAdapter {
+    protected List<M> mDataList;
     protected Context mContext;
     protected SparseIntArray mLayoutIds;
+    private Constructor mViewHolderConstructor;
+    private int mViewHolderConstructorType = 0;
 
-    public BaseSimpleAdapter(Context context, List<M> datas) {
-        this.mDatas = datas;
+    public BaseAdapter(Context context, List<M> datas) {
+        this.mDataList = datas;
         this.mContext = context;
         this.mLayoutIds = new SparseIntArray();
     }
 
-    public BaseSimpleAdapter(Context context, List<M> datas, @LayoutRes int layoutId) {
+    public BaseAdapter(Context context, List<M> datas, @LayoutRes int layoutId) {
         this(context, datas);
         addLayout(0, layoutId);
     }
 
-    public BaseSimpleAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
+    public BaseAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
         this(context, datas);
         for (Pair<Integer, Integer> pair : layoutIds) {
             addLayout(pair.first, pair.second);
@@ -51,19 +52,19 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
         return mLayoutIds.get(type);
     }
 
-    public void updateData(List<M> datas) {
-        this.mDatas = datas;
+    public void notifyDataSetChanged(List<M> datas) {
+        this.mDataList = datas;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mDatas == null ? 0 : mDatas.size();
+        return mDataList == null ? 0 : mDataList.size();
     }
 
     @Override
     public M getItem(int position) {
-        return mDatas.get(position);
+        return mDataList.get(position);
     }
 
     @Override
@@ -87,8 +88,6 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
         return convertView;
     }
 
-    private Constructor mViewHolderConstructor;
-
     protected VH getViewHolder(View convertView) {
         if (mViewHolderConstructor == null) {
             Class<?> viewHolderClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -98,6 +97,7 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
                     constructor.setAccessible(true);
                 }
                 mViewHolderConstructor = constructor;
+                mViewHolderConstructorType = 0;
             } catch (NoSuchMethodException e) {
                 try {
                     Constructor constructor = viewHolderClass.getConstructor(this.getClass(), View.class);
@@ -105,6 +105,7 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
                         constructor.setAccessible(true);
                     }
                     mViewHolderConstructor = constructor;
+                    mViewHolderConstructorType = 1;
                 } catch (NoSuchMethodException ex) {
                     ex.printStackTrace();
                 }
@@ -112,9 +113,8 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
         }
 
         if (mViewHolderConstructor != null) {
-
             try {
-                if (mViewHolderConstructor.getParameterTypes().length == 1) {
+                if (mViewHolderConstructorType == 0) {
                     return (VH) mViewHolderConstructor.newInstance(convertView);
                 } else {
                     return (VH) mViewHolderConstructor.newInstance(this, convertView);
@@ -126,9 +126,10 @@ public abstract class BaseSimpleAdapter<M, VH extends BaseViewHolder> extends Ba
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+        } else {
+            throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
         }
-
-        throw new RuntimeException("Cann't get ViewHolder in class:" + this.getClass().getCanonicalName());
+        throw new RuntimeException("Cann't instance ViewHolder in class:" + this.getClass().getCanonicalName());
     }
 
     protected abstract void onBindView(VH holder, M m, int position);

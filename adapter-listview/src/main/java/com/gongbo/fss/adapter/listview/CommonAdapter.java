@@ -3,15 +3,15 @@ package com.gongbo.fss.adapter.listview;
 import android.content.Context;
 import android.view.View;
 
-import com.gongbo.fss.common.kotlin.Pair;
 import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
+import com.gongbo.fss.common.kotlin.Pair;
 
 import java.util.List;
 
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class CommonAdapter<M> extends BaseSimpleAdapter<M, CommonViewHolder> {
+public abstract class CommonAdapter<M> extends BaseAdapter<M, CommonViewHolder> {
 
     public CommonAdapter(Context context, List<M> datas) {
         super(context, datas);
