@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     protected List<M> mDataList;
     protected LayoutInflater mLayoutInflater;
@@ -28,6 +28,14 @@ public abstract class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends
     private int mViewHolderConstructorType;
 
     public static final int EMPTY_VIEW = -1;
+
+    public interface OnBindViewAdapter<M, VH extends RecyclerView.ViewHolder> {
+
+        void onBindView(VH holder, M m, int position);
+
+    }
+
+    private OnBindViewAdapter<M, VH> onBindViewAdapter;
 
     public BaseAdapter(Context context, List<M> datas) {
         this.mDataList = datas;
@@ -39,6 +47,11 @@ public abstract class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends
     public BaseAdapter(Context context, List<M> datas, int layoutId) {
         this(context, datas);
         addLayout(0, layoutId);
+    }
+
+    public BaseAdapter(Context context, List<M> datas, int layoutId, OnBindViewAdapter<M, VH> onBindViewAdapter) {
+        this(context, datas, layoutId);
+        this.onBindViewAdapter = onBindViewAdapter;
     }
 
     public BaseAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
@@ -81,7 +94,11 @@ public abstract class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         if (getItemViewType(position) != EMPTY_VIEW) {
-            onBindView(holder, getItem(position), position);
+            if(onBindViewAdapter != null){
+                onBindViewAdapter.onBindView(holder, getItem(position), position);
+            }else {
+                onBindView(holder, getItem(position), position);
+            }
         }
     }
 

@@ -217,6 +217,13 @@ public class RouteProcessor extends BaseProcessor {
                         builder.addMember("flags", joinString("{", "}", route.flags(), ","));
                     }
 
+                    if (route.enterAnim() > 0) {
+                        builder.addMember("enterAnim", "" + route.enterAnim());
+                    }
+                    if (route.exitAnim() > 0) {
+                        builder.addMember("exitAnim", "" + route.exitAnim());
+                    }
+
                     AnnotationSpec methodAnnotationSpec = builder.build();
                     methodAnnotationSpecs.add(methodAnnotationSpec);
                 } else if (type == 1) {

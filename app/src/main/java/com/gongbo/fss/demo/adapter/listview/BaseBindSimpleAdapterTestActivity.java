@@ -11,9 +11,9 @@ import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.router.annotation.Route;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Route
@@ -23,16 +23,10 @@ public class BaseBindSimpleAdapterTestActivity extends BaseFssActivity {
     @BindView(id = R.id.list_view)
     private ListView listView;
 
-    private BindAdapter adapter;
-
     @Override
     protected void initView() {
         super.initView();
-        List<String> datas = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            datas.add(i + "");
-        }
-        listView.setAdapter(adapter = new BindAdapter(this, datas));
+        listView.setAdapter(new BindAdapter(this, ListDataModel.getDatas()));
     }
 
     static class BindAdapter extends BaseAdapter<String, BindAdapter.BindViewHolder> {

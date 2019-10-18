@@ -10,10 +10,8 @@ import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.router.annotation.Route;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Route
 @BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
@@ -22,23 +20,16 @@ public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
     @BindView(id = R.id.recycler_view)
     private RecyclerView recyclerView;
 
-    private CommonRecyclerAdapter<String> adapter;
-
     @Override
     protected void initView() {
         super.initView();
-        List<String> datas = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            datas.add(i + "");
-        }
-        adapter = new CommonRecyclerAdapter<String>(this, datas, R.layout.layout_list_item) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        recyclerView.setAdapter(new CommonRecyclerAdapter<String>(this, ListDataModel.getDatas(), R.layout.layout_list_item) {
             @Override
             public void onBindView(@NonNull CommonViewHolder holder, String s, int position) {
                 super.onBindView(holder, s, position);
                 holder.setText(R.id.tv_text, s);
             }
-        };
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
+        });
     }
 }

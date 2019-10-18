@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class CommonRecyclerAdapter<M> extends BaseAdapter<M, CommonViewHolder> {
+public class CommonRecyclerAdapter<M> extends BaseAdapter<M, CommonViewHolder> {
 
 
     public CommonRecyclerAdapter(Context context, List<M> datas) {
@@ -27,6 +27,10 @@ public abstract class CommonRecyclerAdapter<M> extends BaseAdapter<M, CommonView
 
     public CommonRecyclerAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
         super(context, datas, layoutIds);
+    }
+
+    public CommonRecyclerAdapter(Context context, List<M> datas, int layoutId, OnBindViewAdapter<M, CommonViewHolder> onBindViewAdapter) {
+        super(context, datas, layoutId, onBindViewAdapter);
     }
 
     @NonNull

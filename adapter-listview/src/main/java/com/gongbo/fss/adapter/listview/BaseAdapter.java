@@ -19,12 +19,20 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public abstract class BaseAdapter<M, VH extends BaseViewHolder> extends android.widget.BaseAdapter {
+public class BaseAdapter<M, VH extends BaseViewHolder> extends android.widget.BaseAdapter {
     protected List<M> mDataList;
     protected Context mContext;
     protected SparseIntArray mLayoutIds;
     private Constructor mViewHolderConstructor;
     private int mViewHolderConstructorType = 0;
+
+    public interface OnBindViewAdapter<M, VH extends BaseViewHolder> {
+
+        void onBindView(VH holder, M m, int position);
+
+    }
+
+    private OnBindViewAdapter<M, VH> onBindViewAdapter;
 
     public BaseAdapter(Context context, List<M> datas) {
         this.mDataList = datas;
@@ -37,12 +45,18 @@ public abstract class BaseAdapter<M, VH extends BaseViewHolder> extends android.
         addLayout(0, layoutId);
     }
 
+    public BaseAdapter(Context context, List<M> datas, @LayoutRes int layoutId, OnBindViewAdapter<M, VH> onBindViewAdapter) {
+        this(context, datas, layoutId);
+        this.onBindViewAdapter = onBindViewAdapter;
+    }
+
     public BaseAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
         this(context, datas);
         for (Pair<Integer, Integer> pair : layoutIds) {
             addLayout(pair.first, pair.second);
         }
     }
+
 
     protected void addLayout(int type, int layoutId) {
         mLayoutIds.append(type, layoutId);
@@ -83,7 +97,11 @@ public abstract class BaseAdapter<M, VH extends BaseViewHolder> extends android.
             holder = (VH) convertView.getTag();
         }
         M data = getItem(position);
-        onBindView(holder, data, position);
+        if (onBindViewAdapter != null) {
+            onBindViewAdapter.onBindView(holder, data, position);
+        } else {
+            onBindView(holder, data, position);
+        }
 
         return convertView;
     }
@@ -132,6 +150,6 @@ public abstract class BaseAdapter<M, VH extends BaseViewHolder> extends android.
         throw new RuntimeException("Cann't instance ViewHolder in class:" + this.getClass().getCanonicalName());
     }
 
-    protected abstract void onBindView(VH holder, M m, int position);
-
+    protected void onBindView(VH holder, M m, int position) {
+    }
 }

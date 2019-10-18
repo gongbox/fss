@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
@@ -27,8 +26,6 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
     @BindView(id = R.id.list_view)
     private ListView listView;
 
-    private CommonAdapter<String> adapter;
-
     private List<String> datas = Arrays.asList(
             "RunPriorityTestActivity",
             "BindTestActivity",
@@ -40,12 +37,8 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
     protected void initView() {
         super.initView();
         imgBack.setVisibility(View.GONE);
-        listView.setAdapter(adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
-            @Override
-            protected void onBindView(CommonViewHolder holder, String s, int position) {
-                holder.setText(R.id.tv_text, s);
-            }
-        });
+        listView.setAdapter(new CommonAdapter<>(this, datas, R.layout.layout_list_item,
+                (holder, s, position) -> holder.setText(R.id.tv_text, s)));
         listView.setOnItemClickListener(this);
     }
 

@@ -30,5 +30,9 @@ public @interface Route {
 
     DefaultExtra[] defaultExtras() default {};
 
+    int enterAnim() default 0;
+
+    int exitAnim() default 0;
+
     String desc() default "";
 }

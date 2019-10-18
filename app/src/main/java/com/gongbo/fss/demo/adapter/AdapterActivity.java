@@ -5,7 +5,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
@@ -25,8 +24,6 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
     @BindView(id = R.id.list_view)
     private ListView listView;
 
-    private CommonAdapter<String> adapter;
-
     private List<String> datas = Arrays.asList(
             "BaseAdapter",
             "BaseBindSimpleAdapter",
@@ -42,12 +39,8 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     protected void initView() {
         super.initView();
-        listView.setAdapter(adapter = new CommonAdapter<String>(this, datas, R.layout.layout_list_item) {
-            @Override
-            protected void onBindView(CommonViewHolder holder, String s, int position) {
-                holder.setText(R.id.tv_text, s);
-            }
-        });
+        listView.setAdapter(new CommonAdapter<>(this, datas, R.layout.layout_list_item,
+                (holder, s, position) -> holder.setText(R.id.tv_text, s)));
         listView.setOnItemClickListener(this);
     }
 
