@@ -55,6 +55,6 @@ dependencies {
     implementation project(path: ':router-api')
     annotationProcessor project(path: ':router-compiler')
 
-//    implementation 'com.github.gongbox:fss:1.0.9'
-//    annotationProcessor 'com.github.gongbox:router-compiler:1.0.9'
+//    implementation 'com.github.gongbox:fss:1.0.10'
+//    annotationProcessor 'com.github.gongbox:router-compiler:1.0.10'
 }
