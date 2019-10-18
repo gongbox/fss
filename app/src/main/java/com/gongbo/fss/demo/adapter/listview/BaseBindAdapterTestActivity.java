@@ -18,7 +18,7 @@ import java.util.List;
 
 @Route
 @BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
-public class BaseBindSimpleAdapterTestActivity extends BaseFssActivity {
+public class BaseBindAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)
     private ListView listView;

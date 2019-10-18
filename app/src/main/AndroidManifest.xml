@@ -17,10 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".adapter.listview.BaseSimpleAdapterTestActivity" />
-        <activity android:name=".adapter.listview.BaseBindSimpleAdapterTestActivity" />
-        <activity android:name=".adapter.listview.BaseBindingSimpleAdapterTestActivity" />
-        <activity android:name=".adapter.listview.BaseBindingSimpleSingleAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingAdapterTestActivity" />
+        <activity android:name=".adapter.listview.BaseBindingSingleAdapterTestActivity" />
         <activity android:name=".adapter.listview.CommonAdapterTestActivity" />
         <activity android:name=".adapter.recyclerview.BaseRecyclerViewAdapterTestActivity" />
         <activity android:name=".adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity" />

@@ -26,7 +26,7 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
 
     private List<String> datas = Arrays.asList(
             "BaseAdapter",
-            "BaseBindSimpleAdapter",
+            "BaseBindAdapter",
             "BaseBindingAdapter",
             "BaseBindingSingleAdapter",
             "CommonAdapter",
@@ -48,16 +48,16 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                DefaultRouteApi.navigateToBaseSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseAdapterTestActivity(this);
                 break;
             case 1:
-                DefaultRouteApi.navigateToBaseBindSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindAdapterTestActivity(this);
                 break;
             case 2:
-                DefaultRouteApi.navigateToBaseBindingSimpleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindingAdapterTestActivity(this);
                 break;
             case 3:
-                DefaultRouteApi.navigateToBaseBindingSimpleSingleAdapterTestActivity(this);
+                DefaultRouteApi.navigateToBaseBindingSingleAdapterTestActivity(this);
                 break;
             case 4:
                 DefaultRouteApi.navigateToCommonAdapterTestActivity(this);
