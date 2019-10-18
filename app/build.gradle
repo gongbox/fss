@@ -11,11 +11,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [apiPrefix: "navigateTo", apiSuffix: "", groupSuffix: "RouteApi"]
-            }
-        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                //API_PREFIX 路由方法前缀
+//                //API_SUFFIX 路由方法后缀
+//                //GROUP_PREFIX 路由分组常量前缀
+//                //GROUP_SUFFIX 路由分组常量后缀
+//                arguments = [API_PREFIX: "navigateTo", API_SUFFIX: "", GROUP_PREFIX: "", GROUP_SUFFIX: "RouteApi"]
+//            }
+//        }
     }
     buildTypes {
         release {

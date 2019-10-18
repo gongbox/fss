@@ -17,10 +17,6 @@ import static com.gongbo.fss.router.utils.StringUtils.capitalizeString;
 
 /**
  * Base Processor
- *
- * @author zhilong [Contact me.](mailto:zhilong.lzl@alibaba-inc.com)
- * @version 1.0
- * @since 2019-03-01 12:31
  */
 public abstract class BaseProcessor extends AbstractProcessor {
     Filer mFiler;
@@ -29,7 +25,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
     Elements elementUtils;
     TypeUtils typeUtils;
     String prefix, suffix;
-    String groupSuffix;
+    String groupPrefix, groupSuffix;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -42,35 +38,26 @@ public abstract class BaseProcessor extends AbstractProcessor {
         logger = new Logger(processingEnv.getMessager());
 
         Map<String, String> options = processingEnv.getOptions();
-        if (options.containsKey("prefix")) {
-            prefix = options.get("prefix");
-            if (prefix == null) {
-                prefix = "";
+        prefix = getOption(options, "prefix", "navigateTo", false);
+        suffix = getOption(options, "suffix", "", true);
+        groupPrefix = getOption(options, "groupPrefix", "", false);
+        groupSuffix = getOption(options, "groupSuffix", "RouteApi", true);
+    }
+
+    private String getOption(Map<String, String> options, String key, String defaultValue, boolean capital) {
+        String value;
+        if (options.containsKey(key)) {
+            value = options.get(key);
+            if (value == null) {
+                value = "";
             }
         } else {
-            prefix = "navigateTo";
+            value = defaultValue;
         }
-
-        if (options.containsKey("suffix")) {
-            suffix = options.get("suffix");
-            if (suffix == null) {
-                suffix = "";
-            }
-            suffix = capitalizeString(suffix);
-        } else {
-            suffix = "";
+        if (capital) {
+            capitalizeString(value);
         }
-        if (options.containsKey("groupSuffix")) {
-            groupSuffix = options.get("groupSuffix");
-            if (groupSuffix == null) {
-                groupSuffix = "";
-            }
-            groupSuffix = capitalizeString(groupSuffix);
-        } else {
-            groupSuffix = "RouteApi";
-        }
-
-
+        return value;
     }
 
     @Override

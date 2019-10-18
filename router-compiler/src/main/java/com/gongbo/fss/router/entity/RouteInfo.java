@@ -18,5 +18,4 @@ public class RouteInfo {
         this.routes = new ArrayList<>(Arrays.asList(routes));
     }
 
-
 }
