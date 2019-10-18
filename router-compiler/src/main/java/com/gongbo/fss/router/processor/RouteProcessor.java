@@ -160,7 +160,7 @@ public class RouteProcessor extends BaseProcessor {
 
             for (Map.Entry<String, List<RouteInfo>> entry : routeInfoMap.entrySet()) {
                 String group = entry.getKey();
-                String apiFileName = group.isEmpty() ? "IDefaultRouteApi" : "I" + capitalizeString(group) + "RouteApi";
+                String apiFileName = group.isEmpty() ? "IDefault" + groupSuffix : "I" + capitalizeString(group) + groupSuffix;
                 List<RouteInfo> routeInfos = entry.getValue();
 
                 parseRouteApi(apiFileName, routeInfos);
@@ -295,7 +295,7 @@ public class RouteProcessor extends BaseProcessor {
                     name = route.name().isEmpty() ? "buildIntentFor" + routeInfo.typeElement.getSimpleName() : route.name();
                 } else {
                     returnType = TypeName.VOID;
-                    name = route.name().isEmpty() ? "navigateTo" + routeInfo.typeElement.getSimpleName() : route.name();
+                    name = route.name().isEmpty() ? prefix + routeInfo.typeElement.getSimpleName() + suffix : route.name();
                 }
 
                 String paramDoc = paramDesc.toString();
@@ -370,7 +370,7 @@ public class RouteProcessor extends BaseProcessor {
             //遍历所有group
             for (String group : groups) {
                 //group名字转换
-                String groupApiName = group.isEmpty() ? "DefaultRouteApi" : capitalizeString(group) + "RouteApi";
+                String groupApiName = group.isEmpty() ? "Default" + groupSuffix : capitalizeString(group) + groupSuffix;
 
                 logger.info(">>>>>>>>>>>>>>>>>>>>>>>：" + groupApiName);
 

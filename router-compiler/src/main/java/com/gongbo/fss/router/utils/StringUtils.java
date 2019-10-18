@@ -71,6 +71,12 @@ public class StringUtils {
      * @return
      */
     public static String capitalizeString(String string) {
+        if (string == null) {
+            return null;
+        }
+        if (string.isEmpty()) {
+            return string;
+        }
         return string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 

@@ -11,7 +11,7 @@ import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.demo.databinding.LayoutBindingListItemBinding;
 import com.gongbo.fss.router.annotation.Route;
 
-@Route
+@Route(group = "listView")
 @BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class BaseBindingSingleAdapterTestActivity extends BaseFssActivity {
 

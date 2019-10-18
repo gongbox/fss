@@ -16,7 +16,7 @@ import com.gongbo.fss.router.annotation.Route;
 
 import java.util.List;
 
-@Route
+@Route(group = "listView")
 @BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
 public class BaseAdapterTestActivity extends BaseFssActivity {
 

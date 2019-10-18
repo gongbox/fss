@@ -13,7 +13,7 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.router.annotation.Route;
 
-@Route
+@Route(group = "recyclerView")
 @BindActivity(layout = R.layout.activity_recycler_view, finish = R.id.img_back)
 public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
 
