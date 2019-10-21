@@ -1,5 +1,7 @@
 package com.gongbo.fss.demo.route;
 
+import android.content.Intent;
+
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.demo.R;
@@ -21,7 +23,7 @@ import com.gongbo.fss.router.annotation.RouteExtra;
         //添加requestCode
         requestCode = 1234,
         //设置category
-//        category = "",
+        category = Intent.CATEGORY_DEFAULT,
         //设置falgs
 //        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK,
         //添加参数

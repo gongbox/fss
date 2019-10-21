@@ -10,6 +10,7 @@ import com.gongbo.fss.demo.databinding.ActivityBindDetailBinding;
 import com.gongbo.fss.router.annotation.Route;
 
 
+
 @Route
 @BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.img_back)
 @BindExtra(name = "value", id = BR.value1)

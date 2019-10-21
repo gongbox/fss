@@ -38,7 +38,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.databinding:databinding-runtime:3.5.1'
+    compileOnly 'androidx.databinding:databinding-runtime:3.5.1'
 
     api project(path: ':common')
     api project(path: ':bind')
