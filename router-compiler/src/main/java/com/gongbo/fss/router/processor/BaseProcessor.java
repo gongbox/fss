@@ -2,6 +2,7 @@ package com.gongbo.fss.router.processor;
 
 import com.gongbo.fss.router.utils.Logger;
 import com.gongbo.fss.router.utils.TypeUtils;
+import com.google.common.base.Strings;
 
 import java.util.Map;
 
@@ -48,9 +49,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
         String value;
         if (options.containsKey(key)) {
             value = options.get(key);
-            if (value == null) {
-                value = "";
-            }
+            value = Strings.nullToEmpty(value);
         } else {
             value = defaultValue;
         }

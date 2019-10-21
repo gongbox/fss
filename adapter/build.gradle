@@ -38,8 +38,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly 'com.google.android.material:material:1.1.0-beta01'
-    compileOnly 'androidx.databinding:databinding-runtime:3.5.1'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+    implementation 'androidx.databinding:databinding-runtime:3.5.1'
 
     api project(path: ':adapter-listview')
     api project(path: ':adapter-recyclerview')
