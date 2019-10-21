@@ -39,10 +39,10 @@ public abstract class BaseProcessor extends AbstractProcessor {
         logger = new Logger(processingEnv.getMessager());
 
         Map<String, String> options = processingEnv.getOptions();
-        prefix = getOption(options, "prefix", "navigateTo", false);
-        suffix = getOption(options, "suffix", "", true);
-        groupPrefix = getOption(options, "groupPrefix", "", false);
-        groupSuffix = getOption(options, "groupSuffix", "RouteApi", true);
+        prefix = getOption(options, "API_PREFIX", "navigateTo", false);
+        suffix = getOption(options, "API_SUFFIX", "", true);
+        groupPrefix = getOption(options, "GROUP_PREFIX", "", false);
+        groupSuffix = getOption(options, "GROUP_SUFFIX", "RouteApi", true);
     }
 
     private String getOption(Map<String, String> options, String key, String defaultValue, boolean capital) {
