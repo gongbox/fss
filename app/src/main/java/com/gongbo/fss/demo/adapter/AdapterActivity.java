@@ -5,10 +5,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.gongbo.fss.adapter.listview.CommonAdapter;
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import static com.gongbo.fss.router.FssRouteApi.RecyclerViewRouteApi;
 
 @Route
 @BindActivity(layout = R.layout.activity_adapter, finish = R.id.img_back)
-public class AdapterActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class AdapterActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.list_view)
     private ListView listView;

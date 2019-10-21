@@ -2,13 +2,15 @@ package com.gongbo.fss.demo.route;
 
 import android.content.Intent;
 
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.DefaultExtra;
 import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.router.annotation.RouteExtra;
+
+import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
 //普通路由
 //@Route
@@ -40,7 +42,7 @@ import com.gongbo.fss.router.annotation.RouteExtra;
         desc = "示例"
 )
 @BindActivity(layout = R.layout.activity_route_detail, finish = R.id.img_back)
-public class RouteDetailActivity extends BaseActivity {
+public class RouteDetailActivity extends BaseFssActivity {
 
     @BindExtra(name = "value")
     private String value;

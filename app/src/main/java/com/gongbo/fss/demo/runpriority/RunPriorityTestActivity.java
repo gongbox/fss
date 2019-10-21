@@ -1,15 +1,17 @@
 package com.gongbo.fss.demo.runpriority;
 
+import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
 import com.gongbo.fss.runpriority.constant.Priority;
 
+import static com.gongbo.fss.demo.util.ToastUtils.showToast;
+
 @Route
 @BindActivity(layout = R.layout.activity_run_priority_test, finish = R.id.img_back)
-public class RunPriorityTestActivity extends BaseActivity {
+public class RunPriorityTestActivity extends BaseFssActivity {
 
     private int time = 0;
 

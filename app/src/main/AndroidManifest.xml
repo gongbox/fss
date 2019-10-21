@@ -8,8 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".FssApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".adapter.AdapterActivity"></activity>
+        <activity android:name=".bind.fragment.BindFragmentActivity"></activity>
+        <activity android:name=".adapter.AdapterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,17 +29,19 @@
         <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity" />
         <activity android:name=".adapter.recyclerview.CommonRecyclerAdapterViewTestActivity" />
         <activity android:name=".runpriority.RunPriorityTestActivity" />
-        <activity android:name=".bind.BindDetailActivity">
+        <activity android:name=".bind.activity.BindDetailActivity">
             <intent-filter>
                 <action android:name="com.gongbo.fss.bind.detail" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".bind.BindTestActivity" />
         <activity android:name=".route.RouteMainActivity" />
-        <activity android:name=".route.RouteDetailActivity" >
+        <activity android:name=".route.RouteDetailActivity">
             <intent-filter>
                 <action android:name="com.gongbo.fss.route.detail" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

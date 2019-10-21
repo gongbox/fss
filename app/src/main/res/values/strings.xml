@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">fss</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="route_to_bindfragmenttest">route to BindFragmentTest</string>
+    <string name="route_to_binddetailactivity">route to BindDetailActivity</string>
+    <string name="click">click</string>
+    <string name="test">test</string>
 </resources>
