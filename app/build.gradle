@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -46,15 +52,24 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':common')
-    implementation project(path: ':bind')
-    implementation project(path: ':runpriority')
-    implementation project(path: ':base')
-    implementation project(path: ':adapter-listview')
-    implementation project(path: ':adapter-recyclerview')
-    implementation project(path: ':router-annotation')
-    implementation project(path: ':router-api')
-    annotationProcessor project(path: ':router-compiler')
+
+//    implementation project(path: ':common')
+//    implementation project(path: ':bind')
+//    implementation project(path: ':runpriority')
+//    implementation project(path: ':base')
+//    implementation project(path: ':adapter-listview')
+//    implementation project(path: ':adapter-recyclerview')
+//    implementation project(path: ':router-annotation')
+//    implementation project(path: ':router-api')
+//    kapt project(path: ':router-compiler')
+
+
+    def fss_version = '1.0.10'
+    implementation "com.github.gongbox.fss:adapter:$fss_version"
+    implementation "com.github.gongbox.fss:base:$fss_version"
+    implementation "com.github.gongbox.fss:bind:$fss_version"
+    implementation "com.github.gongbox.fss:router-api:$fss_version"
+    kapt "com.github.gongbox.fss:router-compiler:$fss_version"
 
 //    implementation 'com.github.gongbox:fss:1.0.10'
 //    annotationProcessor 'com.github.gongbox:router-compiler:1.0.10'
