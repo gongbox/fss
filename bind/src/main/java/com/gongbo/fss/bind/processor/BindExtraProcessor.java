@@ -49,6 +49,8 @@ public class BindExtraProcessor {
         //必须设置id才可以绑定databinding变量
         if (bindExtra.id() != -1) {
             DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
+        } else if (!TextUtils.isEmpty(bindExtra.bindingName())) {
+            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.bindingName(), value);
         }
     }
 
@@ -64,7 +66,11 @@ public class BindExtraProcessor {
             throw new RuntimeException("在类" + obj.getClass().getCanonicalName() + "上的BindExtra注解必须添加name属性！");
         }
         Object value = ParamUtils.getParam(obj, name);
-        DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
+        if (bindExtra.id() != -1) {
+            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
+        } else if (!TextUtils.isEmpty(bindExtra.bindingName())) {
+            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.bindingName(), value);
+        }
     }
 
 

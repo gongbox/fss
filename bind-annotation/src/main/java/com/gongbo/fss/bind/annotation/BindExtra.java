@@ -17,5 +17,7 @@ public @interface BindExtra {
 
     int id() default -1;
 
+    String bindingName() default "";
+
     String bindingFieldName() default "binding";
 }
