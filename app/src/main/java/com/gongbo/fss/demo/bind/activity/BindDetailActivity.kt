@@ -14,10 +14,10 @@ import com.gongbo.fss.demo.util.ToastUtils.showToast
 
 @Route
 @BindActivity(layout = R.layout.activity_bind_detail, finish = [R.id.img_back])
-//@BindExtra(name = "value", id = BR.value1)
+@BindExtra(name = "value", bindingName = "value1")
 class BindDetailActivity : BaseBindingFssActivity<ActivityBindDetailBinding>() {
 
-//    @BindExtra(id = BR.value2)
+    @BindExtra(bindingName = "value2")
     private val value2: String? = null
 
     @BindExtra
