@@ -13,7 +13,7 @@ import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route(group = "listView")
-@BindActivity(layout = R.layout.activity_list_view, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_list_view, finishView = R.id.img_back)
 public class CommonAdapterTestActivity extends BaseFssActivity {
 
     @BindView(id = R.id.list_view)

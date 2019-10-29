@@ -13,7 +13,7 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_detail, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_bind_detail, finishView = R.id.img_back)
 @BindExtra(name = "value", id = BR.value1)
 public class BindDetailActivity extends BaseBindingFssActivity<ActivityBindDetailBinding> {
 

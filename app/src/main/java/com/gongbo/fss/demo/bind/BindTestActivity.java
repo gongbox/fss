@@ -13,7 +13,7 @@ import com.gongbo.fss.router.annotation.Route;
 import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_test, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_bind_test, finishView = R.id.img_back)
 @BindRoute(id = R.id.btn_route,
         action = "com.gongbo.fss.bind.detail",
         extras = {":@value", "value2:789", "value3:(int)[234]"},

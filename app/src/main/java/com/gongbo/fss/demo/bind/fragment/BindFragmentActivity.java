@@ -6,7 +6,7 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_fragment, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_bind_fragment, finishView = R.id.img_back)
 public class BindFragmentActivity extends BaseFssActivity {
 
 }

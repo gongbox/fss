@@ -10,7 +10,7 @@ import static com.gongbo.fss.router.FssRouteApi.DetailRouteApi;
 import static com.gongbo.fss.router.FssRouteApi.TestRouteApi;
 
 @Route
-@BindActivity(layout = R.layout.activity_route_main, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_route_main, finishView = R.id.img_back)
 public class RouteMainActivity extends BaseFssActivity {
 
     @BindOnClick(id = R.id.btn_to_detail)

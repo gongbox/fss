@@ -19,7 +19,7 @@ import static com.gongbo.fss.router.FssRouteApi.RecyclerViewRouteApi;
 
 
 @Route
-@BindActivity(layout = R.layout.activity_adapter, finish = R.id.img_back)
+@BindActivity(layout = R.layout.activity_adapter, finishView = R.id.img_back)
 public class AdapterActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.list_view)
