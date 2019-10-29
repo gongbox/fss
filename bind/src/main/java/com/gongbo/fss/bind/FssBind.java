@@ -1,6 +1,5 @@
 package com.gongbo.fss.bind;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,7 @@ import com.gongbo.fss.bind.processor.BindOnClickProcessor;
 import com.gongbo.fss.bind.processor.BindParamProcessor;
 import com.gongbo.fss.bind.processor.BindRouteProcessor;
 import com.gongbo.fss.bind.processor.BindViewProcessor;
+import com.gongbo.fss.bind.util.FssLog;
 import com.gongbo.fss.common.common;
 import com.gongbo.fss.common.kotlin.Pair;
 import com.gongbo.fss.common.stream.Stream;
@@ -32,6 +32,17 @@ import static com.gongbo.fss.common.kotlin.Pair.pairOf;
 
 
 public final class FssBind {
+
+    //是否显示日志
+    public static boolean debug = false;
+
+    public static void setDebug(boolean debug) {
+        FssBind.debug = debug;
+    }
+
+    public static boolean isDebug() {
+        return debug;
+    }
 
     /**
      * 绑定
@@ -81,7 +92,8 @@ public final class FssBind {
         //绑定参数
         BindExtraProcessor.bindExtra(obj);
         long time = System.currentTimeMillis() - beforeTime;
-        Log.i("Bind", time + "ms");
+
+        FssLog.info("绑定耗时：" + time + "ms");
     }
 
     /**
@@ -116,7 +128,7 @@ public final class FssBind {
         if (bindFragment != null) {
             return bindFragment.layout();
         }
-        throw new RuntimeException(obj.getClass().getCanonicalName() + "类没有声明BindActivity或BindFragment注解");
+        throw new RuntimeException("获取layout失败：在" + obj.getClass().getCanonicalName() + "类上没有声明BindActivity或BindFragment注解");
     }
 
     /**

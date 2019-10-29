@@ -50,9 +50,6 @@ public class RouteDetailActivity extends BaseFssActivity {
     @BindExtra
     private String defaultValue;
 
-    @BindExtra
-    private String value2;
-
     @Override
     protected void initData() {
         showToast(value);

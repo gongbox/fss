@@ -10,8 +10,7 @@ import com.gongbo.fss.runpriority.constant.Priority;
 import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
 @Route
-@BindActivity(layout = R.layout.activity_run_priority_test,
-        finishView = R.id.img_back)
+@BindActivity(layout = R.layout.activity_run_priority_test, finishView = R.id.img_back)
 public class RunPriorityTestActivity extends BaseFssActivity {
 
     private int time = 0;
