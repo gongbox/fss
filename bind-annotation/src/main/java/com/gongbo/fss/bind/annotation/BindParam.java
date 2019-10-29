@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface BindParam {
     String name() default "";
+
+    boolean required() default false;
 }

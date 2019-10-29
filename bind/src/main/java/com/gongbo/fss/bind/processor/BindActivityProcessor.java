@@ -2,7 +2,7 @@ package com.gongbo.fss.bind.processor;
 
 
 import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.util.OnClickUtils;
+import com.gongbo.fss.bind.util.ClickUtils;
 
 public class BindActivityProcessor {
 
@@ -14,7 +14,7 @@ public class BindActivityProcessor {
      */
     public static void bindFinish(Object obj) {
         BindActivity bindActivity = obj.getClass().getAnnotation(BindActivity.class);
-        if (bindActivity != null && bindActivity.finish().length > 0) {
+        if (bindActivity != null && bindActivity.finishView().length > 0) {
             bindFinish(obj, bindActivity);
         }
     }
@@ -26,6 +26,6 @@ public class BindActivityProcessor {
      * @param bindActivity
      */
     private static void bindFinish(Object obj, BindActivity bindActivity) {
-        OnClickUtils.bindOnClick(obj, bindActivity.finish(), "finish");
+        ClickUtils.bindOnClick(obj, bindActivity.finishView(), "finish");
     }
 }

@@ -20,4 +20,6 @@ public @interface BindExtra {
     String bindingName() default "";
 
     String bindingFieldName() default "binding";
+
+    boolean required() default false;
 }

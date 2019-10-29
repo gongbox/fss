@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface BindView {
     int id(); //id为View的Id
+
+    boolean required() default true;
 }

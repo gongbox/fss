@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-public class ParamUtils {
+import com.gongbo.fss.bind.exception.NotFoundExtraException;
+
+public class ExtraUtils {
     /**
      * 根据key值获取参数
      *
@@ -14,22 +16,22 @@ public class ParamUtils {
      * @param key
      * @return
      */
-    public static Object getParam(Object obj, String key) {
+    public static Object getExtra(Object obj, String key) throws NotFoundExtraException {
         if (obj instanceof Activity) {
             Bundle bundle = null;
             Intent intent = ((Activity) obj).getIntent();
             if (intent != null) {
                 bundle = intent.getExtras();
             }
-            return getParam(bundle, key);
+            return getExtra(bundle, key);
         }
         if (obj instanceof Fragment) {
             Bundle bundle = ((Fragment) obj).getArguments();
-            return getParam(bundle, key);
+            return getExtra(bundle, key);
         }
         if (obj instanceof android.app.Fragment) {
             Bundle bundle = ((android.app.Fragment) obj).getArguments();
-            return getParam(bundle, key);
+            return getExtra(bundle, key);
         }
         throw new RuntimeException(obj.getClass().getCanonicalName() + " must be Activity or Fragment");
     }
@@ -41,7 +43,10 @@ public class ParamUtils {
      * @param key
      * @return
      */
-    private static Object getParam(Bundle bundle, String key) {
-        return bundle == null ? null : bundle.get(key);
+    private static Object getExtra(Bundle bundle, String key) throws NotFoundExtraException {
+        if(bundle == null || !bundle.containsKey(key)){
+            throw new NotFoundExtraException();
+        }
+        return bundle.get(key);
     }
 }

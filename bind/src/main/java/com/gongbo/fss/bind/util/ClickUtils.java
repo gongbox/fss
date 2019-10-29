@@ -11,7 +11,7 @@ import com.gongbo.fss.common.util.ReflectUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class OnClickUtils {
+public class ClickUtils {
     /**
      * 绑定点击事件
      *
@@ -31,7 +31,7 @@ public class OnClickUtils {
                 } else if (method.getParameterTypes().length == 1 && method.getParameterTypes()[0].isAssignableFrom(view.getClass())) {
                     method.invoke(obj, view);
                 } else {
-                    throw new RuntimeException("OnClick只能绑定在没有参数或只有一个参数（该参数类型必须是触发点击事件的控件的类或父类）的方法上");
+                    throw new RuntimeException("BindOnClick只能绑定在没有参数或只有一个参数（该参数类型必须是触发点击事件的控件的类或父类）的方法上");
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

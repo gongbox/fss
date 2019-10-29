@@ -3,7 +3,7 @@ package com.gongbo.fss.bind.processor;
 
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindOnClicks;
-import com.gongbo.fss.bind.util.OnClickUtils;
+import com.gongbo.fss.bind.util.ClickUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -37,7 +37,7 @@ public class BindOnClickProcessor {
      * @param method
      */
     public static void bindOnClick(Object obj, int[] id, Method method) {
-        OnClickUtils.bindOnClick(obj, id, method);
+        ClickUtils.bindOnClick(obj, id, method);
     }
 
     /**
@@ -47,7 +47,7 @@ public class BindOnClickProcessor {
      * @param bindOnClick
      */
     private static void bindOnClick(Object obj, BindOnClick bindOnClick) {
-        OnClickUtils.bindOnClick(obj, bindOnClick.id(), bindOnClick.method());
+        ClickUtils.bindOnClick(obj, bindOnClick.id(), bindOnClick.method());
     }
 
     /**
@@ -64,11 +64,11 @@ public class BindOnClickProcessor {
                 ids.add(id);
             }
         }
-        int array[] = new int[ids.size()];
+        int[] array = new int[ids.size()];
         int index = 0;
         for (int id : ids) {
             array[index++] = id;
         }
-        OnClickUtils.bindOnClick(obj, array, method);
+        ClickUtils.bindOnClick(obj, array, method);
     }
 }

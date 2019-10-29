@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 public @interface BindActivity {
     int layout();
 
-    int[] finish() default {};
+    int[] finishView() default {};
 }

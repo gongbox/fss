@@ -5,8 +5,9 @@ import android.text.TextUtils;
 
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.bind.annotation.BindExtras;
+import com.gongbo.fss.bind.exception.NotFoundExtraException;
 import com.gongbo.fss.bind.util.DataBindingUtils;
-import com.gongbo.fss.bind.util.ParamUtils;
+import com.gongbo.fss.bind.util.ExtraUtils;
 import com.gongbo.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
@@ -31,7 +32,7 @@ public class BindExtraProcessor {
     }
 
     /**
-     * 绑定参数到databinding变量
+     * 绑定参数到databinding变量,同时给对应字段赋值
      *
      * @param obj
      * @param field
@@ -42,11 +43,26 @@ public class BindExtraProcessor {
         if (TextUtils.isEmpty(name)) {
             name = field.getName();
         }
-        Object value = ParamUtils.getParam(obj, name);
-        if (value != null) {
+        //参数
+        Object value;
+        try {
+            value = ExtraUtils.getExtra(obj, name);
+        } catch (NotFoundExtraException e) {
+            //必须存在时抛出异常
+            if (bindExtra.required()) {
+                throw new RuntimeException("绑定参数失败：在" +
+                        obj.getClass().getCanonicalName() +
+                        "中没有获取到key值为" + name + "的参数，\n请确保该参数存在，或者设置对应字段上的BindExtra注解的required属性为false");
+            }
+            return; //没有获取到值则返回，就不为变量赋值，也不绑定
+        }
+
+        //如果字段不为空，则为该字段赋值
+        if (field != null) {
             ReflectUtils.setFieldValue(obj, field, value);
         }
-        //必须设置id才可以绑定databinding变量
+
+        //如果id值不为-1，或者bindingName不为空，则绑定databinding变量
         if (bindExtra.id() != -1) {
             DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
         } else if (!TextUtils.isEmpty(bindExtra.bindingName())) {
@@ -60,18 +76,8 @@ public class BindExtraProcessor {
      * @param obj
      * @param bindExtra
      */
-    private static void bindExtra(Object obj, BindExtra bindExtra) {
-        String name = bindExtra.name();
-        if (TextUtils.isEmpty(name)) {
-            throw new RuntimeException("在类" + obj.getClass().getCanonicalName() + "上的BindExtra注解必须添加name属性！");
-        }
-        Object value = ParamUtils.getParam(obj, name);
-        if (bindExtra.id() != -1) {
-            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
-        } else if (!TextUtils.isEmpty(bindExtra.bindingName())) {
-            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.bindingName(), value);
-        }
+    public static void bindExtra(Object obj, BindExtra bindExtra) {
+        bindExtra(obj, null, bindExtra);
     }
-
 
 }
