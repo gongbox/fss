@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
-
+import com.gongbo.fss.common.exception.ExecuteException;
 import com.gongbo.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -36,7 +36,7 @@ public class ClickUtils {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                throw new ExecuteException(e.getCause());
             }
         };
         for (int id : ids) {

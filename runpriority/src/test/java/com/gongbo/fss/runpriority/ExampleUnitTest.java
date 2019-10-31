@@ -33,6 +33,7 @@ public class ExampleUnitTest {
             @RunPriority(Priority.HIGH)
             private void initData(Integer value) {
                 System.out.println("initData:" + value);
+                int a=1/0;
             }
 
             private void initListener(Long value, String value2) {

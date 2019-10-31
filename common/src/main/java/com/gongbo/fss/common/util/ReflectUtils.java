@@ -1,6 +1,8 @@
 package com.gongbo.fss.common.util;
 
 
+import com.gongbo.fss.common.exception.ExecuteException;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -100,7 +102,7 @@ public class ReflectUtils {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new ExecuteException(e.getCause());
         }
         return null;
     }

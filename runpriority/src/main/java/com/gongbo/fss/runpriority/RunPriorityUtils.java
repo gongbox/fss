@@ -1,6 +1,7 @@
 package com.gongbo.fss.runpriority;
 
 
+import com.gongbo.fss.common.exception.ExecuteException;
 import com.gongbo.fss.common.util.ReflectUtils;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
 import com.gongbo.fss.runpriority.exception.NotFoundMethodException;
@@ -71,7 +72,7 @@ public class RunPriorityUtils {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                throw new ExecuteException(e.getCause());
             }
         }
     }
