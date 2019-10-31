@@ -32,7 +32,7 @@ public class DefaultThreadFactory implements ThreadFactory {
 
     public Thread newThread(@NonNull Runnable runnable) {
         String threadName = namePrefix + threadNumber.getAndIncrement();
-        FssRouter.logger.info(Consts.TAG, "Thread production, name is [" + threadName + "]");
+        FssRouter.logger.info(Consts.TAG, "Thread production, value is [" + threadName + "]");
         Thread thread = new Thread(group, runnable, threadName, 0);
         if (thread.isDaemon()) {   //设为非后台线程
             thread.setDaemon(false);

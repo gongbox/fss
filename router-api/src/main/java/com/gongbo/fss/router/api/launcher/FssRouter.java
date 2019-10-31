@@ -64,7 +64,7 @@ public class FssRouter {
                 Autowired autowired = field.getAnnotation(Autowired.class);
                 if (autowired != null) {
                     //获取name
-                    String name = TextUtils.isEmpty(autowired.name()) ? field.getName() : autowired.name();
+                    String name = TextUtils.isEmpty(autowired.value()) ? field.getName() : autowired.value();
                     //获取value
                     Object value = extras.get(name);
                     if (value != null) {

@@ -106,7 +106,7 @@ public class RouteHandler implements InvocationHandler {
                 for (Annotation annotation : annotations) {
                     if (annotation instanceof Extra) {
                         //向intent中添加一组值
-                        addExtra(bundle, ((Extra) annotation).name(), objects[i]);
+                        addExtra(bundle, ((Extra) annotation).value(), objects[i]);
                         continue foreach_param;
                     }
                 }
@@ -127,7 +127,7 @@ public class RouteHandler implements InvocationHandler {
                 intent.putExtras(bundle);
 
                 //要跳转的Activity
-                Class<?> toClass = routeActivity.clazz();
+                Class<?> toClass = routeActivity.value();
                 //要跳转的action
                 String action = routeActivity.action();
                 //请求的requestCode
@@ -184,7 +184,7 @@ public class RouteHandler implements InvocationHandler {
                 if (method.getReturnType() == void.class) {
                     return null;
                 }
-                Class fragmentMeta = routeFragment.clazz();
+                Class fragmentMeta = routeFragment.value();
                 try {
                     Object instance = fragmentMeta.getConstructor().newInstance();
                     if (instance instanceof Fragment) {
@@ -203,7 +203,7 @@ public class RouteHandler implements InvocationHandler {
                 intent.putExtras(bundle);
 
                 //要跳转的Activity
-                toClass = routeService.clazz();
+                toClass = routeService.value();
                 //要跳转的action
                 action = routeService.action();
 

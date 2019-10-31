@@ -30,7 +30,7 @@ public class InstrumentationHook extends Instrumentation {
      * default implementation provides the normal system behavior.
      *
      * @param cl        The ClassLoader with which to instantiate the object.
-     * @param className The name of the class implementing the Activity
+     * @param className The value of the class implementing the Activity
      *                  object.
      * @param intent    The Intent object that specified the activity class being
      *                  instantiated.

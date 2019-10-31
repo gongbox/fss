@@ -3,7 +3,7 @@ package com.gongbo.fss.router.api.thread;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * As its name.
+ * As its value.
  *
  * @author Alex <a href="mailto:zhilong.liu@aliyun.com">Contact me.</a>
  * @version 1.0

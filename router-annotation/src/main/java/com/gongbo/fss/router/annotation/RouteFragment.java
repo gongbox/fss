@@ -8,5 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface RouteFragment {
-    Class<?> clazz() default Object.class; //路由跳转的Fragment
+    ////路由的Fragment的类
+    Class<?> value() default Object.class;
 }

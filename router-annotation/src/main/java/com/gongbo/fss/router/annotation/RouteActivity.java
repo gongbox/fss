@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface RouteActivity {
-    Class<?> clazz() default Object.class;
+    //要跳转的Activity
+    Class<?> value() default Object.class;
 
     String action() default "";
 

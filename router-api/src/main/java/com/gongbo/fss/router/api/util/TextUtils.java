@@ -54,7 +54,7 @@ public class TextUtils {
                 paramMap.put(Uri.decode(name), Uri.decode(value));
             }
 
-            // Move start to end of name.
+            // Move start to end of value.
             start = end + 1;
         } while (start < query.length());
 
