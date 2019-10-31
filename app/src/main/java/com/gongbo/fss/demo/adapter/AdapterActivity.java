@@ -9,6 +9,7 @@ import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ import static com.gongbo.fss.router.FssRouteApi.RecyclerViewRouteApi;
 
 @Route
 @BindActivity(value = R.layout.activity_adapter, finishViewId = R.id.img_back)
-public class AdapterActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
+public class AdapterActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.list_view)
     private ListView listView;
@@ -37,9 +38,7 @@ public class AdapterActivity extends BaseFssActivity implements AdapterView.OnIt
             "CommonRecyclerAdapter"
     );
 
-    @Override
     protected void initView() {
-        super.initView();
         listView.setAdapter(new CommonAdapter<>(this, datas, R.layout.layout_list_item,
                 (holder, s, position) -> holder.setText(R.id.tv_text, s)));
         listView.setOnItemClickListener(this);

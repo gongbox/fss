@@ -9,6 +9,7 @@ import com.gongbo.fss.adapter.listview.CommonAdapter;
 import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
 
 @Route
 @BindActivity(R.layout.activity_list_view)
-public class MainActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.img_back)
     private ImageView imgBack;
@@ -33,9 +34,7 @@ public class MainActivity extends BaseFssActivity implements AdapterView.OnItemC
             "AdapterActivity"
     );
 
-    @Override
     protected void initView() {
-        super.initView();
         imgBack.setVisibility(View.GONE);
         listView.setAdapter(new CommonAdapter<>(this, datas, R.layout.layout_list_item,
                 (holder, s, position) -> holder.setText(R.id.tv_text, s)));

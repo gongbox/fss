@@ -7,6 +7,7 @@ import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindOnClick;
 import com.gongbo.fss.bind.annotation.BindRoute;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.demo.bind.fragment.BindFragmentActivity;
 import com.gongbo.fss.router.annotation.Route;
 
@@ -26,7 +27,7 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 //)
 @BindRoute(viewId = R.id.btn_route_fragment, toActivity = BindFragmentActivity.class)
 @BindOnClick(value = R.id.btn_test, onClickMethod = "test")
-public class BindTestActivity extends BaseFssActivity {
+public class BindTestActivity extends BaseActivity {
 
     private String value = "123456";
 

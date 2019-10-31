@@ -12,21 +12,19 @@ import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.adapter.ListDataModel;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 import java.util.List;
 
 @Route(group = "listView")
 @BindActivity(value = R.layout.activity_list_view, finishViewId = R.id.img_back)
-public class BaseAdapterTestActivity extends BaseFssActivity {
+public class BaseAdapterTestActivity extends BaseActivity {
 
     @BindView(R.id.list_view)
     private ListView listView;
 
-    @Override
     protected void initView() {
-        super.initView();
-
         listView.setAdapter(new Adapter(this, ListDataModel.getDatas()));
     }
 

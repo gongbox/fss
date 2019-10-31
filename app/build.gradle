@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'android-aspectjx'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -54,6 +54,7 @@ dependencies {
     implementation project(path: ':adapter-recyclerview')
     implementation project(path: ':router-annotation')
     implementation project(path: ':router-api')
+    implementation project(path: ':aop')
     annotationProcessor project(path: ':router-compiler')
 
 //    implementation 'com.github.gongbox:fss:1.0.10'

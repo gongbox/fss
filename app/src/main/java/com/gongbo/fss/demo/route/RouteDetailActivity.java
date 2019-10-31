@@ -6,6 +6,7 @@ import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.demo.R;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.DefaultExtra;
 import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.router.annotation.RouteExtra;
@@ -43,7 +44,7 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
         desc = "示例"
 )
 @BindActivity(value = R.layout.activity_route_detail, finishViewId = R.id.img_back)
-public class RouteDetailActivity extends BaseFssActivity {
+public class RouteDetailActivity extends BaseActivity {
 
     @BindExtra("value")
     private String value;
@@ -51,7 +52,6 @@ public class RouteDetailActivity extends BaseFssActivity {
     @BindExtra
     private String defaultValue;
 
-    @Override
     protected void initData() {
         showToast(value);
         showToast(defaultValue);

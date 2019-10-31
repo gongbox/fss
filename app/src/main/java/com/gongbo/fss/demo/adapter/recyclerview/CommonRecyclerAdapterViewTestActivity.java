@@ -11,18 +11,17 @@ import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.adapter.ListDataModel;
+import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route(group = "recyclerView")
 @BindActivity(value = R.layout.activity_recycler_view, finishViewId = R.id.img_back)
-public class CommonRecyclerAdapterViewTestActivity extends BaseFssActivity {
+public class CommonRecyclerAdapterViewTestActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view)
     private RecyclerView recyclerView;
 
-    @Override
     protected void initView() {
-        super.initView();
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(new CommonRecyclerAdapter<String>(this, ListDataModel.getDatas(), R.layout.layout_list_item) {
             @Override
