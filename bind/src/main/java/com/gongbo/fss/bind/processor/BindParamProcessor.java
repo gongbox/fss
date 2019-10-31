@@ -20,7 +20,7 @@ public class BindParamProcessor {
      * @param bindParam
      */
     public static void bindParam(Object obj, Field field, BindParam bindParam) {
-        String name = bindParam.name();
+        String name = bindParam.value();
         //如果没有声明name属性，则使用字段名作为name值
         if (TextUtils.isEmpty(name)) {
             name = field.getName();

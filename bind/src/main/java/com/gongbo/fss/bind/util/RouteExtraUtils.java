@@ -15,7 +15,7 @@ public class RouteExtraUtils {
         @Override
         public String toString() {
             return "RouteExtraInfo{" +
-                    "name='" + name + '\'' +
+                    "value='" + name + '\'' +
                     ", type='" + type + '\'' +
                     ", isField=" + isField +
                     ", values=" + Arrays.toString(values) +
@@ -99,20 +99,20 @@ public class RouteExtraUtils {
 
     public static void main(String[] args) {
         String text;
-        //1,name:value
-//        text = "name:1234";
-//        text = "name:[1234]";
-//        text = "name:[1234,12345]";
-        //2,name:(Integer)value
-//        text = "name:(Integer)123";
-//        text = "name:(Integer)[123]";
-//        text = "name:(Integer)[123,1234]";
+        //1,value:value
+//        text = "value:1234";
+//        text = "value:[1234]";
+//        text = "value:[1234,12345]";
+        //2,value:(Integer)value
+//        text = "value:(Integer)123";
+//        text = "value:(Integer)[123]";
+//        text = "value:(Integer)[123,1234]";
         //3,:@value
         text = ":@value";
-//        4,name:@value
-//        text ="name:@value";
-//        String name = getName("name:value");
-//        System.out.println(name);
+//        4,value:@value
+//        text ="value:@value";
+//        String value = getName("value:value");
+//        System.out.println(value);
 //        RouteExtraInfo nameTypeValue = getNameTypeValue(text);
 //        System.out.println(nameTypeValue);
         boolean check = check(text);

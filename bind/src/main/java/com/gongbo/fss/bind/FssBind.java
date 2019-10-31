@@ -122,11 +122,11 @@ public final class FssBind {
     public static int getLayoutId(Object obj) {
         BindActivity bindActivity = obj.getClass().getAnnotation(BindActivity.class);
         if (bindActivity != null) {
-            return bindActivity.layout();
+            return bindActivity.value();
         }
         BindFragment bindFragment = obj.getClass().getAnnotation(BindFragment.class);
         if (bindFragment != null) {
-            return bindFragment.layout();
+            return bindFragment.value();
         }
         throw new RuntimeException("获取layout失败：在" + obj.getClass().getCanonicalName() + "类上没有声明BindActivity或BindFragment注解");
     }

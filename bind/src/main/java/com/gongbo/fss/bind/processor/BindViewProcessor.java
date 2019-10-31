@@ -19,7 +19,7 @@ public class BindViewProcessor {
      */
     public static void bindView(Object obj, Field field, BindView bindView) {
         //获取view
-        View view = ViewUtils.getView(obj, bindView.id());
+        View view = ViewUtils.getView(obj, bindView.value());
         //设置view
         setView(obj, view, field, bindView);
     }
@@ -33,7 +33,7 @@ public class BindViewProcessor {
      */
     public static void bindView(Object obj, View v, Field field, BindView bindView) {
         //获取view
-        View view = ViewUtils.getView(v, bindView.id());
+        View view = ViewUtils.getView(v, bindView.value());
         //设置view
         setView(obj, view, field, bindView);
     }
@@ -51,7 +51,7 @@ public class BindViewProcessor {
             ReflectUtils.setFieldValue(obj, field, view);
         } else if (bindView.required()) {
             throw new RuntimeException("无法绑定View：在" + obj.getClass().getCanonicalName()
-                    + "类中试图为" + field.getName() + "字段绑定id为" + bindView.id() +
+                    + "类中试图为" + field.getName() + "字段绑定id为" + bindView.value() +
                     "的view，但无法找到这个View，\n请确保这个View在布局中存在，或者设置对应字段上的BindView注解的required属性为false");
         }
     }

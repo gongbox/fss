@@ -10,9 +10,11 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Repeatable(BindRoutes.class)
 public @interface BindRoute {
-    int id();//id为View的Id
+    //触发路由的view的id
+    int viewId();
 
-    Class toActivity() default Object.class; //要跳转的Activity
+    //要去的Activity
+    Class toActivity() default Object.class;
 
     String action() default "";
 
@@ -20,11 +22,15 @@ public @interface BindRoute {
 
     int flags() default 0;
 
-    int requestCode() default -1;    //请求码
+    //请求码
+    int requestCode() default -1;
 
-    String[] extras() default {};  //路由参数
+    //路由参数
+    String[] extras() default {};
 
+    //进入动画
     int enterAnim() default 0;
 
+    //退出时的动画
     int exitAnim() default 0;
 }

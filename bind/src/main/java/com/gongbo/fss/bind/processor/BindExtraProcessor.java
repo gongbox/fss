@@ -39,7 +39,7 @@ public class BindExtraProcessor {
      * @param bindExtra
      */
     public static void bindExtra(Object obj, Field field, BindExtra bindExtra) {
-        String name = bindExtra.name();
+        String name = bindExtra.value();
         if (TextUtils.isEmpty(name)) {
             name = field.getName();
         }
@@ -63,8 +63,8 @@ public class BindExtraProcessor {
         }
 
         //如果id值不为-1，或者bindingName不为空，则绑定databinding变量
-        if (bindExtra.id() != -1) {
-            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.id(), value);
+        if (bindExtra.bindingId() != -1) {
+            DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.bindingId(), value);
         } else if (!TextUtils.isEmpty(bindExtra.bindingName())) {
             DataBindingUtils.bindingVariable(obj, bindExtra.bindingFieldName(), bindExtra.bindingName(), value);
         }

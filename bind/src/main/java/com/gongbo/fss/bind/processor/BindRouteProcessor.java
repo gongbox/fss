@@ -49,7 +49,7 @@ public class BindRouteProcessor {
      * @param bindRoute
      */
     private static void bindRoute(Object obj, BindRoute bindRoute) {
-        View view = ViewUtils.getView(obj, bindRoute.id());
+        View view = ViewUtils.getView(obj, bindRoute.viewId());
         if (view != null) {
             view.setOnClickListener(v -> {
                 final Context currentContext;
@@ -124,7 +124,7 @@ public class BindRouteProcessor {
 
             });
         } else {
-            throw new RuntimeException("绑定路由失败，原因：在" + obj.getClass().getCanonicalName() + "类中获取不到id为" + bindRoute.id() + "的view");
+            throw new RuntimeException("绑定路由失败，原因：在" + obj.getClass().getCanonicalName() + "类中获取不到id为" + bindRoute.viewId() + "的view");
         }
     }
 

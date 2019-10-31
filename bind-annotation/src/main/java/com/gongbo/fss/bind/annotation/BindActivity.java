@@ -8,7 +8,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface BindActivity {
-    int layout();
 
-    int[] finishView() default {};
+    //对应的布局id
+    int value();
+
+    //触发finish方法的View的id
+    int[] finishViewId() default {};
 }

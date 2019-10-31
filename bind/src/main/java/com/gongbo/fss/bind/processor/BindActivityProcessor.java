@@ -14,7 +14,7 @@ public class BindActivityProcessor {
      */
     public static void bindFinish(Object obj) {
         BindActivity bindActivity = obj.getClass().getAnnotation(BindActivity.class);
-        if (bindActivity != null && bindActivity.finishView().length > 0) {
+        if (bindActivity != null && bindActivity.finishViewId().length > 0) {
             bindFinish(obj, bindActivity);
         }
     }
@@ -26,6 +26,6 @@ public class BindActivityProcessor {
      * @param bindActivity
      */
     private static void bindFinish(Object obj, BindActivity bindActivity) {
-        ClickUtils.bindOnClick(obj, bindActivity.finishView(), "finish");
+        ClickUtils.bindOnClick(obj, bindActivity.finishViewId(), "finish");
     }
 }

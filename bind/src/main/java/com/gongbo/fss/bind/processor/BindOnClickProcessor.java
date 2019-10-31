@@ -47,7 +47,7 @@ public class BindOnClickProcessor {
      * @param bindOnClick
      */
     private static void bindOnClick(Object obj, BindOnClick bindOnClick) {
-        ClickUtils.bindOnClick(obj, bindOnClick.id(), bindOnClick.method());
+        ClickUtils.bindOnClick(obj, bindOnClick.value(), bindOnClick.onClickMethod());
     }
 
     /**
@@ -60,7 +60,7 @@ public class BindOnClickProcessor {
     public static void bindOnClick(Object obj, final Method method, List<BindOnClick> bindOnClicks) {
         Set<Integer> ids = new HashSet<>();
         for (BindOnClick bindOnClick : bindOnClicks) {
-            for (int id : bindOnClick.id()) {
+            for (int id : bindOnClick.value()) {
                 ids.add(id);
             }
         }

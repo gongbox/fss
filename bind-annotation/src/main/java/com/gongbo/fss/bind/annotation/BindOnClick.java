@@ -12,7 +12,9 @@ import java.lang.annotation.Target;
 @Repeatable(BindOnClicks.class)
 @Inherited  //该注解可继承，对类可继承，其他不能继承
 public @interface BindOnClick {
-    int[] id();//id为View的Id集合
+    //view的id集合
+    int[] value();
 
-    String method() default "";//点击事件的方法,只有注解在类上时有效
+    //点击事件的方法,只有注解在类上时有效
+    String onClickMethod() default "";
 }
