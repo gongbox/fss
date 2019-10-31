@@ -7,7 +7,7 @@ import com.gongbo.fss.demo.R;
 
 import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
-@BindFragment(layout = R.layout.fragment_bind_test)
+@BindFragment(R.layout.fragment_bind_test)
 public class BindTestFragment extends BaseFssFragment {
 
     @Override

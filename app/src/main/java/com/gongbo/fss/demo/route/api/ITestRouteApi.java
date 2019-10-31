@@ -15,10 +15,10 @@ import com.gongbo.fss.router.annotation.RouteService;
 @RouteApi   //自定义的路由API必须添加@RouteApi注解
 public interface ITestRouteApi {
     //路由到一个Service
-    @RouteService(clazz = RouteTestService.class)
-    void navigateToRouteTestService(Context context, @Extra(name = "value") String value);
+    @RouteService(RouteTestService.class)
+    void navigateToRouteTestService(Context context, @Extra(value = "value") String value);
 
     //路由到一个Activity
-    @RouteActivity(clazz = RouteDetailActivity.class)
+    @RouteActivity(RouteDetailActivity.class)
     void navigateToRouteDetailActivity(Context context);
 }

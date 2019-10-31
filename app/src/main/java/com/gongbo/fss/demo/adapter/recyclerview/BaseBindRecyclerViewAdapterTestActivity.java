@@ -20,10 +20,10 @@ import com.gongbo.fss.router.annotation.Route;
 import java.util.List;
 
 @Route(group = "recyclerView")
-@BindActivity(layout = R.layout.activity_recycler_view, finishView = R.id.img_back)
+@BindActivity(value = R.layout.activity_recycler_view, finishViewId = R.id.img_back)
 public class BaseBindRecyclerViewAdapterTestActivity extends BaseFssActivity {
 
-    @BindView(id = R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     private RecyclerView recyclerView;
 
     @Override
@@ -46,7 +46,7 @@ public class BaseBindRecyclerViewAdapterTestActivity extends BaseFssActivity {
         }
 
         static class BindViewHolder extends BaseViewHolder {
-            @BindView(id = R.id.tv_text)
+            @BindView(R.id.tv_text)
             TextView tvText;
 
             public BindViewHolder(View view) {

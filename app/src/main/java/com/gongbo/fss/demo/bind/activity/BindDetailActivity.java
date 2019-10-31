@@ -13,17 +13,17 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 
 
 @Route
-@BindActivity(layout = R.layout.activity_bind_detail, finishView = R.id.img_back)
-@BindExtra(name = "value", id = BR.value1)
+@BindActivity(value = R.layout.activity_bind_detail, finishViewId = R.id.img_back)
+@BindExtra(value = "value", bindingId = BR.value1)
 public class BindDetailActivity extends BaseBindingFssActivity<ActivityBindDetailBinding> {
 
-    @BindExtra(id = BR.value2)
+    @BindExtra(bindingId = BR.value2)
     private String value2;
 
     @BindExtra
     private Integer value3;
 
-    @BindOnClick(id = R.id.btn_show_value)
+    @BindOnClick(R.id.btn_show_value)
     private void onClick() {
         showToast(value3 + "");
     }

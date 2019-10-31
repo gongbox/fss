@@ -10,15 +10,15 @@ import static com.gongbo.fss.router.FssRouteApi.DetailRouteApi;
 import static com.gongbo.fss.router.FssRouteApi.TestRouteApi;
 
 @Route
-@BindActivity(layout = R.layout.activity_route_main, finishView = R.id.img_back)
+@BindActivity(value = R.layout.activity_route_main, finishViewId = R.id.img_back)
 public class RouteMainActivity extends BaseFssActivity {
 
-    @BindOnClick(id = R.id.btn_to_detail)
+    @BindOnClick(R.id.btn_to_detail)
     private void gotoDetail() {
         DetailRouteApi.navigateToRouteDetailActivity(this, "1234");
     }
 
-    @BindOnClick(id = R.id.btn_to_service)
+    @BindOnClick(R.id.btn_to_service)
     private void gotoService() {
         TestRouteApi.navigateToRouteTestService(this, "12465");
     }

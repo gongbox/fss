@@ -2,7 +2,6 @@ package com.gongbo.fss.demo;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -18,13 +17,13 @@ import java.util.List;
 import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
 
 @Route
-@BindActivity(layout = R.layout.activity_list_view)
+@BindActivity(R.layout.activity_list_view)
 public class MainActivity extends BaseFssActivity implements AdapterView.OnItemClickListener {
 
-    @BindView(id = R.id.img_back)
+    @BindView(R.id.img_back)
     private ImageView imgBack;
 
-    @BindView(id = R.id.list_view)
+    @BindView(R.id.list_view)
     private ListView listView;
 
     private List<String> datas = Arrays.asList(

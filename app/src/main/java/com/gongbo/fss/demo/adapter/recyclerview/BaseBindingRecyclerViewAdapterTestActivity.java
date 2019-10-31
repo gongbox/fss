@@ -12,10 +12,10 @@ import com.gongbo.fss.demo.adapter.ListDataModel;
 import com.gongbo.fss.router.annotation.Route;
 
 @Route(group = "recyclerView")
-@BindActivity(layout = R.layout.activity_recycler_view, finishView = R.id.img_back)
+@BindActivity(value = R.layout.activity_recycler_view, finishViewId = R.id.img_back)
 public class BaseBindingRecyclerViewAdapterTestActivity extends BaseFssActivity {
 
-    @BindView(id = R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     private RecyclerView recyclerView;
 
     @Override

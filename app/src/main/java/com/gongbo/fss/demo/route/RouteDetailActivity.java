@@ -37,14 +37,15 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
                 @DefaultExtra(name = "defaultValue", defaultValue = "hello")
         },
         //activity进入动画
-        enterAnim = android.R.anim.slide_in_left,
+        enterAnim = android.R.anim.fade_in,
+        exitAnim = android.R.anim.fade_out,
         //添加注释
         desc = "示例"
 )
-@BindActivity(layout = R.layout.activity_route_detail, finishView = R.id.img_back)
+@BindActivity(value = R.layout.activity_route_detail, finishViewId = R.id.img_back)
 public class RouteDetailActivity extends BaseFssActivity {
 
-    @BindExtra(name = "value")
+    @BindExtra("value")
     private String value;
 
     @BindExtra
