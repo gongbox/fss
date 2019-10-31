@@ -25,12 +25,12 @@ public class ExampleUnitTest {
                 RunPriorityUtils.callAll(runPriorityInfo);
             }
 
-            @RunPriority(priority = Priority.LOW)
+            @RunPriority(value = Priority.LOW)
             private void initView() {
                 System.out.println("initView");
             }
 
-            @RunPriority(priority = Priority.HIGH)
+            @RunPriority(value = Priority.HIGH)
             private void initData(Integer value) {
                 System.out.println("initData:" + value);
             }

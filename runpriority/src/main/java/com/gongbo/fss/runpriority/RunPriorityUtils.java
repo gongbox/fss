@@ -8,7 +8,6 @@ import com.gongbo.fss.runpriority.model.RunPriorityInfo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class RunPriorityUtils {
 
             RunPriority runPriority = method.getAnnotation(RunPriority.class);
             if (runPriority != null) {
-                callMethodInfo.priority = runPriority.priority();
+                callMethodInfo.priority = runPriority.value();
             }
             callMethodInfo.method = method;
         }

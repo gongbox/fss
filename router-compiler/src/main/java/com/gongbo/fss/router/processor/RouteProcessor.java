@@ -190,7 +190,7 @@ public class RouteProcessor extends BaseProcessor {
                     if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
                     } else {
-                        builder.addMember("clazz", "$T.class", routeInfo.typeElement);
+                        builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }
 
                     if (route.requestCode() > 0) {
@@ -227,7 +227,7 @@ public class RouteProcessor extends BaseProcessor {
                     if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
                     } else {
-                        builder.addMember("clazz", "$T.class", routeInfo.typeElement);
+                        builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }
 
                     AnnotationSpec methodAnnotationSpec = builder.build();
@@ -261,7 +261,7 @@ public class RouteProcessor extends BaseProcessor {
                     String paramType = getFieldValue(routeExtra.toString(), "type");
 
                     AnnotationSpec annotationSpec = AnnotationSpec.builder(Extra.class)
-                            .addMember("name", "\"" + routeExtra.name() + "\"")
+                            .addMember("value", "\"" + routeExtra.name() + "\"")
                             .build();
 
                     TypeName typeName = ClassName.bestGuess(paramType);
@@ -397,7 +397,7 @@ public class RouteProcessor extends BaseProcessor {
             //添加静态代码块初始化字段
 //            CodeBlock.Builder builder = CodeBlock.builder();
 //            for (FieldSpec fieldSpec : fieldSpecs) {
-//                builder.addStatement(fieldSpec.name + " = $T.createRouteApi($T.class)", fssRouteManagerClassName, fieldSpec.type);
+//                builder.addStatement(fieldSpec.value + " = $T.createRouteApi($T.class)", fssRouteManagerClassName, fieldSpec.type);
 //            }
 
             //构造FssRouteApi
