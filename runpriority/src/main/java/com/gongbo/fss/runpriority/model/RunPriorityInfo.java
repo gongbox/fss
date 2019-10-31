@@ -62,6 +62,18 @@ public class RunPriorityInfo {
             return this;
         }
 
+        public Builder addRequiredMethods(String... methodNames) {
+            for (String methodName : methodNames) {
+                addMethod(new CallMethodInfo(methodName, true));
+            }
+            return this;
+        }
+
+        public Builder addRequiredMethod(String methodName, Object... params) {
+            addMethod(new CallMethodInfo(methodName, true, params));
+            return this;
+        }
+
         public RunPriorityInfo build() {
             return new RunPriorityInfo(object, methodInfos);
         }

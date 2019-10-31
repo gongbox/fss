@@ -1,7 +1,7 @@
 package com.gongbo.fss.runpriority;
 
 import com.gongbo.fss.runpriority.annotation.RunPriority;
-import com.gongbo.fss.runpriority.enums.Priority;
+import com.gongbo.fss.runpriority.constant.Priority;
 import com.gongbo.fss.runpriority.model.RunPriorityInfo;
 
 import org.junit.Test;
@@ -22,15 +22,15 @@ public class ExampleUnitTest {
                         .addMethod("initListener", 15L, "123456")
                         .build();
 
-                RunPriorityUtils.callAll(runPriorityInfo);
+                RunPriorityUtils.call(runPriorityInfo);
             }
 
-            @RunPriority(value = Priority.LOW)
-            private void initView() {
-                System.out.println("initView");
-            }
+//            @RunPriority(Priority.LOW)
+//            private void initView() {
+//                System.out.println("initView");
+//            }
 
-            @RunPriority(value = Priority.HIGH)
+            @RunPriority(Priority.HIGH)
             private void initData(Integer value) {
                 System.out.println("initData:" + value);
             }

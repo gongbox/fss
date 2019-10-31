@@ -3,6 +3,7 @@ package com.gongbo.fss.runpriority;
 
 import com.gongbo.fss.common.util.ReflectUtils;
 import com.gongbo.fss.runpriority.annotation.RunPriority;
+import com.gongbo.fss.runpriority.exception.NotFoundMethodException;
 import com.gongbo.fss.runpriority.model.CallMethodInfo;
 import com.gongbo.fss.runpriority.model.RunPriorityInfo;
 
@@ -33,29 +34,23 @@ public class RunPriorityUtils {
                     paramTypes[i] = callMethodInfo.paramValues[i].getClass();
                 }
                 method = ReflectUtils.getMethod(obj.getClass(), callMethodInfo.name, paramTypes);
-                if (method == null) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (int i = 0; i < paramTypes.length; i++) {
-                        stringBuilder.append(paramTypes[i].getCanonicalName());
-                        if (i < paramTypes.length - 1) {
-                            stringBuilder.append(",");
-                        }
-                    }
-                    String params = stringBuilder.toString();
-                    throw new RuntimeException("can't find method:" + callMethodInfo.name + "(" + params + ")");
+                if (method == null && callMethodInfo.required) {
+                    throw new NotFoundMethodException(callMethodInfo.name, paramTypes);
                 }
             } else {
                 method = ReflectUtils.getMethod(obj.getClass(), callMethodInfo.name);
-                if (method == null) {
-                    throw new RuntimeException("can't find method:" + callMethodInfo.name + "()");
+                if (method == null && callMethodInfo.required) {
+                    throw new NotFoundMethodException(callMethodInfo.name, null);
                 }
             }
 
-            RunPriority runPriority = method.getAnnotation(RunPriority.class);
-            if (runPriority != null) {
-                callMethodInfo.priority = runPriority.value();
+            if (method != null) {
+                RunPriority runPriority = method.getAnnotation(RunPriority.class);
+                if (runPriority != null) {
+                    callMethodInfo.priority = runPriority.value();
+                }
+                callMethodInfo.method = method;
             }
-            callMethodInfo.method = method;
         }
 
         //对方法按优先级排序
@@ -64,6 +59,9 @@ public class RunPriorityUtils {
         //调用方法
         for (CallMethodInfo callMethodInfo : callMethodInfos) {
             Method method = callMethodInfo.method;
+            if (method == null) {
+                continue;
+            }
             if (!method.isAccessible()) {
                 method.setAccessible(true);
             }
