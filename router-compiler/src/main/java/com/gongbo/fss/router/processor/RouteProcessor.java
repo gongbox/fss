@@ -127,17 +127,19 @@ public class RouteProcessor extends BaseProcessor {
             try {
                 logger.info(">>> Found routeApis, start... <<<");
                 Set<TypeElement> typeElementList = new HashSet<TypeElement>();
-                //获取被注解的元素
-                for (Element element : routeApiElements) {
-                    if (element.getKind() != ElementKind.INTERFACE) { //判断是否为类，如果是class，抛出异常
-                        continue;
+                if (routeApiElements != null) {
+                    //获取被注解的元素
+                    for (Element element : routeApiElements) {
+                        if (element.getKind() != ElementKind.INTERFACE) { //判断是否为类，如果是class，抛出异常
+                            continue;
+                        }
+
+                        //获取到这个类
+                        TypeElement typeElement = (TypeElement) element;
+                        typeElementList.add(typeElement);
                     }
-
-                    //获取到这个类
-                    TypeElement typeElement = (TypeElement) element;
-                    typeElementList.add(typeElement);
                 }
-
+                logger.info(">>> parseRouteApis <<<");
                 this.parseRouteApis(typeElementList, groups);
             } catch (Exception e) {
                 logger.error(e);
@@ -325,7 +327,7 @@ public class RouteProcessor extends BaseProcessor {
     }
 
     private void parseRouteApis(Set<TypeElement> elements, Set<String> groups) throws IOException {
-        if (CollectionUtils.isNotEmpty(elements)) {
+//        if (CollectionUtils.isNotEmpty(elements)) {
             // prepare the type an so on.
 
             logger.info(">>> Found routeApis, size is " + elements.size() + " <<<");
@@ -412,7 +414,7 @@ public class RouteProcessor extends BaseProcessor {
                     .build();
 
             JavaFile.builder(ROUTE_API_PACKAGE, typeSpec).build().writeTo(mFiler);
-        }
+//        }
     }
 
     public static List<RouteInfo> getRouteInfos(Map<String, List<RouteInfo>> map, String group) {

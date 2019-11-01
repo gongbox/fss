@@ -12,7 +12,7 @@ import com.gongbo.fss.router.annotation.RouteService;
 /**
  * 自定义路由路由API
  */
-@RouteApi   //自定义的路由API必须添加@RouteApi注解
+//@RouteApi   //自定义的路由API必须添加@RouteApi注解
 public interface ITestRouteApi {
     //路由到一个Service
     @RouteService(RouteTestService.class)
