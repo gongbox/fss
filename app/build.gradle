@@ -1,16 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    apply from: rootProject.file('project_config.gradle')
+
     defaultConfig {
         applicationId "com.gongbo.fss.demo"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                //API_PREFIX 路由方法前缀
@@ -20,12 +14,6 @@ android {
 //                arguments = [API_PREFIX: "navigateTo", API_SUFFIX: "", GROUP_PREFIX: "", GROUP_SUFFIX: "RouteApi"]
 //            }
 //        }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
     }
     dataBinding {
         enabled = true
@@ -39,13 +27,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation library.appcompat
+    implementation library.constraint
+    implementation library.recyclerview
+    testImplementation library.junit
+    androidTestImplementation library.test_runner
+    androidTestImplementation library.espresso_core
+
     implementation project(path: ':common')
     implementation project(path: ':bind')
     implementation project(path: ':runpriority')

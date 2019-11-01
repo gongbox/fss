@@ -1,7 +1,8 @@
 package com.gongbo.fss.demo.adapter.recyclerview;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.gongbo.fss.adapter.recyclerview.BaseBindingSingleAdapter;
 import com.gongbo.fss.base.BaseFssActivity;

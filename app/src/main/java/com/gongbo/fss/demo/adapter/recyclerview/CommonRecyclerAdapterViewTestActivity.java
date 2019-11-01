@@ -1,8 +1,8 @@
 package com.gongbo.fss.demo.adapter.recyclerview;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.gongbo.fss.adapter.recyclerview.CommonRecyclerAdapter;
 import com.gongbo.fss.adapter.recyclerview.viewholder.CommonViewHolder;
