@@ -246,7 +246,7 @@ public class RouteProcessor extends BaseProcessor {
 
                     String extraString = defaultExtra.toString();
                     String paramType = extraString.substring(extraString.indexOf("type=") + 5, extraString.indexOf(","));
-                    TypeName typeName = ClassName.bestGuess(paramType);
+                    TypeName typeName = TypeUtils.getType(paramType);
 
                     builder.addMember("type", "$T.class", typeName);
 
