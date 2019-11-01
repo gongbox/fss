@@ -2,10 +2,10 @@ package com.gongbo.fss.bind.util;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 
 public class ViewUtils {
     /**
@@ -23,8 +23,8 @@ public class ViewUtils {
             View view = ((Fragment) obj).getView();
             return getView(view, id);
         }
-        if (obj instanceof androidx.fragment.app.Fragment) {
-            View view = ((androidx.fragment.app.Fragment) obj).getView();
+        if (obj instanceof android.support.v4.app.Fragment) {
+            View view = ((android.support.v4.app.Fragment) obj).getView();
             return getView(view, id);
         }
         if (obj instanceof View) {

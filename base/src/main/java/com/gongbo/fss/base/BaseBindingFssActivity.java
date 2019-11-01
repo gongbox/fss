@@ -1,8 +1,8 @@
 package com.gongbo.fss.base;
 
 
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 
 /**
  * Created by Administrator on 2017/10/21.

@@ -1,7 +1,8 @@
 package com.gongbo.fss.bind.util;
 
 
-import androidx.databinding.ViewDataBinding;
+
+import android.databinding.ViewDataBinding;
 
 import com.gongbo.fss.common.util.ReflectUtils;
 

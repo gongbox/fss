@@ -1,8 +1,8 @@
 package com.gongbo.fss.bind;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindExtra;
@@ -18,6 +18,7 @@ import com.gongbo.fss.bind.processor.BindRouteProcessor;
 import com.gongbo.fss.bind.processor.BindViewProcessor;
 import com.gongbo.fss.bind.util.FssLog;
 import com.gongbo.fss.common.common;
+import com.gongbo.fss.common.function.Predicate;
 import com.gongbo.fss.common.kotlin.Pair;
 import com.gongbo.fss.common.stream.Stream;
 import com.gongbo.fss.common.util.ReflectUtils;
@@ -143,14 +144,19 @@ public final class FssBind {
         Class clazz = obj.getClass();
         while (clazz != null && clazz != untilClass) {
             Field[] fields = clazz.getDeclaredFields();
-            for (Field fieldItem : fields) {
+            for (final Field fieldItem : fields) {
                 for (Annotation annotation : fieldItem.getDeclaredAnnotations()) {
                     Class annotationClass = annotation.annotationType();
                     //包含指定注解的添加
                     if (annotationClass == BindView.class || annotationClass == BindParam.class
                             || annotationClass == BindExtra.class) {
                         //如果集合里没有该字段，则添加
-                        if (!bindFields.any(field -> ReflectUtils.compare(fieldItem, field))) {
+                        if (!bindFields.any(new Predicate<Field>() {
+                            @Override
+                            public boolean test(Field field) {
+                                return ReflectUtils.compare(fieldItem, field);
+                            }
+                        })) {
                             bindFields.add(fieldItem);
                             break;
                         }
@@ -175,13 +181,18 @@ public final class FssBind {
         Class clazz = obj.getClass();
         while (clazz != null && clazz != untilClass) {
             Field[] fields = clazz.getDeclaredFields();
-            for (Field fieldItem : fields) {
+            for (final Field fieldItem : fields) {
                 for (Annotation annotation : fieldItem.getDeclaredAnnotations()) {
                     Class annotationClass = annotation.annotationType();
                     //包含指定注解的添加
                     if (annotationClass == BindView.class) {
                         //如果集合里没有该字段，则添加
-                        if (!bindFields.any(field -> ReflectUtils.compare(fieldItem, field))) {
+                        if (!bindFields.any(new Predicate<Field>() {
+                            @Override
+                            public boolean test(Field field) {
+                                return ReflectUtils.compare(fieldItem, field);
+                            }
+                        })) {
                             bindFields.add(fieldItem);
                             break;
                         }
@@ -204,12 +215,17 @@ public final class FssBind {
         List<Pair<Method, List<BindOnClick>>> methods = new ArrayList<>();
         while (clazz != null && clazz != untilClass) {
             Method[] declaredMethods = clazz.getDeclaredMethods();
-            for (Method methodItem : declaredMethods) {
+            for (final Method methodItem : declaredMethods) {
                 for (Annotation annotation : methodItem.getDeclaredAnnotations()) {
                     //包含指定注解的添加
                     if (annotation.annotationType() == BindOnClick.class) {
                         BindOnClick bindOnClick = (BindOnClick) annotation;
-                        Pair<Method, List<BindOnClick>> pairMethod = common.find(methods, pair -> ReflectUtils.compare(pair.first, methodItem));
+                        Pair<Method, List<BindOnClick>> pairMethod = common.find(methods, new Predicate<Pair<Method, List<BindOnClick>>>() {
+                            @Override
+                            public boolean test(Pair<Method, List<BindOnClick>> pair) {
+                                return ReflectUtils.compare(pair.first, methodItem);
+                            }
+                        });
                         if (pairMethod != null) {
                             pairMethod.second.add(bindOnClick);
                         } else {
