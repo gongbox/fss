@@ -10,9 +10,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation library.databinding
+    compileOnly library.databinding
 
     api project(path: ':common')
     api project(path: ':bind')
-    implementation 'org.jetbrains:annotations:15.0'
 }

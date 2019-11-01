@@ -10,8 +10,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation library.recyclerview
-    implementation library.databinding
+    compileOnly library.recyclerview
+    compileOnly library.databinding
 
     api project(path: ':common')
     api project(path: ':bind')

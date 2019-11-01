@@ -7,10 +7,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation library.appcompat
-    testImplementation library.junit
-    androidTestImplementation library.test_runner
-    androidTestImplementation library.espresso_core
+    compileOnly library.appcompat
     implementation library.aspectjrt
 
     api project(path: ':runpriority')

@@ -12,7 +12,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     compileOnly library.appcompat
-    implementation library.databinding
+    compileOnly library.databinding
 
     api project(path: ':adapter-listview')
     api project(path: ':adapter-recyclerview')

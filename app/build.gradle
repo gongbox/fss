@@ -31,9 +31,6 @@ dependencies {
     implementation library.appcompat
     implementation library.constraint
     implementation library.recyclerview
-    testImplementation library.junit
-    androidTestImplementation library.test_runner
-    androidTestImplementation library.espresso_core
 
     implementation project(path: ':common')
     implementation project(path: ':bind')

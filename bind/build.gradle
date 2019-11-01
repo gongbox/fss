@@ -11,11 +11,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation library.appcompat
-    testImplementation library.junit
-    androidTestImplementation library.test_runner
-    androidTestImplementation library.espresso_core
-    implementation library.databinding
+    compileOnly library.appcompat
+    compileOnly library.databinding
 
     api project(path: ':common')
     api project(path: ':bind-annotation')
