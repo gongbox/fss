@@ -2,15 +2,25 @@ package com.gongbo.fss.router.utils;
 
 
 import com.gongbo.fss.router.enums.TypeKind;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.TypeName;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import static com.gongbo.fss.router.utils.Consts.*;
+import static com.gongbo.fss.router.utils.Consts.BOOLEAN;
+import static com.gongbo.fss.router.utils.Consts.BYTE;
+import static com.gongbo.fss.router.utils.Consts.CHAR;
+import static com.gongbo.fss.router.utils.Consts.DOUBEL;
+import static com.gongbo.fss.router.utils.Consts.FLOAT;
+import static com.gongbo.fss.router.utils.Consts.INTEGER;
+import static com.gongbo.fss.router.utils.Consts.LONG;
 import static com.gongbo.fss.router.utils.Consts.PARCELABLE;
 import static com.gongbo.fss.router.utils.Consts.SERIALIZABLE;
+import static com.gongbo.fss.router.utils.Consts.SHORT;
+import static com.gongbo.fss.router.utils.Consts.STRING;
 
 /**
  * Utils for type exchange
@@ -75,5 +85,28 @@ public class TypeUtils {
         } else {
             return TypeKind.OBJECT.ordinal();
         }
+    }
+
+    public static TypeName getType(String type) {
+        if ("byte".equals(type.toLowerCase())) {
+            return TypeName.BYTE;
+        } else if ("char".equals(type.toLowerCase())) {
+            return TypeName.CHAR;
+        } else if ("short".equals(type.toLowerCase())) {
+            return TypeName.SHORT;
+        } else if ("int".equals(type.toLowerCase())) {
+            return TypeName.INT;
+        } else if ("long".equals(type.toLowerCase())) {
+            return TypeName.LONG;
+        } else if ("float".equals(type.toLowerCase())) {
+            return TypeName.FLOAT;
+        } else if ("double".equals(type.toLowerCase())) {
+            return TypeName.DOUBLE;
+        } else if ("boolean".equals(type.toLowerCase())) {
+            return TypeName.BOOLEAN;
+        } else if ("void".equals(type.toLowerCase())) {
+            return TypeName.VOID;
+        }
+        return ClassName.bestGuess(type);
     }
 }

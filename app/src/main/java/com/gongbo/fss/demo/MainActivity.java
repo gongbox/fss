@@ -11,6 +11,7 @@ import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.router.annotation.Route;
+import com.gongbo.fss.router.annotation.RouteExtra;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,9 @@ import java.util.List;
 import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
 
 @Route
+@Route(routeExtras = {
+        @RouteExtra(name = "value",type = int.class)
+})
 @BindActivity(R.layout.activity_list_view)
 public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 

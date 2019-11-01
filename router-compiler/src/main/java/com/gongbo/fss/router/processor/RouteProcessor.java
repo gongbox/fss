@@ -9,6 +9,7 @@ import com.gongbo.fss.router.annotation.RouteExtra;
 import com.gongbo.fss.router.annotation.RouteService;
 import com.gongbo.fss.router.annotation.Routes;
 import com.gongbo.fss.router.entity.RouteInfo;
+import com.gongbo.fss.router.utils.TypeUtils;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
@@ -264,7 +265,8 @@ public class RouteProcessor extends BaseProcessor {
                             .addMember("value", "\"" + routeExtra.name() + "\"")
                             .build();
 
-                    TypeName typeName = ClassName.bestGuess(paramType);
+
+                    TypeName typeName = TypeUtils.getType(paramType);
                     String paramName = routeExtra.paramName().isEmpty() ? routeExtra.name() : routeExtra.paramName();
                     ParameterSpec parameterSpec = ParameterSpec.builder(typeName, paramName)
                             .addAnnotation(annotationSpec)
