@@ -5,41 +5,14 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.gongbox'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
-    defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
+    apply from: rootProject.file('project_config.gradle')
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.material:material:1.1.0-beta01'
-    implementation 'androidx.databinding:databinding-runtime:3.5.1'
+
+    compileOnly library.appcompat
+    implementation library.databinding
 
     api project(path: ':adapter-listview')
     api project(path: ':adapter-recyclerview')

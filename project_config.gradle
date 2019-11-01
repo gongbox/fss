@@ -1,0 +1,28 @@
+apply from: rootProject.file('versions.gradle')
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        minSdkVersion default_config.minSdkVersion
+        targetSdkVersion default_config.targetSdkVersion
+        versionCode default_config.versionCode
+        versionName default_config.versionName
+
+        testInstrumentationRunner library.junitRunner
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
