@@ -91,7 +91,7 @@ public final class Optional<T> {
      * is non-null, otherwise an empty {@code Optional}
      */
     public static <T> Optional<T> ofNullable(T value) {
-        return value == null ? empty() : of(value);
+        return value == null ? (Optional<T>) empty() : of(value);
     }
 
     /**
@@ -147,7 +147,7 @@ public final class Optional<T> {
         if (!isPresent())
             return this;
         else
-            return predicate.test(value) ? this : empty();
+            return predicate.test(value) ? this : (Optional<T>) empty();
     }
 
     /**

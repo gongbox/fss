@@ -1,11 +1,11 @@
 package com.gongbo.fss.adapter.listview;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 
 import com.gongbo.fss.adapter.listview.viewholder.BaseViewHolder;
 import com.gongbo.fss.common.kotlin.Pair;

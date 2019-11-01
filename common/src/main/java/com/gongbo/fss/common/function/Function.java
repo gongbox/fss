@@ -37,10 +37,15 @@ public interface Function<T, R> {
      * @throws NullPointerException if before is null
      * @see #andThen(Function)
      */
-    default <V> Function<V, R> compose(Function<? super V, ? extends T> before) {
-        Objects.requireNonNull(before);
-        return (V v) -> apply(before.apply(v));
-    }
+//    default <V> Function<V, R> compose(Function<? super V, ? extends T> before) {
+//        Objects.requireNonNull(before);
+//        return new Function<V, R>() {
+//            @Override
+//            public R apply(V v) {
+//                return Function.this.apply(before.apply(v));
+//            }
+//        };
+//    }
 
     /**
      * Returns a composed function that first applies this function to
@@ -56,10 +61,15 @@ public interface Function<T, R> {
      * @throws NullPointerException if after is null
      * @see #compose(Function)
      */
-    default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
-        Objects.requireNonNull(after);
-        return (T t) -> after.apply(apply(t));
-    }
+//    default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
+//        Objects.requireNonNull(after);
+//        return new Function<T, V>() {
+//            @Override
+//            public V apply(T t) {
+//                return after.apply(Function.this.apply(t));
+//            }
+//        };
+//    }
 
     /**
      * Returns a function that always returns its input argument.
@@ -67,7 +77,12 @@ public interface Function<T, R> {
      * @param <T> the type of the input and output objects to the function
      * @return a function that always returns its input argument
      */
-    static <T> Function<T, T> identity() {
-        return t -> t;
-    }
+//    static <T> Function<T, T> identity() {
+//        return new Function<T, T>() {
+//            @Override
+//            public T apply(T t) {
+//                return t;
+//            }
+//        };
+//    }
 }

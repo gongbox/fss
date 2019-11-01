@@ -265,8 +265,13 @@ public class common {
         return find(Arrays.asList(objs), predicate) != null;
     }
 
-    public static <T> boolean in(T value, T... objs) {
-        return in(value, t -> (value == t) || (value != null && value.equals(t)), objs);
+    public static <T> boolean in(final T value, T... objs) {
+        return in(value, new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return (value == t) || (value != null && value.equals(t));
+            }
+        }, objs);
     }
 
     public static <T> T clone(Object object) {

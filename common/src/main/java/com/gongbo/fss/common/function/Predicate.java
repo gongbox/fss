@@ -39,10 +39,15 @@ public interface Predicate<T> {
      * AND of this predicate and the {@code other} predicate
      * @throws NullPointerException if other is null
      */
-    default Predicate<T> and(Predicate<? super T> other) {
-        Objects.requireNonNull(other);
-        return (t) -> test(t) && other.test(t);
-    }
+//    default Predicate<T> and(Predicate<? super T> other) {
+//        Objects.requireNonNull(other);
+//        return new Predicate<T>() {
+//            @Override
+//            public boolean test(T t) {
+//                return Predicate.this.test(t) && other.test(t);
+//            }
+//        };
+//    }
 
     /**
      * Returns a predicate that represents the logical negation of this
@@ -51,9 +56,14 @@ public interface Predicate<T> {
      * @return a predicate that represents the logical negation of this
      * predicate
      */
-    default Predicate<T> negate() {
-        return (t) -> !test(t);
-    }
+//    default Predicate<T> negate() {
+//        return new Predicate<T>() {
+//            @Override
+//            public boolean test(T t) {
+//                return !Predicate.this.test(t);
+//            }
+//        };
+//    }
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical
@@ -71,10 +81,15 @@ public interface Predicate<T> {
      * OR of this predicate and the {@code other} predicate
      * @throws NullPointerException if other is null
      */
-    default Predicate<T> or(Predicate<? super T> other) {
-        Objects.requireNonNull(other);
-        return (t) -> test(t) || other.test(t);
-    }
+//    default Predicate<T> or(Predicate<? super T> other) {
+//        Objects.requireNonNull(other);
+//        return new Predicate<T>() {
+//            @Override
+//            public boolean test(T t) {
+//                return Predicate.this.test(t) || other.test(t);
+//            }
+//        };
+//    }
 
     /**
      * Returns a predicate that tests if two arguments are equal according
@@ -86,10 +101,15 @@ public interface Predicate<T> {
      * @return a predicate that tests if two arguments are equal according
      * to {@link Objects#equals(Object, Object)}
      */
-    static <T> Predicate<T> isEqual(Object targetRef) {
-        return (null == targetRef)
-                ? Objects::isNull
-                : object -> targetRef.equals(object);
-    }
+//    static <T> Predicate<T> isEqual(Object targetRef) {
+//        return (null == targetRef)
+//                ? Objects::isNull
+//                : new Predicate<T>() {
+//            @Override
+//            public boolean test(T object) {
+//                return targetRef.equals(object);
+//            }
+//        };
+//    }
 }
 

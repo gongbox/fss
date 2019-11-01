@@ -35,12 +35,15 @@ public interface Consumer<T> {
      * operation followed by the {@code after} operation
      * @throws NullPointerException if {@code after} is null
      */
-    default Consumer<T> andThen(Consumer<? super T> after) {
-        Objects.requireNonNull(after);
-        return (T t) -> {
-            accept(t);
-            after.accept(t);
-        };
-    }
+//    default Consumer<T> andThen(Consumer<? super T> after) {
+//        Objects.requireNonNull(after);
+//        return new Consumer<T>() {
+//            @Override
+//            public void accept(T t) {
+//                Consumer.this.accept(t);
+//                after.accept(t);
+//            }
+//        };
+//    }
 }
 

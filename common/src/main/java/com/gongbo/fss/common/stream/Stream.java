@@ -117,7 +117,12 @@ public class Stream<T> extends AbstractStream<T, Stream<T>> {
      * @return
      */
     public Stream<T> filterNull() {
-        return filter(t -> t != null);
+        return filter(new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return t != null;
+            }
+        });
     }
 
     /**

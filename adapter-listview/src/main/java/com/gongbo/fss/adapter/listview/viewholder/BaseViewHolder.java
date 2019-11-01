@@ -1,9 +1,9 @@
 package com.gongbo.fss.adapter.listview.viewholder;
 
+import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.view.View;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
 
 import com.gongbo.fss.bind.FssBind;
 
