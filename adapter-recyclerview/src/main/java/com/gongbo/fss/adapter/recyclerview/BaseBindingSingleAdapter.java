@@ -1,14 +1,14 @@
 package com.gongbo.fss.adapter.recyclerview;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongbo.fss.adapter.recyclerview.viewholder.DataBindingViewHolder;
 import com.gongbo.fss.common.kotlin.Pair;

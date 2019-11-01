@@ -1,7 +1,8 @@
 package com.gongbo.fss.adapter.recyclerview.viewholder;
 
-import androidx.databinding.ViewDataBinding;
-import androidx.recyclerview.widget.RecyclerView;
+import android.databinding.ViewDataBinding;
+import android.support.v7.widget.RecyclerView;
+
 
 /**
  * Created by $USER_NAME on 2018/9/10.

@@ -1,8 +1,8 @@
 package com.gongbo.fss.adapter.recyclerview;
 
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 
-import androidx.databinding.ViewDataBinding;
 
 import com.gongbo.fss.common.kotlin.Pair;
 
