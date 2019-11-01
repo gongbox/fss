@@ -1,6 +1,7 @@
 package com.gongbo.fss.demo.base;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.gongbo.fss.base.BaseFssActivity;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends BaseFssActivity {
+
 }

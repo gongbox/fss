@@ -1,4 +1,4 @@
-package com.gongbo.fss.base;
+package com.gongbo.fss.demo.base;
 
 
 import androidx.databinding.DataBindingUtil;
@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding;
  * Created by Administrator on 2017/10/21.
  */
 
-public abstract class BaseBindingFssActivity<VB extends ViewDataBinding> extends BaseFssActivity {
+public class BaseBindingActivity<VB extends ViewDataBinding> extends BaseActivity {
 
     protected VB binding;
 
@@ -16,5 +16,4 @@ public abstract class BaseBindingFssActivity<VB extends ViewDataBinding> extends
     protected void setContentLayout(int layoutResID) {
         binding = DataBindingUtil.setContentView(this, layoutResID);
     }
-
 }
