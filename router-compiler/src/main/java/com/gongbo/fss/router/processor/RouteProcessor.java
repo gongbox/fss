@@ -81,13 +81,13 @@ public class RouteProcessor extends BaseProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         if (CollectionUtils.isNotEmpty(annotations)) {
-            Map<String, List<RouteInfo>> routeInfoMap = new HashMap<>();
-            Set<String> groups = new HashSet<>();
+            Map<String, List<RouteInfo>> routeInfoMap = new HashMap<String, List<RouteInfo>>();
+            Set<String> groups = new HashSet<String>();
 
             Set<? extends Element> routeElements = roundEnv.getElementsAnnotatedWith(Route.class);
             Set<? extends Element> routesElements = roundEnv.getElementsAnnotatedWith(Routes.class);
 
-            Set<Element> elements = new HashSet<>();
+            Set<Element> elements = new HashSet<Element>();
             elements.addAll(routeElements);
             elements.addAll(routesElements);
 
@@ -125,7 +125,7 @@ public class RouteProcessor extends BaseProcessor {
             Set<? extends Element> routeApiElements = roundEnv.getElementsAnnotatedWith(RouteApi.class);
             try {
                 logger.info(">>> Found routeApis, start... <<<");
-                Set<TypeElement> typeElementList = new HashSet<>();
+                Set<TypeElement> typeElementList = new HashSet<TypeElement>();
                 //获取被注解的元素
                 for (Element element : routeApiElements) {
                     if (element.getKind() != ElementKind.INTERFACE) { //判断是否为类，如果是class，抛出异常
@@ -167,8 +167,8 @@ public class RouteProcessor extends BaseProcessor {
     }
 
     private void parseRouteApi(String apiFileName, List<RouteInfo> routeInfos) throws IOException {
-        List<FieldSpec> fieldSpecs = new ArrayList<>();
-        List<MethodSpec> methodSpecs = new ArrayList<>();
+        List<FieldSpec> fieldSpecs = new ArrayList<FieldSpec>();
+        List<MethodSpec> methodSpecs = new ArrayList<MethodSpec>();
         for (RouteInfo routeInfo : routeInfos) {
             for (Route route : routeInfo.routes) {
                 RouteExtra[] routeExtras = route.routeExtras();
@@ -184,7 +184,7 @@ public class RouteProcessor extends BaseProcessor {
                     type = 1;
                 }
 
-                List<AnnotationSpec> methodAnnotationSpecs = new ArrayList<>();
+                List<AnnotationSpec> methodAnnotationSpecs = new ArrayList<AnnotationSpec>();
                 if (type == 0) {
                     AnnotationSpec.Builder builder = AnnotationSpec.builder(RouteActivity.class);
                     if (!route.action().isEmpty()) {
@@ -252,7 +252,7 @@ public class RouteProcessor extends BaseProcessor {
                     methodAnnotationSpecs.add(builder.build());
                 }
 
-                List<ParameterSpec> parameterSpecs = new ArrayList<>();
+                List<ParameterSpec> parameterSpecs = new ArrayList<ParameterSpec>();
                 parameterSpecs.add(ParameterSpec.builder(ClassName.bestGuess("android.content.Context"), "context").build());
 
                 StringBuilder paramDesc = new StringBuilder();
@@ -327,8 +327,8 @@ public class RouteProcessor extends BaseProcessor {
             // prepare the type an so on.
 
             logger.info(">>> Found routeApis, size is " + elements.size() + " <<<");
-            List<FieldSpec> fieldSpecs = new ArrayList<>();
-            List<MethodSpec> methodSpecs = new ArrayList<>();
+            List<FieldSpec> fieldSpecs = new ArrayList<FieldSpec>();
+            List<MethodSpec> methodSpecs = new ArrayList<MethodSpec>();
 
             ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.manager.RouteManager");
 
@@ -418,7 +418,7 @@ public class RouteProcessor extends BaseProcessor {
             return map.get(group);
         }
 
-        List<RouteInfo> routeInfos = new ArrayList<>();
+        List<RouteInfo> routeInfos = new ArrayList<RouteInfo>();
         map.put(group, routeInfos);
         return routeInfos;
     }

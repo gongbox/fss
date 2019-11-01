@@ -1,7 +1,8 @@
 package com.gongbo.fss.router.api.thread;
 
 
-import androidx.annotation.NonNull;
+
+import android.support.annotation.NonNull;
 
 import com.gongbo.fss.router.api.launcher.FssRouter;
 import com.gongbo.fss.router.api.util.Consts;

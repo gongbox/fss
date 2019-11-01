@@ -46,36 +46,34 @@ public class TypeUtils {
             return element.asType().getKind().ordinal();
         }
 
-        switch (typeMirror.toString()) {
-            case BYTE:
-                return TypeKind.BYTE.ordinal();
-            case SHORT:
-                return TypeKind.SHORT.ordinal();
-            case INTEGER:
-                return TypeKind.INT.ordinal();
-            case LONG:
-                return TypeKind.LONG.ordinal();
-            case FLOAT:
-                return TypeKind.FLOAT.ordinal();
-            case DOUBEL:
-                return TypeKind.DOUBLE.ordinal();
-            case BOOLEAN:
-                return TypeKind.BOOLEAN.ordinal();
-            case CHAR:
-                return TypeKind.CHAR.ordinal();
-            case STRING:
-                return TypeKind.STRING.ordinal();
-            default:
-                // Other side, maybe the PARCELABLE or SERIALIZABLE or OBJECT.
-                if (types.isSubtype(typeMirror, parcelableType)) {
-                    // PARCELABLE
-                    return TypeKind.PARCELABLE.ordinal();
-                } else if (types.isSubtype(typeMirror, serializableType)) {
-                    // SERIALIZABLE
-                    return TypeKind.SERIALIZABLE.ordinal();
-                } else {
-                    return TypeKind.OBJECT.ordinal();
-                }
+        String s = typeMirror.toString();
+        if (BYTE.equals(s)) {
+            return TypeKind.BYTE.ordinal();
+        } else if (SHORT.equals(s)) {
+            return TypeKind.SHORT.ordinal();
+        } else if (INTEGER.equals(s)) {
+            return TypeKind.INT.ordinal();
+        } else if (LONG.equals(s)) {
+            return TypeKind.LONG.ordinal();
+        } else if (FLOAT.equals(s)) {
+            return TypeKind.FLOAT.ordinal();
+        } else if (DOUBEL.equals(s)) {
+            return TypeKind.DOUBLE.ordinal();
+        } else if (BOOLEAN.equals(s)) {
+            return TypeKind.BOOLEAN.ordinal();
+        } else if (CHAR.equals(s)) {
+            return TypeKind.CHAR.ordinal();
+        } else if (STRING.equals(s)) {
+            return TypeKind.STRING.ordinal();
+        }// Other side, maybe the PARCELABLE or SERIALIZABLE or OBJECT.
+        if (types.isSubtype(typeMirror, parcelableType)) {
+            // PARCELABLE
+            return TypeKind.PARCELABLE.ordinal();
+        } else if (types.isSubtype(typeMirror, serializableType)) {
+            // SERIALIZABLE
+            return TypeKind.SERIALIZABLE.ordinal();
+        } else {
+            return TypeKind.OBJECT.ordinal();
         }
     }
 }

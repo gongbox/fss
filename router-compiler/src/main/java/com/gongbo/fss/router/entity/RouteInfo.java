@@ -15,7 +15,7 @@ public class RouteInfo {
 
     public RouteInfo(TypeElement typeElement, Route... routes) {
         this.typeElement = typeElement;
-        this.routes = new ArrayList<>(Arrays.asList(routes));
+        this.routes = new ArrayList<Route>(Arrays.asList(routes));
     }
 
 }

@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
 
 import com.gongbo.fss.router.annotation.DefaultExtra;
 import com.gongbo.fss.router.annotation.DefaultExtras;
@@ -189,8 +189,8 @@ public class RouteHandler implements InvocationHandler {
                     Object instance = fragmentMeta.getConstructor().newInstance();
                     if (instance instanceof Fragment) {
                         ((Fragment) instance).setArguments(bundle);
-                    } else if (instance instanceof androidx.fragment.app.Fragment) {
-                        ((androidx.fragment.app.Fragment) instance).setArguments(bundle);
+                    } else if (instance instanceof android.support.v4.app.Fragment) {
+                        ((android.support.v4.app.Fragment) instance).setArguments(bundle);
                     }
 
                     return instance;

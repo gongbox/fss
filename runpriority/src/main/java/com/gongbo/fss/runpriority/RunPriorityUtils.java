@@ -11,6 +11,7 @@ import com.gongbo.fss.runpriority.model.RunPriorityInfo;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RunPriorityUtils {
@@ -55,7 +56,12 @@ public class RunPriorityUtils {
         }
 
         //对方法按优先级排序
-        Collections.sort(callMethodInfos, (o1, o2) -> Integer.compare(o1.priority, o2.priority));
+        Collections.sort(callMethodInfos, new Comparator<CallMethodInfo>() {
+            @Override
+            public int compare(CallMethodInfo o1, CallMethodInfo o2) {
+                return (o1.priority < o2.priority) ? -1 : ((o1.priority == o2.priority) ? 0 : 1);
+            }
+        });
 
         //调用方法
         for (CallMethodInfo callMethodInfo : callMethodInfos) {
