@@ -14,11 +14,11 @@ public class FieldUtils {
             names.add(fieldSpec.name);
         }
 
-        int i = 1;
+        int i = 2;
         String newName = name;
         while (names.contains(newName)) {
-            newName = name + i++;
+            newName = name + "_" + i++;
         }
-        return name;
+        return newName;
     }
 }
