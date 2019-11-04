@@ -9,6 +9,7 @@ import com.gongbo.fss.router.annotation.RouteExtra;
 import com.gongbo.fss.router.annotation.RouteService;
 import com.gongbo.fss.router.annotation.Routes;
 import com.gongbo.fss.router.entity.RouteInfo;
+import com.gongbo.fss.router.utils.FieldUtils;
 import com.gongbo.fss.router.utils.TypeUtils;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.AnnotationSpec;
@@ -198,6 +199,8 @@ public class RouteProcessor extends BaseProcessor {
 
                     if (route.requestCode() > 0) {
                         String name = "REQUEST_CODE_TO_" + formatToStaticField(routeInfo.typeElement.getSimpleName().toString());
+
+                        name = FieldUtils.getFieldName(fieldSpecs,name);
 
                         builder.addMember("requestCode", name);
 
