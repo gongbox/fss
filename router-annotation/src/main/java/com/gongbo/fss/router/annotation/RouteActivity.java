@@ -19,6 +19,8 @@ public @interface RouteActivity {
 
     int flags() default 0;       //
 
+    String type() default "";
+
     int enterAnim() default 0;
 
     int exitAnim() default 0;

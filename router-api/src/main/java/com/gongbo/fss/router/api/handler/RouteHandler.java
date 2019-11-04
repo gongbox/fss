@@ -13,7 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-
+import com.gongbo.fss.router.annotation.Data;
 import com.gongbo.fss.router.annotation.DefaultExtra;
 import com.gongbo.fss.router.annotation.DefaultExtras;
 import com.gongbo.fss.router.annotation.Extra;
@@ -53,6 +53,7 @@ public class RouteHandler implements InvocationHandler {
         RouteActivity routeActivity;
         RouteService routeService = null;
         RouteFragment routeFragment = null;
+        Uri data = null;
 
         int routeType = -1;
         if ((routeActivity = method.getAnnotation(RouteActivity.class)) != null) {
@@ -108,15 +109,19 @@ public class RouteHandler implements InvocationHandler {
                         //向intent中添加一组值
                         addExtra(bundle, ((Extra) annotation).value(), objects[i]);
                         continue foreach_param;
+                    } else if (annotation instanceof Data) {
+                        if (parameterTypes[i] == Uri.class) {
+                            data = (Uri) objects[i];
+                        }
+                        continue foreach_param;
                     }
                 }
 
                 if (parameterTypes[i] == Uri.class) {
-                    intent.setData((Uri) objects[i]);
+                    data = (Uri) objects[i];
                 }
             }
         }
-
 
         switch (routeType) {
             case ACTIVITY:
@@ -137,6 +142,8 @@ public class RouteHandler implements InvocationHandler {
                 //
                 int flags = routeActivity.flags();
 
+                String type = routeActivity.type();
+
                 final int enterAnim = routeActivity.enterAnim();
                 final int exitAnim = routeActivity.exitAnim();
 
@@ -154,6 +161,14 @@ public class RouteHandler implements InvocationHandler {
                     intent.setFlags(flags);
                 } else if (!(currentContext instanceof Activity)) {    // Non activity, need less one flag.
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+
+                if (!TextUtils.isEmpty(type)) {
+                    if (data != null) {
+                        intent.setDataAndType(data, type);
+                    } else {
+                        intent.setType(type);
+                    }
                 }
 
                 //如果返回类型为intent时，直接返回该值
