@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface RouteActivity {
     //要跳转的Activity
-    Class<?> value() default Object.class;
+    Class<?> value() default void.class;
 
     String action() default "";
 

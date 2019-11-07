@@ -10,13 +10,13 @@ import com.gongbo.fss.base.BaseFssActivity;
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindView;
 import com.gongbo.fss.demo.base.BaseActivity;
+import com.gongbo.fss.router.FssRouteApi;
 import com.gongbo.fss.router.annotation.Route;
 import com.gongbo.fss.router.annotation.RouteExtra;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.gongbo.fss.router.FssRouteApi.DefaultRouteApi;
 
 @Route
 @Route(routeExtras = {
@@ -49,16 +49,16 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                DefaultRouteApi.navigateToRunPriorityTestActivity(this);
+                FssRouteApi.DEFAULT.navigateToRunPriorityTestActivity(this);
                 break;
             case 1:
-                DefaultRouteApi.navigateToBindTestActivity(this);
+                FssRouteApi.DEFAULT.navigateToBindTestActivity(this);
                 break;
             case 2:
-                DefaultRouteApi.navigateToRouteMainActivity(this);
+                FssRouteApi.DEFAULT.navigateToRouteMainActivity(this);
                 break;
             case 3:
-                DefaultRouteApi.navigateToAdapterActivity(this);
+                FssRouteApi.DEFAULT.navigateToAdapterActivity(this);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + position);

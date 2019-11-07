@@ -147,7 +147,7 @@ public class RouteHandler implements InvocationHandler {
                 final int enterAnim = routeActivity.enterAnim();
                 final int exitAnim = routeActivity.exitAnim();
 
-                if (toClass != Object.class) {
+                if (toClass != void.class) {
                     intent.setClass(currentContext, toClass);
                 }
                 if (!TextUtils.isEmpty(action)) {
@@ -200,17 +200,18 @@ public class RouteHandler implements InvocationHandler {
                     return null;
                 }
                 Class fragmentMeta = routeFragment.value();
-                try {
-                    Object instance = fragmentMeta.getConstructor().newInstance();
-                    if (instance instanceof Fragment) {
-                        ((Fragment) instance).setArguments(bundle);
-                    } else if (instance instanceof android.support.v4.app.Fragment) {
-                        ((android.support.v4.app.Fragment) instance).setArguments(bundle);
+                if (fragmentMeta != void.class) {
+                    try {
+                        Object instance = fragmentMeta.getConstructor().newInstance();
+                        if (instance instanceof Fragment) {
+                            ((Fragment) instance).setArguments(bundle);
+                        } else if (instance instanceof android.support.v4.app.Fragment) {
+                            ((android.support.v4.app.Fragment) instance).setArguments(bundle);
+                        }
+                        return instance;
+                    } catch (Exception ex) {
+
                     }
-
-                    return instance;
-                } catch (Exception ex) {
-
                 }
                 break;
             case SERVICE:
@@ -222,7 +223,7 @@ public class RouteHandler implements InvocationHandler {
                 //要跳转的action
                 action = routeService.action();
 
-                if (toClass != Object.class) {
+                if (toClass != void.class) {
                     intent.setClass(currentContext, toClass);
                 }
                 if (!TextUtils.isEmpty(action)) {

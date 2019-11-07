@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface RouteFragment {
     ////路由的Fragment的类
-    Class<?> value() default Object.class;
+    Class<?> value() default void.class;
 }

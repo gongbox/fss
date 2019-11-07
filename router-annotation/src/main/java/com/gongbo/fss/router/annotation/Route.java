@@ -10,6 +10,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Repeatable(value = Routes.class)
 public @interface Route {
+    //目标类，不设置时为当前类
+    String destination() default "";
+
     //路由组
     String group() default "";
 

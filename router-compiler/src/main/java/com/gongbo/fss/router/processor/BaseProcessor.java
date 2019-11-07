@@ -42,7 +42,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
         prefix = getOption(options, "API_PREFIX", "navigateTo", false);
         suffix = getOption(options, "API_SUFFIX", "", true);
         groupPrefix = getOption(options, "GROUP_PREFIX", "", false);
-        groupSuffix = getOption(options, "GROUP_SUFFIX", "RouteApi", true);
+        groupSuffix = getOption(options, "GROUP_SUFFIX", "", true);
     }
 
     private String getOption(Map<String, String> options, String key, String defaultValue, boolean capital) {
