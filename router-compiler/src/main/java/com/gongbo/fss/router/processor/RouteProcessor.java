@@ -440,7 +440,7 @@ public class RouteProcessor extends BaseProcessor {
                 .returns(typeVariableName)
                 .addStatement("return (T)DELEGATE")
                 .build();
-        methodSpecs.add(methodSpec);
+        methodSpecs.add(0, methodSpec);
 
         //构造FssRouteApi
         TypeSpec typeSpec = TypeSpec
