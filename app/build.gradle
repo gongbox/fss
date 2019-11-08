@@ -11,7 +11,12 @@ android {
                 //API_SUFFIX 路由方法后缀
                 //GROUP_PREFIX 路由分组常量前缀
                 //GROUP_SUFFIX 路由分组常量后缀
-//                arguments = [API_PREFIX: "navigateTo", API_SUFFIX: "", GROUP_PREFIX: "", GROUP_SUFFIX: ""]
+//                arguments = [API_PREFIX   : "navigateTo",
+//                             API_SUFFIX   : "",
+//                             GROUP_PREFIX : "",
+//                             GROUP_SUFFIX : "",
+//                             DEFAULT_GROUP: "",
+//                ]
             }
         }
     }
@@ -43,6 +48,6 @@ dependencies {
     implementation project(path: ':aop')
     annotationProcessor project(path: ':router-compiler')
 
-//    implementation 'com.github.gongbox:fss:1.0.10'
-//    annotationProcessor 'com.github.gongbox:router-compiler:1.0.10'
+//    implementation 'com.github.gongbox.fss:router-api:1.0.26'
+//    annotationProcessor 'com.github.gongbox.fss:router-compiler:1.0.26'
 }

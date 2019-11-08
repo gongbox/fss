@@ -27,6 +27,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
     TypeUtils typeUtils;
     String prefix, suffix;
     String groupPrefix, groupSuffix;
+    String defaultGroupName;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -43,6 +44,10 @@ public abstract class BaseProcessor extends AbstractProcessor {
         suffix = getOption(options, "API_SUFFIX", "", true);
         groupPrefix = getOption(options, "GROUP_PREFIX", "", false);
         groupSuffix = getOption(options, "GROUP_SUFFIX", "", true);
+        defaultGroupName = getOption(options, "DEFAULT_GROUP", "default", false);
+        if (defaultGroupName == null || defaultGroupName.isEmpty()) {
+            defaultGroupName = "default";
+        }
     }
 
     private String getOption(Map<String, String> options, String key, String defaultValue, boolean capital) {

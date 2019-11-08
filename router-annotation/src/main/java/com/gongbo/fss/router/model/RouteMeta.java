@@ -208,7 +208,7 @@ public class RouteMeta {
                 ", priority=" + priority +
                 ", extra=" + extra +
                 ", paramsType=" + paramsType +
-                ", value='" + name + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

@@ -52,6 +52,7 @@ public class StringUtils {
      * @return
      */
     public static String formatToStaticField(String name) {
+        if (name == null) return null;
         StringBuilder stringBuilder = new StringBuilder();
         char[] chars = name.toCharArray();
         for (int i = 0; i < chars.length; i++) {

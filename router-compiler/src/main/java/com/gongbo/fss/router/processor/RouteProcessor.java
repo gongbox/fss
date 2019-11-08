@@ -159,7 +159,7 @@ public class RouteProcessor extends BaseProcessor {
 
             for (Map.Entry<String, List<RouteInfo>> entry : routeInfoMap.entrySet()) {
                 String group = entry.getKey();
-                String apiFileName = group.isEmpty() ? "IDefault" : "I" + capitalizeString(group);
+                String apiFileName = "I" + capitalizeString(group.isEmpty() ? defaultGroupName : group);
                 apiFileName = groupPrefix + apiFileName + groupSuffix;
                 List<RouteInfo> routeInfos = entry.getValue();
 
@@ -347,9 +347,6 @@ public class RouteProcessor extends BaseProcessor {
     }
 
     private void parseRouteApis(Set<TypeElement> elements, Set<String> groups) throws IOException {
-//        if (CollectionUtils.isNotEmpty(elements)) {
-        // prepare the type an so on.
-
         logger.info(">>> Found routeApis, size is " + elements.size() + " <<<");
         List<FieldSpec> fieldSpecs = new ArrayList<FieldSpec>();
         List<MethodSpec> methodSpecs = new ArrayList<MethodSpec>();
@@ -363,22 +360,19 @@ public class RouteProcessor extends BaseProcessor {
             RouteApi routeApi = element.getAnnotation(RouteApi.class);
 
             String apiName;
-            if (!routeApi.name().isEmpty()) {
-                apiName = capitalizeString(routeApi.name());
+            if (!routeApi.group().isEmpty()) {
+                apiName = capitalizeString(routeApi.group());
             } else {
                 apiName = formatApiFieldName(element.getSimpleName().toString());
             }
 
-//            logger.info(">>>>>>>>>>>>>>>>>>>>>>>：" + apiName);
             String apiFieldName = formatToStaticField(apiName);
 
             //FssRouteApi中添加对应的字段
             FieldSpec fieldSpec = FieldSpec.builder(TypeName.get(element.asType()), apiFieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .initializer("$T.createRouteApi($T.class)", fssRouteManagerClassName, TypeName.get(element.asType()))
+                    .initializer("($T)DELEGATE", TypeName.get(element.asType()))
                     .build();
             fieldSpecs.add(fieldSpec);
-
-//            logger.info(">>>FssRouteApi中添加对应的字段：" + apiFieldName);
 
             //FssRouteApi中添加对应的get方法
             MethodSpec methodSpec = MethodSpec.methodBuilder("get" + apiName)
@@ -387,30 +381,24 @@ public class RouteProcessor extends BaseProcessor {
                     .addStatement("return " + fieldSpec.name)
                     .build();
             methodSpecs.add(methodSpec);
-
-//            logger.info(">>>FssRouteApi中添加对应的get方法：" + "get" + apiName);
         }
 
         //遍历所有group
         for (String group : groups) {
             //group名字转换
-            String groupApiName = group.isEmpty() ? "Default" : capitalizeString(group);
+            String groupApiName = capitalizeString(group.isEmpty() ? defaultGroupName : group);
 
             groupApiName = groupPrefix + groupApiName + groupSuffix;
 
             String groupApiFieldName = formatToStaticField(groupApiName);
 
-//            logger.info(">>>>>>>>>>>>>>>>>>>>>>>：" + groupApiName);
-
             ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", "I" + groupApiName);
 
             //FssRouteApi中添加对应的字段
             FieldSpec fieldSpec = FieldSpec.builder(groupRouteApiImpl, groupApiFieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .initializer("$T.createRouteApi($T.class)", fssRouteManagerClassName, groupRouteApiImpl)
+                    .initializer("($T)DELEGATE", groupRouteApiImpl)
                     .build();
             fieldSpecs.add(fieldSpec);
-
-//            logger.info(">>>FssRouteApi中添加对应的字段：" + groupApiFieldName);
 
             //FssRouteApi中添加对应的get方法
             MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupApiName)
@@ -419,15 +407,29 @@ public class RouteProcessor extends BaseProcessor {
                     .addStatement("return " + fieldSpec.name)
                     .build();
             methodSpecs.add(methodSpec);
-
-//            logger.info(">>>FssRouteApi中添加对应的get方法：" + "get" + groupApiName);
         }
 
         //添加静态代码块初始化字段
-//            CodeBlock.Builder builder = CodeBlock.builder();
-//            for (FieldSpec fieldSpec : fieldSpecs) {
-//                builder.addStatement(fieldSpec.value + " = $T.createRouteApi($T.class)", fssRouteManagerClassName, fieldSpec.type);
-//            }
+        if (fieldSpecs.size() > 0) {
+            Object[] typeNames = new Object[fieldSpecs.size() + 1];
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("$T.createRouteApi(");
+            typeNames[0] = (fssRouteManagerClassName);
+            for (int i = 0; i < fieldSpecs.size(); i++) {
+                stringBuilder.append("$T.class");
+                if (i < fieldSpecs.size() - 1) {
+                    stringBuilder.append(",");
+                }
+                typeNames[i + 1] = (fieldSpecs.get(i).type);
+            }
+            stringBuilder.append(")");
+
+            logger.info(stringBuilder.toString());
+            FieldSpec fieldSpec = FieldSpec.builder(Object.class, "DELEGATE", Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                    .initializer(stringBuilder.toString(), typeNames)
+                    .build();
+            fieldSpecs.add(0, fieldSpec);
+        }
 
         //构造FssRouteApi
         TypeSpec typeSpec = TypeSpec
@@ -435,11 +437,9 @@ public class RouteProcessor extends BaseProcessor {
                 .addModifiers(Modifier.PUBLIC)
                 .addFields(fieldSpecs)
                 .addMethods(methodSpecs)
-//                    .addStaticBlock(builder.build())
                 .build();
 
         JavaFile.builder(ROUTE_API_PACKAGE, typeSpec).build().writeTo(mFiler);
-//        }
     }
 
     public static List<RouteInfo> getRouteInfos(Map<String, List<RouteInfo>> map, String group) {
