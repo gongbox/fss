@@ -20,6 +20,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.TypeVariableName;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -430,6 +431,16 @@ public class RouteProcessor extends BaseProcessor {
                     .build();
             fieldSpecs.add(0, fieldSpec);
         }
+
+        TypeVariableName typeVariableName = TypeVariableName.get("T");
+        MethodSpec methodSpec = MethodSpec.methodBuilder("getGroup")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .addParameter(ParameterSpec.builder(TypeVariableName.get("Class<T>"), "clazz").build())
+                .addTypeVariable(typeVariableName)
+                .returns(typeVariableName)
+                .addStatement("return (T)DELEGATE")
+                .build();
+        methodSpecs.add(methodSpec);
 
         //构造FssRouteApi
         TypeSpec typeSpec = TypeSpec
