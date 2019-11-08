@@ -43,9 +43,9 @@ dependencies {
     implementation project(path: ':base')
     implementation project(path: ':adapter-listview')
     implementation project(path: ':adapter-recyclerview')
-    implementation project(path: ':router-annotation')
     implementation project(path: ':router-api')
     implementation project(path: ':aop')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor project(path: ':router-compiler')
 
 //    implementation 'com.github.gongbox.fss:router-api:1.0.26'

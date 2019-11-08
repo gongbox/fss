@@ -19,9 +19,6 @@ import java.util.List;
 
 
 @Route
-@Route(routeExtras = {
-        @RouteExtra(name = "value",type = int.class)
-})
 @BindActivity(R.layout.activity_list_view)
 public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 

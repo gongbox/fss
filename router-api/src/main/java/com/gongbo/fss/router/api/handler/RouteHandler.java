@@ -183,9 +183,9 @@ public class RouteHandler implements InvocationHandler {
                     public void run() {
 
                         if (requestCode > 0) {  // Need start for result
-                            ActivityCompat.startActivityForResult((Activity) currentContext, intent, requestCode, bundle);
+                            ActivityCompat.startActivityForResult((Activity) currentContext, intent, requestCode, null);
                         } else {
-                            ActivityCompat.startActivity(currentContext, intent, bundle);
+                            ActivityCompat.startActivity(currentContext, intent, null);
                         }
 
                         if ((0 != enterAnim || 0 != exitAnim) && currentContext instanceof Activity) {    // Old version.
@@ -300,21 +300,21 @@ public class RouteHandler implements InvocationHandler {
             return null;
         } else if (valueType == String.class) {
             return value;
-        } else if (valueType == Boolean.class) {
+        } else if (valueType == Boolean.class || valueType == boolean.class) {
             return Boolean.parseBoolean(value);
-        } else if (valueType == Byte.class) {
+        } else if (valueType == Byte.class || valueType == byte.class) {
             return Byte.parseByte(value);
-        } else if (valueType == Character.class) {
+        } else if (valueType == Character.class || valueType == char.class) {
             return value.charAt(0);
-        } else if (valueType == Short.class) {
+        } else if (valueType == Short.class || valueType == short.class) {
             return Short.parseShort(value);
-        } else if (valueType == Integer.class) {
+        } else if (valueType == Integer.class || valueType == int.class) {
             return Integer.parseInt(value);
-        } else if (valueType == Long.class) {
+        } else if (valueType == Long.class || valueType == long.class) {
             return Long.parseLong(value);
-        } else if (valueType == Float.class) {
+        } else if (valueType == Float.class || valueType == float.class) {
             return Float.parseFloat(value);
-        } else if (valueType == Double.class) {
+        } else if (valueType == Double.class || valueType == double.class) {
             return Double.parseDouble(value);
         }
         return null;

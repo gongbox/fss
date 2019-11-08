@@ -2,8 +2,8 @@
     <string name="app_name">fss</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="route_to_bindfragmenttest">route to BindFragmentTest</string>
-    <string name="route_to_binddetailactivity">route to BindDetailActivity</string>
-    <string name="click">click</string>
-    <string name="test">test</string>
+    <string name="route_to_bindfragmenttest">路由到BindFragmentTest</string>
+    <string name="route_to_binddetailactivity">路由到BindDetailActivity</string>
+    <string name="click">绑定点击事件</string>
+    <string name="test">绑定点击事件到test方法</string>
 </resources>

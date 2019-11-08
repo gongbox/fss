@@ -3,14 +3,22 @@
     package="com.gongbo.fss.demo">
 
     <application
+        android:name=".FssApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".FssApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".bind.fragment.BindFragmentActivity"></activity>
+        <activity android:name=".route.RouteActionActivity">
+            <intent-filter>
+                <action android:name="com.gongbo.fss.route.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".route.RouteExtraTestActivity" />
+        <activity android:name=".bind.fragment.BindFragmentActivity" />
         <activity android:name=".adapter.AdapterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
