@@ -1,5 +1,7 @@
 package com.gongbo.fss.demo.route;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,8 +13,11 @@ import com.gongbo.fss.demo.R;
 import com.gongbo.fss.demo.base.BaseActivity;
 import com.gongbo.fss.demo.route.extra.ParcelableType;
 import com.gongbo.fss.demo.route.extra.SerializableType;
+import com.gongbo.fss.demo.util.ToastUtils;
 import com.gongbo.fss.router.FssRouteApi;
 import com.gongbo.fss.router.annotation.Route;
+import com.gongbo.fss.router.api.callback.OnActivityResult;
+import com.gongbo.fss.router.api.launcher.FssRouter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +34,8 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
             "隐式意图",
             "路由参数测试",
             "默认参数路由测试",
-            "SERVICE路由测试"
+            "SERVICE路由测试",
+            "获取返回路由测试"
     );
 
     protected void initView() {
@@ -64,6 +70,20 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
             case 4:
                 FssRouteApi.TEST.navigateToRouteTestService(this, "12465");
                 break;
+            case 5:
+                FssRouteApi.DEFAULT.navigateToRouteCallbackActivity(this, new OnActivityResult() {
+                    @Override
+                    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                        ToastUtils.showToast("requestCode:" + requestCode + ",resultCode:" + resultCode);
+                    }
+                });
+                break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        FssRouter.getInstance().onActivityResult(requestCode, resultCode, data);
     }
 }

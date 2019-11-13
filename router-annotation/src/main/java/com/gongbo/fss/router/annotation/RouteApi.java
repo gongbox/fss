@@ -10,4 +10,7 @@ import java.lang.annotation.Target;
 public @interface RouteApi {
     //设置组名
     String group() default "";
+
+    //设置组名,group的别名
+    String value() default "";
 }

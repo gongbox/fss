@@ -25,7 +25,9 @@ public abstract class BaseProcessor extends AbstractProcessor {
     Types types;
     Elements elementUtils;
     TypeUtils typeUtils;
-    String prefix, suffix;
+    String navigatePrefix, navigateSuffix;
+    String buildIntentPrefix, buildIntentSuffix;
+    String apiPrefix, apiSuffix;
     String groupPrefix, groupSuffix;
     String defaultGroupName;
 
@@ -40,8 +42,12 @@ public abstract class BaseProcessor extends AbstractProcessor {
         logger = new Logger(processingEnv.getMessager());
 
         Map<String, String> options = processingEnv.getOptions();
-        prefix = getOption(options, "API_PREFIX", "navigateTo", false);
-        suffix = getOption(options, "API_SUFFIX", "", true);
+        navigatePrefix = getOption(options, "NAVIGATE_PREFIX", "navigateTo", false);
+        navigateSuffix = getOption(options, "NAVIGATE_SUFFIX", "", true);
+        buildIntentPrefix = getOption(options, "BUILD_INTENT_PREFIX", "buildIntentFor", false);
+        buildIntentSuffix = getOption(options, "BUILD_INTENT_SUFFIX", "", true);
+        apiPrefix = getOption(options, "API_PREFIX", "I", false);
+        apiSuffix = getOption(options, "API_SUFFIX", "RouteApi", true);
         groupPrefix = getOption(options, "GROUP_PREFIX", "", false);
         groupSuffix = getOption(options, "GROUP_SUFFIX", "", true);
         defaultGroupName = getOption(options, "DEFAULT_GROUP", "default", false);

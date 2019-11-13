@@ -10,6 +10,7 @@ import com.gongbo.fss.router.annotation.RouteService;
 import com.gongbo.fss.router.annotation.Routes;
 import com.gongbo.fss.router.entity.RouteInfo;
 import com.gongbo.fss.router.utils.FieldUtils;
+import com.gongbo.fss.router.utils.StringUtils;
 import com.gongbo.fss.router.utils.TypeUtils;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.AnnotationSpec;
@@ -58,6 +59,8 @@ public class RouteProcessor extends BaseProcessor {
     private static final String APIS_PACKAGE = "com.gongbo.fss.router.apis";
     private static final String ROUTE_API_PACKAGE = "com.gongbo.fss.router";
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
+
+    private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -160,18 +163,18 @@ public class RouteProcessor extends BaseProcessor {
 
             for (Map.Entry<String, List<RouteInfo>> entry : routeInfoMap.entrySet()) {
                 String group = entry.getKey();
-                String apiFileName = "I" + capitalizeString(group.isEmpty() ? defaultGroupName : group);
-                apiFileName = groupPrefix + apiFileName + groupSuffix;
+                String apiFileName = capitalizeString(group.isEmpty() ? defaultGroupName : group);
+                apiFileName = apiPrefix + apiFileName + apiSuffix;
                 List<RouteInfo> routeInfos = entry.getValue();
 
-                parseRouteApi(apiFileName, routeInfos);
+                parseRouteApi(group, apiFileName, routeInfos);
             }
 
         }
 
     }
 
-    private void parseRouteApi(String apiFileName, List<RouteInfo> routeInfos) throws IOException {
+    private void parseRouteApi(String group, String apiFileName, List<RouteInfo> routeInfos) throws IOException {
         List<FieldSpec> fieldSpecs = new ArrayList<FieldSpec>();
         List<MethodSpec> methodSpecs = new ArrayList<MethodSpec>();
         for (RouteInfo routeInfo : routeInfos) {
@@ -308,10 +311,10 @@ public class RouteProcessor extends BaseProcessor {
                 TypeName returnType;
                 if (!route.navigation()) {
                     returnType = ClassName.get("android.content", "Intent");
-                    name = route.name().isEmpty() ? "buildIntentFor" + routeInfo.typeElement.getSimpleName() : route.name();
+                    name = route.name().isEmpty() ? buildIntentPrefix + routeInfo.typeElement.getSimpleName() + buildIntentSuffix : route.name();
                 } else {
                     returnType = TypeName.VOID;
-                    name = route.name().isEmpty() ? prefix + routeInfo.typeElement.getSimpleName() + suffix : route.name();
+                    name = route.name().isEmpty() ? navigatePrefix + routeInfo.typeElement.getSimpleName() + navigateSuffix : route.name();
                 }
 
                 String paramDoc = paramDesc.toString();
@@ -332,18 +335,18 @@ public class RouteProcessor extends BaseProcessor {
             }
         }
 
+        String groupName = StringUtils.isNotEmpty(group) ? group : defaultGroupName;
         TypeSpec typeSpec = TypeSpec
                 .interfaceBuilder(apiFileName)
                 .addModifiers(Modifier.PUBLIC)
                 .addMethods(methodSpecs)
                 .addFields(fieldSpecs)
+                .addJavadoc("group : $N\n", groupName)
+                .addJavadoc("自定义接口请添加注解：@RouteApi($S)\n", groupName)
                 .build();
 
-        JavaFile.builder(APIS_PACKAGE, typeSpec).
-
-                build().
-
-                writeTo(mFiler);
+        JavaFile.builder(APIS_PACKAGE, typeSpec)
+                .build().writeTo(mFiler);
 
     }
 
@@ -361,17 +364,18 @@ public class RouteProcessor extends BaseProcessor {
             RouteApi routeApi = element.getAnnotation(RouteApi.class);
 
             String apiName;
-            if (!routeApi.group().isEmpty()) {
-                apiName = capitalizeString(routeApi.group());
+            String groupName = routeApi.group().isEmpty() ? routeApi.value() : routeApi.group();
+            if (!groupName.isEmpty()) {
+                apiName = capitalizeString(groupName);
             } else {
                 apiName = formatApiFieldName(element.getSimpleName().toString());
             }
 
-            String apiFieldName = formatToStaticField(apiName);
+            String apiFieldName = groupPrefix + formatToStaticField(apiName) + groupSuffix;
 
             //FssRouteApi中添加对应的字段
             FieldSpec fieldSpec = FieldSpec.builder(TypeName.get(element.asType()), apiFieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .initializer("($T)DELEGATE", TypeName.get(element.asType()))
+                    .initializer("($T)$N", TypeName.get(element.asType()), ROUTE_PROXY_NAME)
                     .build();
             fieldSpecs.add(fieldSpec);
 
@@ -387,17 +391,17 @@ public class RouteProcessor extends BaseProcessor {
         //遍历所有group
         for (String group : groups) {
             //group名字转换
-            String groupApiName = capitalizeString(group.isEmpty() ? defaultGroupName : group);
+            String groupName = capitalizeString(group.isEmpty() ? defaultGroupName : group);
 
-            groupApiName = groupPrefix + groupApiName + groupSuffix;
+            String groupApiName = apiPrefix + groupName + apiSuffix;
 
-            String groupApiFieldName = formatToStaticField(groupApiName);
+            String groupApiFieldName = groupPrefix + formatToStaticField(groupName) + groupSuffix;
 
-            ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", "I" + groupApiName);
+            ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", groupApiName);
 
             //FssRouteApi中添加对应的字段
             FieldSpec fieldSpec = FieldSpec.builder(groupRouteApiImpl, groupApiFieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .initializer("($T)DELEGATE", groupRouteApiImpl)
+                    .initializer("($T)$N", groupRouteApiImpl, ROUTE_PROXY_NAME)
                     .build();
             fieldSpecs.add(fieldSpec);
 
@@ -426,7 +430,7 @@ public class RouteProcessor extends BaseProcessor {
             stringBuilder.append(")");
 
             logger.info(stringBuilder.toString());
-            FieldSpec fieldSpec = FieldSpec.builder(Object.class, "DELEGATE", Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            FieldSpec fieldSpec = FieldSpec.builder(Object.class, ROUTE_PROXY_NAME, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                     .initializer(stringBuilder.toString(), typeNames)
                     .build();
             fieldSpecs.add(0, fieldSpec);
@@ -438,7 +442,7 @@ public class RouteProcessor extends BaseProcessor {
                 .addParameter(ParameterSpec.builder(TypeVariableName.get("Class<T>"), "clazz").build())
                 .addTypeVariable(typeVariableName)
                 .returns(typeVariableName)
-                .addStatement("return (T)DELEGATE")
+                .addStatement("return (T)$N", ROUTE_PROXY_NAME)
                 .build();
         methodSpecs.add(0, methodSpec);
 
