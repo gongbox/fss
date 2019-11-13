@@ -27,9 +27,14 @@ public class RunPriorityTestActivity extends BaseActivity {
             (holder, s, position) ->
                     holder.setText(R.id.tv_text, s));
 
+    {
+        datas.add("方法执行顺序为：");
+    }
+
     //声明为高优先级，会优先调用
     @RunPriority(Priority.HIGH)
     protected void initView() {
+        listView.setDivider(null);
         listView.setAdapter(adapter);
         datas.add("initView");
         adapter.notifyDataSetChanged();

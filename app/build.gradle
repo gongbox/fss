@@ -14,17 +14,17 @@ android {
                 //GROUP_PREFIX 路由分组常量前缀
                 //GROUP_SUFFIX 路由分组常量后缀
                 //DEFAULT_GROUP 默认分组名
-                arguments = [
-                        NAVIGATE_PREFIX    : "navigateTo",
-                        NAVIGATE_SUFFIX    : "",
-                        BUILD_INTENT_PREFIX: "buildIntentFor",
-                        BUILD_INTENT_SUFFIX: "",
-                        API_PREFIX         : "I",
-                        API_SUFFIX         : "RouteApi",
-                        GROUP_PREFIX       : "",
-                        GROUP_SUFFIX       : "",
-                        DEFAULT_GROUP      : "default",
-                ]
+//                arguments = [
+//                        NAVIGATE_PREFIX    : "navigateTo",
+//                        NAVIGATE_SUFFIX    : "",
+//                        BUILD_INTENT_PREFIX: "buildIntentFor",
+//                        BUILD_INTENT_SUFFIX: "",
+//                        API_PREFIX         : "I",
+//                        API_SUFFIX         : "RouteApi",
+//                        GROUP_PREFIX       : "",
+//                        GROUP_SUFFIX       : "",
+//                        DEFAULT_GROUP      : "default",
+//                ]
             }
         }
     }

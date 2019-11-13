@@ -406,7 +406,7 @@ public class RouteProcessor extends BaseProcessor {
             fieldSpecs.add(fieldSpec);
 
             //FssRouteApi中添加对应的get方法
-            MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupApiName)
+            MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                     .returns(fieldSpec.type)
                     .addStatement("return " + fieldSpec.name)
