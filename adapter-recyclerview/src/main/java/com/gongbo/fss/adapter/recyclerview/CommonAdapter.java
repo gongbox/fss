@@ -14,22 +14,22 @@ import java.util.List;
 /**
  * Created by $USER_NAME on 2019/2/15.
  */
-public class CommonRecyclerAdapter<M> extends BaseAdapter<M, CommonViewHolder> {
+public class CommonAdapter<M> extends BaseAdapter<M, CommonViewHolder> {
 
 
-    public CommonRecyclerAdapter(Context context, List<M> datas) {
+    public CommonAdapter(Context context, List<M> datas) {
         super(context, datas);
     }
 
-    public CommonRecyclerAdapter(Context context, List<M> datas, int layoutId) {
+    public CommonAdapter(Context context, List<M> datas, int layoutId) {
         super(context, datas, layoutId);
     }
 
-    public CommonRecyclerAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
+    public CommonAdapter(Context context, List<M> datas, Pair<Integer, Integer>... layoutIds) {
         super(context, datas, layoutIds);
     }
 
-    public CommonRecyclerAdapter(Context context, List<M> datas, int layoutId, OnBindViewAdapter<M, CommonViewHolder> onBindViewAdapter) {
+    public CommonAdapter(Context context, List<M> datas, int layoutId, OnBindViewAdapter<M, CommonViewHolder> onBindViewAdapter) {
         super(context, datas, layoutId, onBindViewAdapter);
     }
 

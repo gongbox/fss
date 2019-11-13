@@ -21,34 +21,34 @@ import java.util.List;
 
 @Route(group = "recyclerView")
 @BindActivity(value = R.layout.activity_recycler_view, finishViewId = R.id.img_back)
-public class BaseRecyclerViewAdapterTestActivity extends BaseActivity {
+public class BaseBindAdapterTestActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view)
     private RecyclerView recyclerView;
 
     protected void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(new Adapter(this, ListDataModel.getDatas()));
+        recyclerView.setAdapter(new BindAdapter(this, ListDataModel.getDatas()));
     }
 
-    static class Adapter extends BaseAdapter<String, Adapter.ViewHolder> {
+    static class BindAdapter extends BaseAdapter<String, BindAdapter.BindViewHolder> {
 
-        public Adapter(Context context, List<String> datas) {
+        public BindAdapter(Context context, List<String> datas) {
             super(context, datas, R.layout.layout_list_item);
         }
 
         @Override
-        public void onBindView(@NonNull ViewHolder holder, String s, int position) {
+        public void onBindView(@NonNull BindViewHolder holder, String s, int position) {
             super.onBindView(holder, s, position);
             holder.tvText.setText(s);
         }
 
-        class ViewHolder extends BaseViewHolder {
+        static class BindViewHolder extends BaseViewHolder {
+            @BindView(R.id.tv_text)
             TextView tvText;
 
-            public ViewHolder(View view) {
+            public BindViewHolder(View view) {
                 super(view);
-                this.tvText = findViewById(R.id.tv_text);
             }
         }
     }

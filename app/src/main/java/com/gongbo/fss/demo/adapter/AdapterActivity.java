@@ -26,15 +26,16 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
     private ListView listView;
 
     private List<String> datas = Arrays.asList(
-            "BaseAdapter",
-            "BaseBindAdapter",
-            "BaseBindingAdapter",
-            "BaseBindingSingleAdapter",
-            "CommonAdapter",
-            "BaseAdapter",
-            "BaseBindRecyclerViewAdapter",
-            "BaseBindingAdapter",
-            "CommonRecyclerAdapter"
+            "ListView : BaseAdapter",
+            "ListView : BaseAdapter(绑定)",
+            "ListView : BaseBindingAdapter",
+            "ListView : BaseBindingSingleAdapter",
+            "ListView : CommonAdapter",
+            "RecyclerView : BaseAdapter",
+            "RecyclerView : BaseAdapter(绑定)",
+            "RecyclerView : BaseBindingAdapter",
+            "RecyclerView : BaseBindingSingleAdapter",
+            "RecyclerView : CommonAdapter"
     );
 
     protected void initView() {
@@ -62,16 +63,19 @@ public class AdapterActivity extends BaseActivity implements AdapterView.OnItemC
                 FssRouteApi.LIST_VIEW.navigateToCommonAdapterTestActivity(this);
                 break;
             case 5:
-                FssRouteApi.RECYCLER_VIEW.navigateToBaseRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.RECYCLER_VIEW.navigateToBaseAdapterTestActivity(this);
                 break;
             case 6:
-                FssRouteApi.RECYCLER_VIEW.navigateToBaseBindRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.RECYCLER_VIEW.navigateToBaseBindAdapterTestActivity(this);
                 break;
             case 7:
-                FssRouteApi.RECYCLER_VIEW.navigateToBaseBindingRecyclerViewAdapterTestActivity(this);
+                FssRouteApi.RECYCLER_VIEW.navigateToBaseBindingAdapterTestActivity(this);
                 break;
             case 8:
-                FssRouteApi.RECYCLER_VIEW.navigateToCommonRecyclerAdapterViewTestActivity(this);
+                FssRouteApi.RECYCLER_VIEW.navigateToBaseBindingSingleAdapterTestActivity(this);
+                break;
+            case 9:
+                FssRouteApi.RECYCLER_VIEW.navigateToCommonAdapterTestActivity(this);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + position);

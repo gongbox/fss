@@ -33,10 +33,10 @@
         <activity android:name=".adapter.listview.BaseBindingAdapterTestActivity" />
         <activity android:name=".adapter.listview.BaseBindingSingleAdapterTestActivity" />
         <activity android:name=".adapter.listview.CommonAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseBindRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.BaseBindingRecyclerViewAdapterTestActivity" />
-        <activity android:name=".adapter.recyclerview.CommonRecyclerAdapterViewTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.BaseBindingAdapterTestActivity" />
+        <activity android:name=".adapter.recyclerview.CommonAdapterTestActivity" />
         <activity android:name=".runpriority.RunPriorityTestActivity" />
         <activity android:name=".bind.activity.BindDetailActivity">
             <intent-filter>
