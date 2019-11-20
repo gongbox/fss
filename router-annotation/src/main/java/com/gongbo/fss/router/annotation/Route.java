@@ -26,7 +26,7 @@ public @interface Route {
 
     String[] category() default {};
 
-    int[] flags() default {};
+    int flags() default 0;
 
     //是否跳转，为true时跳转，为false时返回构建的intent对象
     boolean navigation() default true;

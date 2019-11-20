@@ -1,5 +1,7 @@
 package com.gongbo.fss.demo.route;
 
+import android.content.Intent;
+
 import com.gongbo.fss.bind.annotation.BindActivity;
 import com.gongbo.fss.bind.annotation.BindExtra;
 import com.gongbo.fss.demo.R;
@@ -16,14 +18,14 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
         //设置分组
         group = "detail",
         //添加requestCode
-//        requestCode = 1234,
+        requestCode = 1234,
         //设置category
-//        category = Intent.CATEGORY_DEFAULT,
+        category = Intent.CATEGORY_DEFAULT,
         //设置falgs
-//        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK,
+        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK,
         //添加参数
         routeExtras = {
-                @RouteExtra(name = "value", type = String.class,desc = "value")
+                @RouteExtra(name = "value", type = String.class, desc = "value")
         },
         //添加默认参数
         defaultExtras = {

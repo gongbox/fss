@@ -249,9 +249,9 @@ public class RouteProcessor extends BaseProcessor {
 
                         builder.addMember("category", joinString("{", "}", route.category(), ","));
                     }
-                    if (route.flags().length > 0) {
+                    if (route.flags() != 0) {
 
-                        builder.addMember("flags", joinString("{", "}", route.flags(), ","));
+                        builder.addMember("flags", String.valueOf(route.flags()));
                     }
 
                     if (route.enterAnim() > 0) {
