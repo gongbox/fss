@@ -59,10 +59,30 @@ public class RouteProcessor extends BaseProcessor {
     private String apisPackageName = "com.gongbo.fss.router.apis";
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
+    private String navigatePrefix, navigateSuffix;
+    private String buildIntentPrefix, buildIntentSuffix;
+    private String apiPrefix, apiSuffix;
+    private String groupPrefix, groupSuffix;
+    private String defaultGroupName;
+    private String packageName;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
+        Map<String, String> options = processingEnv.getOptions();
+        navigatePrefix = getOption(options, "NAVIGATE_PREFIX", "navigateTo", false);
+        navigateSuffix = getOption(options, "NAVIGATE_SUFFIX", "", true);
+        buildIntentPrefix = getOption(options, "BUILD_INTENT_PREFIX", "buildIntentFor", false);
+        buildIntentSuffix = getOption(options, "BUILD_INTENT_SUFFIX", "", true);
+        apiPrefix = getOption(options, "API_PREFIX", "I", false);
+        apiSuffix = getOption(options, "API_SUFFIX", "RouteApi", true);
+        groupPrefix = getOption(options, "GROUP_PREFIX", "", false);
+        groupSuffix = getOption(options, "GROUP_SUFFIX", "", true);
+        defaultGroupName = getOption(options, "DEFAULT_GROUP", "default", false);
+        if (defaultGroupName == null || defaultGroupName.isEmpty()) {
+            defaultGroupName = "default";
+        }
+        packageName = getOption(options, "ROUTE_PACKAGE", "com.gongbo.fss.router", false);
         apisPackageName = packageName + ".apis";
         logger.info(">>> RouteProcessor init. <<<");
     }
