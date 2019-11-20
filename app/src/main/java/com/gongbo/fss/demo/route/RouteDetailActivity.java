@@ -23,7 +23,7 @@ import static com.gongbo.fss.demo.util.ToastUtils.showToast;
 //        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK,
         //添加参数
         routeExtras = {
-                @RouteExtra(name = "value", type = String.class)
+                @RouteExtra(name = "value", type = String.class,desc = "value")
         },
         //添加默认参数
         defaultExtras = {
