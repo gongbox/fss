@@ -30,6 +30,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
     String apiPrefix, apiSuffix;
     String groupPrefix, groupSuffix;
     String defaultGroupName;
+    String packageName;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -54,6 +55,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
         if (defaultGroupName == null || defaultGroupName.isEmpty()) {
             defaultGroupName = "default";
         }
+        packageName = getOption(options, "ROUTE_PACKAGE", "com.gongbo.fss.router", false);
     }
 
     private String getOption(Map<String, String> options, String key, String defaultValue, boolean capital) {

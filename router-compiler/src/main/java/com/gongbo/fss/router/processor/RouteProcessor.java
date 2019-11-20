@@ -56,15 +56,14 @@ import static com.gongbo.fss.router.utils.StringUtils.joinString;
 @AutoService(Processor.class)
 public class RouteProcessor extends BaseProcessor {
 
-    private static final String APIS_PACKAGE = "com.gongbo.fss.router.apis";
-    private static final String ROUTE_API_PACKAGE = "com.gongbo.fss.router";
+    private String apisPackageName = "com.gongbo.fss.router.apis";
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
-
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
+        apisPackageName = packageName + ".apis";
         logger.info(">>> RouteProcessor init. <<<");
     }
 
@@ -345,7 +344,7 @@ public class RouteProcessor extends BaseProcessor {
                 .addJavadoc("自定义接口请添加注解：@RouteApi($S)\n", groupName)
                 .build();
 
-        JavaFile.builder(APIS_PACKAGE, typeSpec)
+        JavaFile.builder(apisPackageName, typeSpec)
                 .build().writeTo(mFiler);
 
     }
@@ -397,7 +396,7 @@ public class RouteProcessor extends BaseProcessor {
 
             String groupApiFieldName = groupPrefix + formatToStaticField(groupName) + groupSuffix;
 
-            ClassName groupRouteApiImpl = ClassName.get("com.gongbo.fss.router.apis", groupApiName);
+            ClassName groupRouteApiImpl = ClassName.get(apisPackageName, groupApiName);
 
             //FssRouteApi中添加对应的字段
             FieldSpec fieldSpec = FieldSpec.builder(groupRouteApiImpl, groupApiFieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -406,7 +405,7 @@ public class RouteProcessor extends BaseProcessor {
             fieldSpecs.add(fieldSpec);
 
             //FssRouteApi中添加对应的get方法
-            MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupName)
+            MethodSpec methodSpec = MethodSpec.methodBuilder("get" + groupName + "Group")
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                     .returns(fieldSpec.type)
                     .addStatement("return " + fieldSpec.name)
@@ -454,7 +453,7 @@ public class RouteProcessor extends BaseProcessor {
                 .addMethods(methodSpecs)
                 .build();
 
-        JavaFile.builder(ROUTE_API_PACKAGE, typeSpec).build().writeTo(mFiler);
+        JavaFile.builder(packageName, typeSpec).build().writeTo(mFiler);
     }
 
     public static List<RouteInfo> getRouteInfos(Map<String, List<RouteInfo>> map, String group) {
