@@ -55,10 +55,10 @@ import static com.gongbo.fss.router.utils.StringUtils.joinString;
  */
 @AutoService(Processor.class)
 public class RouteProcessor extends BaseProcessor {
-
-    private String apisPackageName = "com.gongbo.fss.router.apis";
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
+
+    private String apisPackageName = "com.gongbo.fss.router.apis";
     private String navigatePrefix, navigateSuffix;
     private String buildIntentPrefix, buildIntentSuffix;
     private String apiPrefix, apiSuffix;
@@ -69,6 +69,9 @@ public class RouteProcessor extends BaseProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
+
+        logger.info(">>> RouteProcessor init. <<<");
+
         Map<String, String> options = processingEnv.getOptions();
         navigatePrefix = getOption(options, "NAVIGATE_PREFIX", "navigateTo", false);
         navigateSuffix = getOption(options, "NAVIGATE_SUFFIX", "", true);
@@ -84,7 +87,6 @@ public class RouteProcessor extends BaseProcessor {
         }
         packageName = getOption(options, "ROUTE_PACKAGE", "com.gongbo.fss.router", false);
         apisPackageName = packageName + ".apis";
-        logger.info(">>> RouteProcessor init. <<<");
     }
 
     @Override
