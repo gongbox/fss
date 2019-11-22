@@ -1,4 +1,4 @@
-package com.gongbo.fss.runpriority.constant;
+package com.fss.runpriority.constant;
 
 //运行优先级级别，优先级越高越先执行
 public class Priority {

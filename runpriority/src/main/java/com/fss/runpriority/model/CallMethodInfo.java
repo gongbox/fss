@@ -1,7 +1,7 @@
-package com.gongbo.fss.runpriority.model;
+package com.fss.runpriority.model;
 
 
-import com.gongbo.fss.runpriority.constant.Priority;
+import com.fss.runpriority.constant.Priority;
 
 import java.lang.reflect.Method;
 

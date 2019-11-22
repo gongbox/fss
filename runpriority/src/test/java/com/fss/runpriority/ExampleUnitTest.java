@@ -1,8 +1,8 @@
-package com.gongbo.fss.runpriority;
+package com.fss.runpriority;
 
-import com.gongbo.fss.runpriority.annotation.RunPriority;
-import com.gongbo.fss.runpriority.constant.Priority;
-import com.gongbo.fss.runpriority.model.RunPriorityInfo;
+import com.fss.runpriority.annotation.RunPriority;
+import com.fss.runpriority.constant.Priority;
+import com.fss.runpriority.model.RunPriorityInfo;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.gongbo.fss.runpriority.model;
+package com.fss.runpriority.model;
 
 import java.util.LinkedList;
 import java.util.List;

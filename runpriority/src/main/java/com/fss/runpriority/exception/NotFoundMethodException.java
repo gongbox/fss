@@ -1,4 +1,4 @@
-package com.gongbo.fss.runpriority.exception;
+package com.fss.runpriority.exception;
 
 public class NotFoundMethodException extends RuntimeException {
 

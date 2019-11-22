@@ -1,4 +1,4 @@
-package com.gongbo.fss.runpriority;
+package com.fss.runpriority;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.gongbo.fss.runpriority.test", appContext.getPackageName());
+        assertEquals("com.fss.runpriority.test", appContext.getPackageName());
     }
 }
