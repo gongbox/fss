@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.enums;
+package com.fss.router.enums;
 
 /**
  * Kind of field type.

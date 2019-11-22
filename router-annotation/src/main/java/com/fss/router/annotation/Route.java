@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.annotation;
+package com.fss.router.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.TYPE})
-@Repeatable(value = Routes.class)
+@Repeatable(value = com.fss.router.annotation.Routes.class)
 public @interface Route {
     //目标类，不设置时为当前类
     String destination() default "";
@@ -35,7 +35,7 @@ public @interface Route {
     boolean withResultCallBack() default false;
 
     //路由参数集
-    RouteExtra[] routeExtras() default {};
+    com.fss.router.annotation.RouteExtra[] routeExtras() default {};
 
     //默认参数集
     DefaultExtra[] defaultExtras() default {};

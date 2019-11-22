@@ -1,8 +1,8 @@
-package com.gongbo.fss.router.model;
+package com.fss.router.model;
 
 
-import com.gongbo.fss.router.annotation.Autowired;
-import com.gongbo.fss.router.enums.RouteType;
+import com.fss.router.annotation.Autowired;
+import com.fss.router.enums.RouteType;
 
 import java.util.Map;
 
