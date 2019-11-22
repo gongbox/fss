@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.annotation;
+package com.fss.bind.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,11 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
-public @interface BindView {
-    //view的id值
+@Target({ElementType.TYPE})
+public @interface BindFragment {
+    //对应的layout
     int value();
-
-    //是否必须存在该view
-    boolean required() default true;
 }

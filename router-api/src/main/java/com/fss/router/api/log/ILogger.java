@@ -1,6 +1,6 @@
-package com.gongbo.fss.router.api.log;
+package com.fss.router.api.log;
 
-import com.gongbo.fss.router.api.util.Consts;
+import com.fss.router.api.util.Consts;
 
 public interface ILogger {
 

@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.annotation;
+package com.fss.bind.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;

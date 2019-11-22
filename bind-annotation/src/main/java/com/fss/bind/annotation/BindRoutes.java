@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.annotation;
+package com.fss.bind.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface BindFragment {
-    //对应的layout
-    int value();
+public @interface BindRoutes {
+    BindRoute[] value() default {};
 }

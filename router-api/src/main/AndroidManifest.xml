@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gongbo.demo.router.api" />
+    package="com.demo.router.api" />

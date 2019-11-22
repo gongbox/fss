@@ -1,14 +1,14 @@
-package com.gongbo.fss.router.api.launcher;
+package com.fss.router.api.launcher;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.gongbo.fss.router.annotation.Autowired;
-import com.gongbo.fss.router.api.log.ILogger;
-import com.gongbo.fss.router.api.manager.RouteManager;
-import com.gongbo.fss.router.api.util.ReflectUtils;
+import com.fss.router.annotation.Autowired;
+import com.fss.router.api.log.ILogger;
+import com.fss.router.api.manager.RouteManager;
+import com.fss.router.api.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 
