@@ -1,14 +1,14 @@
-package com.gongbo.fss.demo.route.api;
+package com.fss.demo.route.api;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.gongbo.fss.demo.route.RouteDetailActivity;
-import com.gongbo.fss.demo.route.service.RouteTestService;
-import com.gongbo.fss.router.annotation.Extra;
-import com.gongbo.fss.router.annotation.RouteActivity;
-import com.gongbo.fss.router.annotation.RouteApi;
-import com.gongbo.fss.router.annotation.RouteService;
+import com.fss.demo.route.RouteDetailActivity;
+import com.fss.demo.route.service.RouteTestService;
+import com.fss.router.annotation.Extra;
+import com.fss.router.annotation.RouteActivity;
+import com.fss.router.annotation.RouteApi;
+import com.fss.router.annotation.RouteService;
 
 /**
  * 自定义路由路由API

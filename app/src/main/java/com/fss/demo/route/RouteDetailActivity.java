@@ -1,16 +1,16 @@
-package com.gongbo.fss.demo.route;
+package com.fss.demo.route;
 
 import android.content.Intent;
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindExtra;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.router.annotation.DefaultExtra;
-import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.router.annotation.RouteExtra;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindExtra;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseActivity;
+import com.fss.router.annotation.DefaultExtra;
+import com.fss.router.annotation.Route;
+import com.fss.router.annotation.RouteExtra;
 
-import static com.gongbo.fss.demo.util.ToastUtils.showToast;
+import static com.fss.demo.util.ToastUtils.showToast;
 
 @Route(
         //设置路由名称

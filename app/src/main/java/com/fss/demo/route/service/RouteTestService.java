@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.route.service;
+package com.fss.demo.route.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 
-import com.gongbo.fss.demo.util.ToastUtils;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.demo.util.ToastUtils;
+import com.fss.router.annotation.Route;
 
 @Route
 public class RouteTestService extends Service {

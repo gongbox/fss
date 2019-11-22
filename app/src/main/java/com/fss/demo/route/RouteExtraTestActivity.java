@@ -1,18 +1,18 @@
-package com.gongbo.fss.demo.route;
+package com.fss.demo.route;
 
 import android.widget.ListView;
 
-import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindExtra;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.route.extra.ParcelableType;
-import com.gongbo.fss.demo.route.extra.SerializableType;
-import com.gongbo.fss.router.annotation.DefaultExtra;
-import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.router.annotation.RouteExtra;
+import com.fss.adapter.listview.CommonAdapter;
+import com.fss.base.BaseFssActivity;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindExtra;
+import com.fss.bind.annotation.BindView;
+import com.fss.demo.R;
+import com.fss.demo.route.extra.ParcelableType;
+import com.fss.demo.route.extra.SerializableType;
+import com.fss.router.annotation.DefaultExtra;
+import com.fss.router.annotation.Route;
+import com.fss.router.annotation.RouteExtra;
 
 import java.util.Arrays;
 import java.util.List;

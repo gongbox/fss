@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.route.extra;
+package com.fss.demo.route.extra;
 
 import android.os.Parcel;
 import android.os.Parcelable;

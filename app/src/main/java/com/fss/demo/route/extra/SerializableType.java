@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.route.extra;
+package com.fss.demo.route.extra;
 
 import java.io.Serializable;
 
