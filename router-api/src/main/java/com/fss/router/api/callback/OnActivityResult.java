@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.api.callback;
+package com.fss.router.api.callback;
 
 import android.content.Intent;
 

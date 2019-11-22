@@ -1,9 +1,9 @@
-package com.gongbo.fss.router.api.thread;
+package com.fss.router.api.thread;
 
 
-import com.gongbo.fss.router.api.launcher.FssRouter;
-import com.gongbo.fss.router.api.util.Consts;
-import com.gongbo.fss.router.api.util.TextUtils;
+import com.fss.router.api.launcher.FssRouter;
+import com.fss.router.api.util.Consts;
+import com.fss.router.api.util.TextUtils;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

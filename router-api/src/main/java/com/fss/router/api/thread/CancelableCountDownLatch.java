@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.api.thread;
+package com.fss.router.api.thread;
 
 import java.util.concurrent.CountDownLatch;
 

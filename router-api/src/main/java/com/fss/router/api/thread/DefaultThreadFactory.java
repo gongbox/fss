@@ -1,11 +1,11 @@
-package com.gongbo.fss.router.api.thread;
+package com.fss.router.api.thread;
 
 
 
 import android.support.annotation.NonNull;
 
-import com.gongbo.fss.router.api.launcher.FssRouter;
-import com.gongbo.fss.router.api.util.Consts;
+import com.fss.router.api.launcher.FssRouter;
+import com.fss.router.api.util.Consts;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

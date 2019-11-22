@@ -1,11 +1,11 @@
-package com.gongbo.fss.router.api.manager;
+package com.fss.router.api.manager;
 
 import android.content.Intent;
 import android.util.SparseArray;
 
-import com.gongbo.fss.router.api.callback.OnActivityResult;
-import com.gongbo.fss.router.api.handler.RouteHandler;
-import com.gongbo.fss.router.api.launcher.FssRouter;
+import com.fss.router.api.callback.OnActivityResult;
+import com.fss.router.api.handler.RouteHandler;
+import com.fss.router.api.launcher.FssRouter;
 
 import java.lang.reflect.Proxy;
 

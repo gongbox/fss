@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.api.util;
+package com.fss.router.api.util;
 
 import android.net.Uri;
 
