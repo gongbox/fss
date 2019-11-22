@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter;
+package com.fss.adapter;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.gongbo.fss.adapter.test", appContext.getPackageName());
+        assertEquals("com.fss.adapter.test", appContext.getPackageName());
     }
 }

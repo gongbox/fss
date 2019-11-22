@@ -1,4 +1,4 @@
-package com.gongbo.demo;
+package com.fss.adapter;
 
 import org.junit.Test;
 
