@@ -1,17 +1,17 @@
-package com.gongbo.fss.router.processor;
+package com.fss.router.processor;
 
-import com.gongbo.fss.router.annotation.DefaultExtra;
-import com.gongbo.fss.router.annotation.Extra;
-import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.router.annotation.RouteActivity;
-import com.gongbo.fss.router.annotation.RouteApi;
-import com.gongbo.fss.router.annotation.RouteExtra;
-import com.gongbo.fss.router.annotation.RouteService;
-import com.gongbo.fss.router.annotation.Routes;
-import com.gongbo.fss.router.entity.RouteInfo;
-import com.gongbo.fss.router.utils.FieldUtils;
-import com.gongbo.fss.router.utils.StringUtils;
-import com.gongbo.fss.router.utils.TypeUtils;
+import com.fss.router.annotation.DefaultExtra;
+import com.fss.router.annotation.Extra;
+import com.fss.router.annotation.Route;
+import com.fss.router.annotation.RouteActivity;
+import com.fss.router.annotation.RouteApi;
+import com.fss.router.annotation.RouteExtra;
+import com.fss.router.annotation.RouteService;
+import com.fss.router.annotation.Routes;
+import com.fss.router.entity.RouteInfo;
+import com.fss.router.utils.FieldUtils;
+import com.fss.router.utils.StringUtils;
+import com.fss.router.utils.TypeUtils;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
@@ -44,11 +44,11 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 
-import static com.gongbo.fss.router.utils.StringUtils.capitalizeString;
-import static com.gongbo.fss.router.utils.StringUtils.formatApiFieldName;
-import static com.gongbo.fss.router.utils.StringUtils.formatToStaticField;
-import static com.gongbo.fss.router.utils.StringUtils.getFieldValue;
-import static com.gongbo.fss.router.utils.StringUtils.joinString;
+import static com.fss.router.utils.StringUtils.capitalizeString;
+import static com.fss.router.utils.StringUtils.formatApiFieldName;
+import static com.fss.router.utils.StringUtils.formatToStaticField;
+import static com.fss.router.utils.StringUtils.getFieldValue;
+import static com.fss.router.utils.StringUtils.joinString;
 
 /**
  * A processor used for find route.
@@ -58,7 +58,7 @@ public class RouteProcessor extends BaseProcessor {
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
 
-    private String apisPackageName = "com.fss.router.apis";
+    private String apisPackageName;
     private String navigatePrefix, navigateSuffix;
     private String buildIntentPrefix, buildIntentSuffix;
     private String apiPrefix, apiSuffix;
@@ -85,7 +85,7 @@ public class RouteProcessor extends BaseProcessor {
         if (defaultGroupName == null || defaultGroupName.isEmpty()) {
             defaultGroupName = "default";
         }
-        packageName = getOption(options, "ROUTE_PACKAGE", "com.gongbo.fss.router", false);
+        packageName = getOption(options, "ROUTE_PACKAGE", "com.fss.router", false);
         apisPackageName = packageName + ".apis";
     }
 
@@ -321,7 +321,7 @@ public class RouteProcessor extends BaseProcessor {
                 }
 
                 if (route.withResultCallBack()) {
-                    ClassName className = ClassName.get("com.gongbo.fss.router.api.callback", "OnActivityResult");
+                    ClassName className = ClassName.get("com.fss.router.api.callback", "OnActivityResult");
 
                     ParameterSpec parameterSpec = ParameterSpec.builder(className, "onActivityResult")
                             .build();
@@ -376,7 +376,7 @@ public class RouteProcessor extends BaseProcessor {
         List<FieldSpec> fieldSpecs = new ArrayList<FieldSpec>();
         List<MethodSpec> methodSpecs = new ArrayList<MethodSpec>();
 
-        ClassName fssRouteManagerClassName = ClassName.bestGuess("com.gongbo.fss.router.api.manager.RouteManager");
+        ClassName fssRouteManagerClassName = ClassName.bestGuess("com.fss.router.api.manager.RouteManager");
 
         //遍历自定义Api接口，生成对应的字段及get方法
         for (TypeElement element : elements) {

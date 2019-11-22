@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.utils;
+package com.fss.router.utils;
 
 import javax.annotation.processing.Messager;
 import javax.tools.Diagnostic;

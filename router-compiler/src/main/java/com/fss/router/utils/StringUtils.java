@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.utils;
+package com.fss.router.utils;
 
 public class StringUtils {
     /**

@@ -1,4 +1,4 @@
-package com.gongbo.fss.router.utils;
+package com.fss.router.utils;
 
 /**
  * Some consts used in processors
@@ -36,7 +36,7 @@ public class Consts {
     public static final String SERIALIZABLE = "java.io.Serializable";
 
     // Custom interface
-    private static final String FACADE_PACKAGE = "com.gongbo.fss.router";
+    private static final String FACADE_PACKAGE = "com.fss.router";
 
     // Log
     static final String PREFIX_OF_LOGGER = PROJECT + "::Compiler ";

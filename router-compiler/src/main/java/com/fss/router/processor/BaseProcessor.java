@@ -1,7 +1,7 @@
-package com.gongbo.fss.router.processor;
+package com.fss.router.processor;
 
-import com.gongbo.fss.router.utils.Logger;
-import com.gongbo.fss.router.utils.TypeUtils;
+import com.fss.router.utils.Logger;
+import com.fss.router.utils.TypeUtils;
 import com.google.common.base.Strings;
 
 import java.util.Map;
@@ -13,7 +13,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import static com.gongbo.fss.router.utils.StringUtils.capitalizeString;
+import static com.fss.router.utils.StringUtils.capitalizeString;
 
 
 /**

@@ -1,6 +1,6 @@
-package com.gongbo.fss.router.entity;
+package com.fss.router.entity;
 
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.router.annotation.Route;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,7 +1,7 @@
-package com.gongbo.fss.router.utils;
+package com.fss.router.utils;
 
 
-import com.gongbo.fss.router.enums.TypeKind;
+import com.fss.router.enums.TypeKind;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
 
@@ -10,17 +10,17 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-import static com.gongbo.fss.router.utils.Consts.BOOLEAN;
-import static com.gongbo.fss.router.utils.Consts.BYTE;
-import static com.gongbo.fss.router.utils.Consts.CHAR;
-import static com.gongbo.fss.router.utils.Consts.DOUBEL;
-import static com.gongbo.fss.router.utils.Consts.FLOAT;
-import static com.gongbo.fss.router.utils.Consts.INTEGER;
-import static com.gongbo.fss.router.utils.Consts.LONG;
-import static com.gongbo.fss.router.utils.Consts.PARCELABLE;
-import static com.gongbo.fss.router.utils.Consts.SERIALIZABLE;
-import static com.gongbo.fss.router.utils.Consts.SHORT;
-import static com.gongbo.fss.router.utils.Consts.STRING;
+import static com.fss.router.utils.Consts.BOOLEAN;
+import static com.fss.router.utils.Consts.BYTE;
+import static com.fss.router.utils.Consts.CHAR;
+import static com.fss.router.utils.Consts.DOUBEL;
+import static com.fss.router.utils.Consts.FLOAT;
+import static com.fss.router.utils.Consts.INTEGER;
+import static com.fss.router.utils.Consts.LONG;
+import static com.fss.router.utils.Consts.PARCELABLE;
+import static com.fss.router.utils.Consts.SERIALIZABLE;
+import static com.fss.router.utils.Consts.SHORT;
+import static com.fss.router.utils.Consts.STRING;
 
 /**
  * Utils for type exchange
