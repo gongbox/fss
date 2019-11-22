@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.gongbo.fss.demo.bind.fragment.BindTestFragment"
+        android:name="com.fss.demo.bind.fragment.BindTestFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

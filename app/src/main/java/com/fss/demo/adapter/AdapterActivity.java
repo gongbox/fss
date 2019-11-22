@@ -1,17 +1,17 @@
-package com.gongbo.fss.demo.adapter;
+package com.fss.demo.adapter;
 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.router.FssRouteApi;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.router.FssRouteApi;
+import com.fss.adapter.listview.CommonAdapter;
+import com.fss.base.BaseFssActivity;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindView;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseActivity;
+import com.fss.router.annotation.Route;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gongbo.fss.demo">
+    package="com.fss.demo">
 
     <application
         android:name=".FssApplication"
@@ -13,7 +13,7 @@
         <activity android:name=".route.RouteCallbackActivity"></activity>
         <activity android:name=".route.RouteActionActivity">
             <intent-filter>
-                <action android:name="com.gongbo.fss.route.action" />
+                <action android:name="com.fss.route.action" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -40,7 +40,7 @@
         <activity android:name=".runpriority.RunPriorityTestActivity" />
         <activity android:name=".bind.activity.BindDetailActivity">
             <intent-filter>
-                <action android:name="com.gongbo.fss.bind.detail" />
+                <action android:name="com.fss.bind.detail" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -49,7 +49,7 @@
         <activity android:name=".route.RouteMainActivity" />
         <activity android:name=".route.RouteDetailActivity">
             <intent-filter>
-                <action android:name="com.gongbo.fss.route.detail" />
+                <action android:name="com.fss.route.detail" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

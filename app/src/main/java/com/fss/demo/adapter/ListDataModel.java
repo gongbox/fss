@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.adapter;
+package com.fss.demo.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
