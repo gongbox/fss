@@ -1,4 +1,4 @@
-package com.gongbo.fss.base;
+package com.fss.base;
 
 import org.junit.Test;
 

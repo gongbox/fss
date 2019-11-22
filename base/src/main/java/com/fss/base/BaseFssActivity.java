@@ -1,4 +1,4 @@
-package com.gongbo.fss.base;
+package com.fss.base;
 
 
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 
 
-import com.gongbo.fss.bind.FssBind;
-import com.gongbo.fss.runpriority.RunPriorityUtils;
-import com.gongbo.fss.runpriority.model.RunPriorityInfo;
+import com.fss.bind.FssBind;
+import com.fss.runpriority.RunPriorityUtils;
+import com.fss.runpriority.model.RunPriorityInfo;
 
 
 /**

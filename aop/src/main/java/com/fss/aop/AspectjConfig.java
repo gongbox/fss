@@ -1,4 +1,4 @@
-package com.gongbo.fss.aop;
+package com.fss.aop;
 
 import org.aspectj.lang.annotation.Aspect;
 

@@ -1,4 +1,4 @@
-package com.gongbo.fss.base;
+package com.fss.base;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.gongbo.fss.bind.FssBind;
+import com.fss.bind.FssBind;
 
 
 public abstract class BaseBindingFssFragment<VB extends ViewDataBinding> extends BaseFssFragment {

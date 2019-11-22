@@ -1,4 +1,4 @@
-package com.gongbo.demo.common;
+package com.fss.aop;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.gongbo.fss.common.test", appContext.getPackageName());
+        assertEquals("com.fss.aop.test", appContext.getPackageName());
     }
 }

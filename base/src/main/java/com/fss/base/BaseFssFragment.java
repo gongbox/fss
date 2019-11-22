@@ -1,4 +1,4 @@
-package com.gongbo.fss.base;
+package com.fss.base;
 
 
 import android.app.Fragment;
@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gongbo.fss.bind.FssBind;
-import com.gongbo.fss.runpriority.RunPriorityUtils;
-import com.gongbo.fss.runpriority.model.RunPriorityInfo;
+import com.fss.bind.FssBind;
+import com.fss.runpriority.RunPriorityUtils;
+import com.fss.runpriority.model.RunPriorityInfo;
 
 
 public abstract class BaseFssFragment extends Fragment {
