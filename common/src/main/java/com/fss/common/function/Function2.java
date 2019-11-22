@@ -1,4 +1,4 @@
-package com.gongbo.fss.common.function;
+package com.fss.common.function;
 
 @FunctionalInterface
 public interface Function2<T1, T2, R> {

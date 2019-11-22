@@ -1,4 +1,4 @@
-package com.gongbo.fss.common.function;
+package com.fss.common.function;
 
 /**
  * Represents a supplier of results.
