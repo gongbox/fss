@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.base;
+package com.fss.demo.base;
 
 
 import android.databinding.DataBindingUtil;

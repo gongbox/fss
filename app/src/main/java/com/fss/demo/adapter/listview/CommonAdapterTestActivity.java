@@ -1,17 +1,17 @@
-package com.gongbo.fss.demo.adapter.listview;
+package com.fss.demo.adapter.listview;
 
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.adapter.listview.viewholder.CommonViewHolder;
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.adapter.ListDataModel;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.adapter.listview.CommonAdapter;
+import com.fss.adapter.listview.viewholder.CommonViewHolder;
+import com.fss.base.BaseFssActivity;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindView;
+import com.fss.demo.R;
+import com.fss.demo.adapter.ListDataModel;
+import com.fss.demo.base.BaseActivity;
+import com.fss.router.annotation.Route;
 
 @Route(group = "listView")
 @BindActivity(value = R.layout.activity_list_view, finishViewId = R.id.img_back)

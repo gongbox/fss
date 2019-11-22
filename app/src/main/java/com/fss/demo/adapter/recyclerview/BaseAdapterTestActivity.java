@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.adapter.recyclerview;
+package com.fss.demo.adapter.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,15 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.gongbo.fss.adapter.recyclerview.BaseAdapter;
-import com.gongbo.fss.adapter.recyclerview.viewholder.BaseViewHolder;
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.adapter.ListDataModel;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.adapter.recyclerview.BaseAdapter;
+import com.fss.adapter.recyclerview.viewholder.BaseViewHolder;
+import com.fss.base.BaseFssActivity;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindView;
+import com.fss.demo.R;
+import com.fss.demo.adapter.ListDataModel;
+import com.fss.demo.base.BaseActivity;
+import com.fss.router.annotation.Route;
 
 import java.util.List;
 
