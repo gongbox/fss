@@ -58,7 +58,7 @@ public class RouteProcessor extends BaseProcessor {
     private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
 
-    private String apisPackageName = "com.gongbo.fss.router.apis";
+    private String apisPackageName = "com.fss.router.apis";
     private String navigatePrefix, navigateSuffix;
     private String buildIntentPrefix, buildIntentSuffix;
     private String apiPrefix, apiSuffix;
