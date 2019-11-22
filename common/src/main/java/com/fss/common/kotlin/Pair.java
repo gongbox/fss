@@ -1,4 +1,4 @@
-package com.gongbo.fss.common.kotlin;
+package com.fss.common.kotlin;
 
 import java.io.Serializable;
 import java.util.Arrays;

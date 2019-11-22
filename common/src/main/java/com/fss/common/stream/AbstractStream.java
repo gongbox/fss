@@ -1,9 +1,9 @@
-package com.gongbo.fss.common.stream;
+package com.fss.common.stream;
 
 
 
 
-import com.gongbo.fss.common.function.Predicate;
+import com.fss.common.function.Predicate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

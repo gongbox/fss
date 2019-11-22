@@ -1,7 +1,7 @@
-package com.gongbo.fss.common.util;
+package com.fss.common.util;
 
 
-import com.gongbo.fss.common.exception.ExecuteException;
+import com.fss.common.exception.ExecuteException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

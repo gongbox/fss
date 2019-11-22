@@ -1,12 +1,12 @@
-package com.gongbo.fss.common;
+package com.fss.common;
 
 
-import com.gongbo.fss.common.function.Consumer;
-import com.gongbo.fss.common.function.Consumer2;
-import com.gongbo.fss.common.function.Function;
-import com.gongbo.fss.common.function.Function2;
-import com.gongbo.fss.common.function.Predicate;
-import com.gongbo.fss.common.function.Supplier;
+import com.fss.common.function.Consumer;
+import com.fss.common.function.Consumer2;
+import com.fss.common.function.Function;
+import com.fss.common.function.Function2;
+import com.fss.common.function.Predicate;
+import com.fss.common.function.Supplier;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;

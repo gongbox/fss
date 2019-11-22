@@ -1,4 +1,4 @@
-package com.gongbo.fss.common.util;
+package com.fss.common.util;
 
 /**
  * Created by $USER_NAME on 2019/1/8.
