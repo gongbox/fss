@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

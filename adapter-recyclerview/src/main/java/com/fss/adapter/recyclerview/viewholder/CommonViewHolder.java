@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview.viewholder;
+package com.fss.adapter.recyclerview.viewholder;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;

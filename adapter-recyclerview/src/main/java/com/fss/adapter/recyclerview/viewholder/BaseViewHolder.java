@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview.viewholder;
+package com.fss.adapter.recyclerview.viewholder;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 
-import com.gongbo.fss.bind.FssBind;
+import com.fss.bind.FssBind;
 
 
 /**

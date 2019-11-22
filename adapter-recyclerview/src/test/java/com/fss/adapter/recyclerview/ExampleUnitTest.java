@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.recyclerview;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.recyclerview;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 
-import com.gongbo.fss.adapter.recyclerview.viewholder.DataBindingViewHolder;
-import com.gongbo.fss.common.kotlin.Pair;
+import com.fss.adapter.recyclerview.viewholder.DataBindingViewHolder;
+import com.fss.common.kotlin.Pair;
 
 import java.util.List;
 

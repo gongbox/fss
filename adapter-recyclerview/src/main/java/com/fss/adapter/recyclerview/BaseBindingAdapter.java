@@ -1,10 +1,10 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.recyclerview;
 
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 
 
-import com.gongbo.fss.common.kotlin.Pair;
+import com.fss.common.kotlin.Pair;
 
 import java.util.List;
 

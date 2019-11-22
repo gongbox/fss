@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.gongbo.fss.adapter.recyclerview.viewholder.CommonViewHolder;
+import com.fss.adapter.recyclerview.viewholder.CommonViewHolder;
 
 import java.util.List;
 
