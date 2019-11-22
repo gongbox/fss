@@ -1,10 +1,10 @@
-package com.gongbo.fss.adapter.listview;
+package com.fss.adapter.listview;
 
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 
 
-import com.gongbo.fss.common.kotlin.Pair;
+import com.fss.common.kotlin.Pair;
 
 import java.util.List;
 

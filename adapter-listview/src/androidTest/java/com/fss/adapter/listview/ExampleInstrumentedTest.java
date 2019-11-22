@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.recyclerview;
+package com.fss.adapter.listview;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.gongbo.fss.adapter.recycleview.test", appContext.getPackageName());
+        assertEquals("com.fss.adapter.listview.test", appContext.getPackageName());
     }
 }

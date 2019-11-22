@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.listview;
+package com.fss.adapter.listview;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.gongbo.fss.adapter.listview.viewholder.BaseViewHolder;
-import com.gongbo.fss.common.kotlin.Pair;
+import com.fss.adapter.listview.viewholder.BaseViewHolder;
+import com.fss.common.kotlin.Pair;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

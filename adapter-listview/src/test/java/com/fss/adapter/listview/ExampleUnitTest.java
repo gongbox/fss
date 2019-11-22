@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.listview;
+package com.fss.adapter.listview;
 
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
-package com.gongbo.fss.adapter.listview.viewholder;
+package com.fss.adapter.listview.viewholder;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 
-import com.gongbo.fss.bind.FssBind;
+import com.fss.bind.FssBind;
 
 
 /**

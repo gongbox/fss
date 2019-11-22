@@ -1,4 +1,4 @@
-package com.gongbo.fss.adapter.listview.viewholder;
+package com.fss.adapter.listview.viewholder;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
