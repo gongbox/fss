@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.exception;
+package com.fss.bind.exception;
 
 public class NotFoundExtraException extends Exception {
 }

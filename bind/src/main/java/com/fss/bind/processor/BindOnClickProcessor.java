@@ -1,9 +1,9 @@
-package com.gongbo.fss.bind.processor;
+package com.fss.bind.processor;
 
 
-import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.bind.annotation.BindOnClicks;
-import com.gongbo.fss.bind.util.ClickUtils;
+import com.fss.bind.annotation.BindOnClick;
+import com.fss.bind.annotation.BindOnClicks;
+import com.fss.bind.util.ClickUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;

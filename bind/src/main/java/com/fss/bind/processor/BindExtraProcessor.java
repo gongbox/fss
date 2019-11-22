@@ -1,14 +1,14 @@
-package com.gongbo.fss.bind.processor;
+package com.fss.bind.processor;
 
 
 import android.text.TextUtils;
 
-import com.gongbo.fss.bind.annotation.BindExtra;
-import com.gongbo.fss.bind.annotation.BindExtras;
-import com.gongbo.fss.bind.exception.NotFoundExtraException;
-import com.gongbo.fss.bind.util.DataBindingUtils;
-import com.gongbo.fss.bind.util.ExtraUtils;
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.bind.annotation.BindExtra;
+import com.fss.bind.annotation.BindExtras;
+import com.fss.bind.exception.NotFoundExtraException;
+import com.fss.bind.util.DataBindingUtils;
+import com.fss.bind.util.ExtraUtils;
+import com.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 

@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.processor;
+package com.fss.bind.processor;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,11 +11,11 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.gongbo.fss.bind.annotation.BindRoute;
-import com.gongbo.fss.bind.annotation.BindRoutes;
-import com.gongbo.fss.bind.util.RouteExtraUtils;
-import com.gongbo.fss.bind.util.ViewUtils;
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.bind.annotation.BindRoute;
+import com.fss.bind.annotation.BindRoutes;
+import com.fss.bind.util.RouteExtraUtils;
+import com.fss.bind.util.ViewUtils;
+import com.fss.common.util.ReflectUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

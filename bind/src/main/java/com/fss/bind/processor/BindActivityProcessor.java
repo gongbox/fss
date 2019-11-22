@@ -1,8 +1,8 @@
-package com.gongbo.fss.bind.processor;
+package com.fss.bind.processor;
 
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.util.ClickUtils;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.util.ClickUtils;
 
 public class BindActivityProcessor {
 

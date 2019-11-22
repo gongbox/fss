@@ -1,10 +1,10 @@
-package com.gongbo.fss.bind.processor;
+package com.fss.bind.processor;
 
 import android.view.View;
 
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.bind.util.ViewUtils;
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.bind.annotation.BindView;
+import com.fss.bind.util.ViewUtils;
+import com.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 
