@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;

@@ -1,10 +1,10 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 
 
 import android.databinding.ViewDataBinding;
 
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

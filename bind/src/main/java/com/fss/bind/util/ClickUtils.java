@@ -1,11 +1,11 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.gongbo.fss.common.exception.ExecuteException;
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.common.exception.ExecuteException;
+import com.fss.common.util.ReflectUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

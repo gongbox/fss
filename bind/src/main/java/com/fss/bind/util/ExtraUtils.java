@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 
-import com.gongbo.fss.bind.exception.NotFoundExtraException;
+import com.fss.bind.exception.NotFoundExtraException;
 
 public class ExtraUtils {
     /**

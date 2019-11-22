@@ -1,27 +1,27 @@
-package com.gongbo.fss.bind;
+package com.fss.bind;
 
 import android.support.annotation.NonNull;
 import android.view.View;
 
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindExtra;
-import com.gongbo.fss.bind.annotation.BindFragment;
-import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.bind.annotation.BindParam;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.bind.processor.BindActivityProcessor;
-import com.gongbo.fss.bind.processor.BindExtraProcessor;
-import com.gongbo.fss.bind.processor.BindOnClickProcessor;
-import com.gongbo.fss.bind.processor.BindParamProcessor;
-import com.gongbo.fss.bind.processor.BindRouteProcessor;
-import com.gongbo.fss.bind.processor.BindViewProcessor;
-import com.gongbo.fss.bind.util.FssLog;
-import com.gongbo.fss.common.common;
-import com.gongbo.fss.common.function.Predicate;
-import com.gongbo.fss.common.kotlin.Pair;
-import com.gongbo.fss.common.stream.Stream;
-import com.gongbo.fss.common.util.ReflectUtils;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindExtra;
+import com.fss.bind.annotation.BindFragment;
+import com.fss.bind.annotation.BindOnClick;
+import com.fss.bind.annotation.BindParam;
+import com.fss.bind.annotation.BindView;
+import com.fss.bind.processor.BindActivityProcessor;
+import com.fss.bind.processor.BindExtraProcessor;
+import com.fss.bind.processor.BindOnClickProcessor;
+import com.fss.bind.processor.BindParamProcessor;
+import com.fss.bind.processor.BindRouteProcessor;
+import com.fss.bind.processor.BindViewProcessor;
+import com.fss.bind.util.FssLog;
+import com.fss.common.common;
+import com.fss.common.function.Predicate;
+import com.fss.common.kotlin.Pair;
+import com.fss.common.stream.Stream;
+import com.fss.common.util.ReflectUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.gongbo.fss.common.kotlin.Pair.pairOf;
+import static com.fss.common.kotlin.Pair.pairOf;
 
 
 public final class FssBind {

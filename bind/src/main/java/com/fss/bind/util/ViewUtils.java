@@ -1,4 +1,4 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 import android.app.Activity;
 import android.app.Fragment;

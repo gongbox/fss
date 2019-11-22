@@ -1,8 +1,8 @@
-package com.gongbo.fss.bind.util;
+package com.fss.bind.util;
 
 import android.util.Log;
 
-import com.gongbo.fss.bind.FssBind;
+import com.fss.bind.FssBind;
 
 public class FssLog {
 
