@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.bind.fragment;
+package com.fss.demo.bind.fragment;
 
 
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.gongbo.fss.bind.annotation.BindFragment;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseFragment;
+import com.fss.bind.annotation.BindFragment;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseFragment;
 
-import static com.gongbo.fss.demo.util.ToastUtils.showToast;
+import static com.fss.demo.util.ToastUtils.showToast;
 
 @BindFragment(R.layout.fragment_bind_test)
 public class BindTestFragment extends BaseFragment {

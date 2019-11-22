@@ -1,15 +1,15 @@
-package com.gongbo.fss.demo.runpriority;
+package com.fss.demo.runpriority;
 
 import android.widget.ListView;
 
-import com.gongbo.fss.adapter.listview.CommonAdapter;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindView;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.router.annotation.Route;
-import com.gongbo.fss.runpriority.annotation.RunPriority;
-import com.gongbo.fss.runpriority.constant.Priority;
+import com.fss.adapter.listview.CommonAdapter;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindView;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseActivity;
+import com.fss.router.annotation.Route;
+import com.fss.runpriority.annotation.RunPriority;
+import com.fss.runpriority.constant.Priority;
 
 import java.util.ArrayList;
 import java.util.List;

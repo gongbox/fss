@@ -1,15 +1,15 @@
-package com.gongbo.fss.demo.bind.activity;
+package com.fss.demo.bind.activity;
 
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindExtra;
-import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.demo.BR;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseBindingActivity;
-import com.gongbo.fss.demo.databinding.ActivityBindDetailBinding;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindExtra;
+import com.fss.bind.annotation.BindOnClick;
+import com.fss.demo.BR;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseBindingActivity;
+import com.fss.demo.databinding.ActivityBindDetailBinding;
+import com.fss.router.annotation.Route;
 
-import static com.gongbo.fss.demo.util.ToastUtils.showToast;
+import static com.fss.demo.util.ToastUtils.showToast;
 
 
 @Route

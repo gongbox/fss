@@ -1,4 +1,4 @@
-package com.gongbo.fss.demo.util;
+package com.fss.demo.util;
 
 import android.content.Context;
 import android.widget.Toast;

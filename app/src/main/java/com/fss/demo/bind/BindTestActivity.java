@@ -1,22 +1,22 @@
-package com.gongbo.fss.demo.bind;
+package com.fss.demo.bind;
 
 import android.view.View;
 
-import com.gongbo.fss.base.BaseFssActivity;
-import com.gongbo.fss.bind.annotation.BindActivity;
-import com.gongbo.fss.bind.annotation.BindOnClick;
-import com.gongbo.fss.bind.annotation.BindRoute;
-import com.gongbo.fss.demo.R;
-import com.gongbo.fss.demo.base.BaseActivity;
-import com.gongbo.fss.demo.bind.fragment.BindFragmentActivity;
-import com.gongbo.fss.router.annotation.Route;
+import com.fss.base.BaseFssActivity;
+import com.fss.bind.annotation.BindActivity;
+import com.fss.bind.annotation.BindOnClick;
+import com.fss.bind.annotation.BindRoute;
+import com.fss.demo.R;
+import com.fss.demo.base.BaseActivity;
+import com.fss.demo.bind.fragment.BindFragmentActivity;
+import com.fss.router.annotation.Route;
 
-import static com.gongbo.fss.demo.util.ToastUtils.showToast;
+import static com.fss.demo.util.ToastUtils.showToast;
 
 @Route
 @BindActivity(value = R.layout.activity_bind_test, finishViewId = R.id.img_back)
 @BindRoute(viewId = R.id.btn_route,
-        action = "com.gongbo.fss.bind.detail",
+        action = "com.fss.bind.detail",
         extras = {":@value", "value2:789", "value3:(int)[234]"},
         enterAnim = android.R.anim.slide_in_left
 )
