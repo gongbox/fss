@@ -14,7 +14,7 @@
 ## 接入
 在根项目的build.gradle文件中添加仓库地址
 ```
-allprojects {
+	allprojects {
 		repositories {
 			...
 			maven { url 'https://www.jitpack.io' }
