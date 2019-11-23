@@ -37,7 +37,7 @@
 -keepclassmembers class * {
     @com.fss.bind.annotation.BindExtra *;
     @com.fss.bind.annotation.BindOnClick *(...);
-    android.databinding.ViewDataBinding *;
+    android.databinding.ViewDataBinding *;  #如果是androidx，请注意替换
 }
 #router
 -keep class com.fss.router.** { *; }
