@@ -2,6 +2,7 @@ package com.fss.base;
 
 
 import android.os.Bundle;
+import android.support.annotation.Keep;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 
@@ -44,12 +45,13 @@ public abstract class BaseFssActivity extends AppCompatActivity {
         setContentView(layoutResID);
     }
 
+    @Keep
     protected void initView() {
     }
-
+    @Keep
     protected void initData() {
     }
-
+    @Keep
     protected void initListener() {
     }
 

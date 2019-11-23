@@ -1,8 +1,8 @@
 package com.fss.demo.bind;
 
+import android.support.annotation.Keep;
 import android.view.View;
 
-import com.fss.base.BaseFssActivity;
 import com.fss.bind.annotation.BindActivity;
 import com.fss.bind.annotation.BindOnClick;
 import com.fss.bind.annotation.BindRoute;
@@ -29,6 +29,8 @@ import static com.fss.demo.util.ToastUtils.showToast;
 @BindOnClick(value = R.id.btn_test, onClickMethod = "test")
 public class BindTestActivity extends BaseActivity {
 
+    //@BindRoute中使用到，反射调用，所以要防止混淆
+    @Keep
     private String value = "123456";
 
     @BindOnClick(R.id.btn_click)
@@ -36,6 +38,8 @@ public class BindTestActivity extends BaseActivity {
         showToast("click");
     }
 
+    //@BindOnClick中使用到，反射调用，所以要防止混淆
+    @Keep
     private void test() {
         showToast("test");
     }

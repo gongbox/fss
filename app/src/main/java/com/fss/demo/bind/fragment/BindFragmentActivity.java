@@ -1,6 +1,5 @@
 package com.fss.demo.bind.fragment;
 
-import com.fss.base.BaseFssActivity;
 import com.fss.bind.annotation.BindActivity;
 import com.fss.demo.R;
 import com.fss.demo.base.BaseActivity;

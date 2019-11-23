@@ -19,3 +19,25 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#adapter
+-keep  class * extends com.fss.adapter.*.viewholder.BaseViewHolder{
+    <init>(android.view.View);
+    <init>(***,android.view.View);
+}
+#runpriority
+-keepclassmembers class * {
+    @com.fss.runpriority.annotation.RunPriority *(...);
+    #加入runpriority中会调用的方法
+    *** initView(...);
+    *** initData(...);
+    *** initListener(...);
+}
+#bind
+-keepclassmembers class * {
+    @com.fss.bind.annotation.BindExtra *;
+    @com.fss.bind.annotation.BindOnClick *(...);
+    android.databinding.ViewDataBinding *;
+}
+#router
+-keep class com.fss.router.** { *; }

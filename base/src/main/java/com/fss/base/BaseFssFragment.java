@@ -3,6 +3,7 @@ package com.fss.base;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -41,13 +42,13 @@ public abstract class BaseFssFragment extends Fragment {
         //调用运行优先级方法，默认调用顺序为:initView() -> initData() -> initListener(),子类可使用@RunPriority注解自定义调用顺序
         RunPriorityUtils.call(runPriorityInfo);
     }
-
+    @Keep
     protected void initView() {
     }
-
+    @Keep
     protected void initData() {
     }
-
+    @Keep
     protected void initListener() {
     }
 

@@ -28,6 +28,4 @@ public class BindDetailActivity extends BaseBindingActivity<ActivityBindDetailBi
         showToast(value3 + "");
     }
 
-    protected void initData() {
-    }
 }
