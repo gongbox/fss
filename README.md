@@ -31,6 +31,30 @@
     implementation "com.github.gongbox.fss:router-api:$fss_version"           //路由
     annotationProcessor "com.github.gongbox.fss:router-compiler:$fss_version" //路由注解处理器
 ``` 
+
+如果开启混淆，请加入混淆规则
+```
+#adapter
+-keep  class * extends com.fss.adapter.*.viewholder.BaseViewHolder{
+    <init>(android.view.View);
+    <init>(***,android.view.View);
+}
+#runpriority
+-keepclassmembers class * {
+    @com.fss.runpriority.annotation.RunPriority *(...);
+    *** initView(...);
+    *** initData(...);
+    *** initListener(...);
+}
+#bind
+-keepclassmembers class * {
+    @com.fss.bind.annotation.BindExtra *;
+    @com.fss.bind.annotation.BindOnClick *(...);
+    android.databinding.ViewDataBinding *;
+}
+#router
+-keep class com.fss.router.** { *; }
+```
       
 ### 详细介绍：
 - [Android开发-FSS开源框架之绑定](https://www.jianshu.com/p/ec05e3e7d319)
