@@ -4,7 +4,7 @@ android {
     apply from: rootProject.file('project_config.gradle')
 
     defaultConfig {
-        applicationId "com.gongbo.fss.demo"
+        applicationId "com.fss.demo"
         javaCompileOptions {
             annotationProcessorOptions {
                 //NAVIGATE_PREFIX 路由方法前缀
