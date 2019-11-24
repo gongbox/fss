@@ -14,12 +14,12 @@
 ## 接入
 在根项目的build.gradle文件中添加仓库地址
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://www.jitpack.io' }
-		}
-	}
+    allprojects {
+       repositories {
+	 ...
+	 maven { url 'https://www.jitpack.io' }
+       }
+    }
 ```
 对应模块添加依赖
 ``` 
@@ -57,7 +57,7 @@
 -keep class com.fss.router.** { *; }
 ```
 
-[demo](https://github.com/gongbox/fss_demo)
+使用[demo](https://github.com/gongbox/fss_demo)
       
 ### 详细介绍：
 - [Android开发-FSS开源框架之绑定](https://www.jianshu.com/p/ec05e3e7d319)
@@ -66,4 +66,4 @@
 - [Android开发-FSS开源框架之fss_common](https://www.jianshu.com/p/c861716d1421)
 - [Android开发-FSS开源框架之ListView，RecyclerView适配器](https://www.jianshu.com/p/0dfc654324d4)
 
-如果各位觉得有什么不足，反应反馈，如果觉得还不错，请给颗星。
+如果各位觉得有什么不足，欢迎反馈，如果觉得还不错，请给颗星。
