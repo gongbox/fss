@@ -77,11 +77,11 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor project(path: ':router-compiler')
 
-    def fss_version = '+'
-    implementation "com.github.gongbox.fss:adapter:$fss_version" //适配器
-    implementation "com.github.gongbox.fss:bind:$fss_version"
-    implementation "com.github.gongbox.fss:runpriority:$fss_version"
-    implementation "com.github.gongbox.fss:base:$fss_version"
-    implementation "com.github.gongbox.fss:router-api:$fss_version"
-    annotationProcessor "com.github.gongbox.fss:router-compiler:$fss_version"
+//    def fss_version = '+'
+//    implementation "com.github.gongbox.fss:adapter:$fss_version" //适配器
+//    implementation "com.github.gongbox.fss:bind:$fss_version"
+//    implementation "com.github.gongbox.fss:runpriority:$fss_version"
+//    implementation "com.github.gongbox.fss:base:$fss_version"
+//    implementation "com.github.gongbox.fss:router-api:$fss_version"
+//    annotationProcessor "com.github.gongbox.fss:router-compiler:$fss_version"
 }
