@@ -42,6 +42,7 @@
 #runpriority
 -keepclassmembers class * {
     @com.fss.runpriority.annotation.RunPriority *(...);
+    #runpriority要调用的方法
     *** initView(...);
     *** initData(...);
     *** initListener(...);
@@ -50,11 +51,13 @@
 -keepclassmembers class * {
     @com.fss.bind.annotation.BindExtra *;
     @com.fss.bind.annotation.BindOnClick *(...);
-    android.databinding.ViewDataBinding *;
+    android*.databinding.ViewDataBinding *;
 }
 #router
 -keep class com.fss.router.** { *; }
 ```
+
+[demo](https://github.com/gongbox/fss_demo)
       
 ### 详细介绍：
 - [Android开发-FSS开源框架之绑定](https://www.jianshu.com/p/ec05e3e7d319)
