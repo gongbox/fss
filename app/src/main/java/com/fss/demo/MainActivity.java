@@ -1,5 +1,6 @@
 package com.fss.demo;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -36,6 +37,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     );
 
     protected void initView() {
+        Log.i("TEST","Start");
+        new Test();
+        Log.i("TEST","End");
         imgBack.setVisibility(View.GONE);
         listView.setAdapter(new CommonAdapter<>(this, datas, R.layout.layout_list_item,
                 (holder, s, position) -> holder.setText(R.id.tv_text, s)));
