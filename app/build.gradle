@@ -65,7 +65,7 @@ dependencies {
     implementation library.constraint
     implementation library.recyclerview
 
-    def fss_version = '+'
+    def fss_version = 'latest.release'
     implementation "com.github.gongbox.fss:adapter:$fss_version" //适配器
     implementation "com.github.gongbox.fss:bind:$fss_version"
     implementation "com.github.gongbox.fss:runpriority:$fss_version"
