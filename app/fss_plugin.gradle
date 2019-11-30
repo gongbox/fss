@@ -1,0 +1,51 @@
+//替换AndroidManifest.xml的REPLACE_KEY字符串为渠道名称
+//android.applicationVariants.all { variant ->
+//    variant.outputs.each { output ->
+//        output.processManifest.doLast {
+//            //v1.11之前这里用的copy{}，我换成了文件操作，这样可以在v1.11版本正常运行，并保持文件夹整洁
+//            //${buildDir}是指build文件夹
+//            //${variant.dirName}是flavor/buildtype，例如GooglePlay/release，运行时会自动生成
+//            //下面的路径是类似这样：build/intermediates/manifests/GooglePlay/release/AndroidManifest.xml
+//            def manifestFile = "${buildDir}/intermediates/manifests/full/${variant.dirName}/AndroidManifest.xml"
+//
+//            //将字符串REPLACE_KEY替换成flavor的名字
+//            def updatedContent = new File(manifestFile).getText('UTF-8').replaceAll("REPLACE_KEY", "${variant.productFlavors[0].name}")
+//            new File(manifestFile).write(updatedContent, 'UTF-8')
+//
+//            //将此次flavor的AndroidManifest.xml文件指定为我们修改过的这个文件
+//            variant.processResources.manifestFile = file("${buildDir}/intermediates/manifests/full/${variant.dirName}/AndroidManifest.xml")
+//        }
+//    }
+//}
+task fssTransform() {
+//    def fssRouteApiDirs = file("${buildDir}/generated/ap_generated_sources/debug/out/com/fss/router")
+//    def newFssRouteApiDirs = file("${buildDir}/generated/ap_generated_sources/debug/out/com/fss/router/FssRouteApi.java")
+
+////将字符串REPLACE_KEY替换成flavor的名字
+//    def updatedContent = new File(buildConfigFile).getText('UTF-8').replaceAll("Automatically generated file. DO NOT MODIFY", "hello")
+//    new File(buildConfigFile).write(updatedContent, 'UTF-8')
+
+//    fssRouteApiDirs.delete()
+
+    copy {
+        from "${buildDir}/generated/ap_generated_sources/debug/out/com/fss/router/"
+        into "${buildDir}/generated/ap_generated_sources/debug/out/com/${project.name}/"
+        include '**/*'
+    }
+    delete("${buildDir}/generated/ap_generated_sources/debug/out/com/fss/router")
+
+    def tree = fileTree(dir: "${buildDir}/generated/ap_generated_sources/debug/out/com/${project.name}/", include: '**/*.java')
+
+    // 遍历文件树
+//    tree.each { File file ->
+//        def content = file.getText('UTF-8')
+//        def newContent = content.replaceAll("package com.fss.router", "package com.${project.name}")
+//        newContent.replaceAll("import com.fss.router.apis.","import com.${project.name}.apis.")
+//        file.write(newContent, 'UTF-8')
+//    }
+
+}
+
+preBuild.dependsOn fssTransform
+
+
