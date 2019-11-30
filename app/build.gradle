@@ -75,7 +75,7 @@ dependencies {
     implementation project(path: ':adapter-listview')
     implementation project(path: ':adapter-recyclerview')
     implementation project(path: ':router-api')
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(path: ':testmoudle')
     annotationProcessor project(path: ':router-compiler')
 
 //    def fss_version = '+'

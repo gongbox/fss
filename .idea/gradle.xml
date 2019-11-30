@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/router-compiler" />
             <option value="$PROJECT_DIR$/router-plugin" />
             <option value="$PROJECT_DIR$/runpriority" />
+            <option value="$PROJECT_DIR$/testmoudle" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

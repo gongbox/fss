@@ -1,4 +1,4 @@
-include ':app', ':common', ':runpriority',
+include ':app', ':common', ':runpriority', ':testmoudle',
         ':router-annotation', ':router-compiler', ':router-api', ':router-plugin',
         ':bind-annotation', ':bind',
         ':adapter-listview', ':adapter-recyclerview', ':adapter',
