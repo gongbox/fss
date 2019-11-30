@@ -1,9 +1,9 @@
 package com.fss.demo.base;
 
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.Keep;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.annotation.Keep;
 
 /**
  * Created by Administrator on 2017/10/21.

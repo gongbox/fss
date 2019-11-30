@@ -1,11 +1,10 @@
 package com.fss.demo.adapter.recyclerview;
 
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fss.adapter.recyclerview.BaseBindingSingleAdapter;
-import com.fss.base.BaseFssActivity;
 import com.fss.bind.annotation.BindActivity;
 import com.fss.bind.annotation.BindView;
 import com.fss.demo.R;

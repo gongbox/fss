@@ -1,7 +1,7 @@
 package com.fss.adapter.listview;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;

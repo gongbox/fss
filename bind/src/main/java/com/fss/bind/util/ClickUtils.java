@@ -1,7 +1,7 @@
 package com.fss.bind.util;
 
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import com.fss.common.exception.ExecuteException;
