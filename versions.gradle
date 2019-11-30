@@ -1,6 +1,6 @@
 ext {
 
-    android_gradle_version = '3.5.1'
+    android_gradle_version = '3.5.2'
     compile_sdk_version = 28
     build_tools_version = '28.0.3'
 

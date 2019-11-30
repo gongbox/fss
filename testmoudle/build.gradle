@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+
+android {
+    apply from: rootProject.file('project_config.gradle')
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compileOnly library.appcompat
+    testImplementation library.junit
+    androidTestImplementation library.test_runner
+    androidTestImplementation library.espresso_core
+
+    implementation project(path: ':router-api')
+    annotationProcessor project(path: ':router-compiler')
+}

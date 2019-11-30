@@ -1,4 +1,4 @@
-package com.fss.aop;
+package com.fss.testmoudle;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.fss.aop.test", appContext.getPackageName());
+        assertEquals("com.fss.testmoudle.test", appContext.getPackageName());
     }
 }
