@@ -8,9 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.TYPE})
 public @interface RouteApi {
-    //设置组名
     String group() default "";
 
-    //设置组名,group的别名
     String value() default "";
 }

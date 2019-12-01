@@ -9,9 +9,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface BindActivity {
 
-    //对应的布局id
     int value();
 
-    //触发finish方法的View的id
     int[] finishViewId() default {};
 }

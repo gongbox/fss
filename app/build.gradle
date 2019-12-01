@@ -14,24 +14,20 @@ android {
         applicationId "com.fss.demo"
         javaCompileOptions {
             annotationProcessorOptions {
-                //NAVIGATE_PREFIX 路由方法前缀
-                //NAVIGATE_SUFFIX 路由方法后缀
-                //API_PREFIX 路由接口名常量前缀
-                //API_SUFFIX 路由接口名常量后缀
-                //GROUP_PREFIX 路由分组常量前缀
-                //GROUP_SUFFIX 路由分组常量后缀
-                //DEFAULT_GROUP 默认分组名
-//                arguments = [
-//                        NAVIGATE_PREFIX    : "navigateTo",
-//                        NAVIGATE_SUFFIX    : "",
-//                        BUILD_INTENT_PREFIX: "buildIntentFor",
-//                        BUILD_INTENT_SUFFIX: "",
-//                        API_PREFIX         : "I",
-//                        API_SUFFIX         : "RouteApi",
-//                        GROUP_PREFIX       : "",
-//                        GROUP_SUFFIX       : "",
-//                        DEFAULT_GROUP      : "default",
-//                ]
+                arguments = [
+                        MODULE_NAME        : "app",           //模块名（重要，多模块时一定要填写）
+//                        NAVIGATE_PREFIX    : "navigateTo",    //路由方法前缀
+//                        NAVIGATE_SUFFIX    : "",              //路由方法后缀
+//                        BUILD_INTENT_PREFIX: "buildIntentFor",//构建Intent方法前缀
+//                        BUILD_INTENT_SUFFIX: "",              //构建Intent方法后缀
+//                        API_PREFIX         : "I",             //路由接口名常量前缀
+//                        API_SUFFIX         : "RouteApi",      //路由接口名常量后缀
+//                        GROUP_PREFIX       : "",              //路由分组常量前缀
+//                        GROUP_SUFFIX       : "",              //路由分组常量后缀
+//                        DEFAULT_GROUP      : "default",       //默认分组名
+//                        ROUTE_API_PREFIX   : "",              //接口前缀
+//                        ROUTE_API_SUFFIX   : "RouteApi",      //接口后缀
+                ]
             }
         }
     }
@@ -72,7 +68,6 @@ dependencies {
     implementation project(path: ':adapter-listview')
     implementation project(path: ':adapter-recyclerview')
     implementation project(path: ':router-api')
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor project(path: ':router-compiler')
 
 //    def fss_version = '+'

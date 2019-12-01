@@ -9,9 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface BindParam {
 
-    //该参数的key值
     String value() default "";
 
-    //是否必须存在该key的值，否则抛出异常
     boolean required() default false;
 }

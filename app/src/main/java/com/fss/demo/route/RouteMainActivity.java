@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.fss.router.FssRouteApi;
+import com.app.router.AppRouteApi;
 import com.fss.adapter.listview.CommonAdapter;
 import com.fss.bind.annotation.BindActivity;
 import com.fss.bind.annotation.BindView;
@@ -49,13 +49,13 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                FssRouteApi.DETAIL.navigateToRouteDetailActivity(this, "123");
+                AppRouteApi.DETAIL.navigateToRouteDetailActivity(this, "123");
                 break;
             case 1:
-                FssRouteApi.DEFAULT.navigateToRouteActionActivity(this);
+                AppRouteApi.DEFAULT.navigateToRouteActionActivity(this);
                 break;
             case 2:
-                FssRouteApi.DEFAULT.navigateToRouteExtraTestActivity(this,
+                AppRouteApi.DEFAULT.navigateToRouteExtraTestActivity(this,
                         true, (byte) 2, 'c', (short) 12,
                         13, 14L, 1.1f, 1.3, "hello",
                         new SerializableType("a", 12),
@@ -63,15 +63,15 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
                 );
                 break;
             case 3:
-                FssRouteApi.DEFAULT.navigateToRouteExtraTestActivity(this,
+                AppRouteApi.DEFAULT.navigateToRouteExtraTestActivity(this,
                         new SerializableType("a", 12),
                         new ParcelableType("a", 12));
                 break;
             case 4:
-                FssRouteApi.TEST.navigateToRouteTestService(this, "12465");
+                AppRouteApi.TEST.navigateToRouteTestService(this, "12465");
                 break;
             case 5:
-                FssRouteApi.DEFAULT.navigateToRouteCallbackActivity(this, new OnActivityResult() {
+                AppRouteApi.DEFAULT.navigateToRouteCallbackActivity(this, new OnActivityResult() {
                     @Override
                     public void onActivityResult(int requestCode, int resultCode, Intent data) {
                         ToastUtils.showToast("requestCode:" + requestCode + ",resultCode:" + resultCode);

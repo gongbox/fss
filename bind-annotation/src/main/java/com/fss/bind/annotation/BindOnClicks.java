@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@Inherited  //该注解可继承，对类可继承，其他不能继承
+@Inherited
 public @interface BindOnClicks {
     BindOnClick[] value();
 }

@@ -22,15 +22,11 @@ public @interface BindRoute {
 
     int flags() default 0;
 
-    //请求码
     int requestCode() default -1;
 
-    //路由参数
     String[] extras() default {};
 
-    //进入动画
     int enterAnim() default 0;
 
-    //退出时的动画
     int exitAnim() default 0;
 }

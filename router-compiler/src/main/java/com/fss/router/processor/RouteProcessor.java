@@ -55,7 +55,7 @@ import static com.fss.router.utils.StringUtils.joinString;
  */
 @AutoService(Processor.class)
 public class RouteProcessor extends BaseProcessor {
-    private static final String FSS_ROUTE_API_NAME = "FssRouteApi";
+
     private static final String ROUTE_PROXY_NAME = "ROUTE_PROXY";
 
     private String apisPackageName;
@@ -65,6 +65,8 @@ public class RouteProcessor extends BaseProcessor {
     private String groupPrefix, groupSuffix;
     private String defaultGroupName;
     private String packageName;
+    private String fssRouteApiName;
+    private String routeApiPrefix, routeApiSuffix;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -85,8 +87,16 @@ public class RouteProcessor extends BaseProcessor {
         if (defaultGroupName == null || defaultGroupName.isEmpty()) {
             defaultGroupName = "default";
         }
-        packageName = getOption(options, "ROUTE_PACKAGE", "com.fss.router", false);
+        String moduleName = getOption(options, "MODULE_NAME", "", false);
+        if (moduleName == null || moduleName.isEmpty()) {
+            moduleName = "fss";
+        }
+        packageName = "com." + moduleName + ".router";
         apisPackageName = packageName + ".apis";
+
+        routeApiPrefix = getOption(options, "ROUTE_API_PREFIX", "", false);
+        routeApiSuffix = getOption(options, "ROUTE_API_SUFFIX", "RouteApi", true);
+        fssRouteApiName = routeApiPrefix + capitalizeString(moduleName.toLowerCase()) + routeApiSuffix;
     }
 
     @Override
@@ -469,7 +479,7 @@ public class RouteProcessor extends BaseProcessor {
 
         //构造FssRouteApi
         TypeSpec typeSpec = TypeSpec
-                .classBuilder(FSS_ROUTE_API_NAME)
+                .classBuilder(fssRouteApiName)
                 .addModifiers(Modifier.PUBLIC)
                 .addFields(fieldSpecs)
                 .addMethods(methodSpecs)
