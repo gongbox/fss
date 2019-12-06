@@ -13,7 +13,7 @@
 
 ## 接入
 在根项目的build.gradle文件中添加仓库地址
-```gradle
+```
     allprojects {
        repositories {
 	 ...
@@ -22,7 +22,7 @@
     }
 ```
 对应模块添加依赖
-```gradle
+```
     def fss_version = '1.0.31'
     implementation "com.github.gongbox.fss:adapter:$fss_version"              //适配器模块
     implementation "com.github.gongbox.fss:bind:$fss_version"                 //绑定
@@ -33,7 +33,7 @@
 ``` 
 
 如果开启混淆，请加入混淆规则
-```gradle
+```
 #adapter
 -keep  class * extends com.fss.adapter.*.viewholder.BaseViewHolder{
     <init>(android.view.View);
