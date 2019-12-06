@@ -10,4 +10,6 @@ import java.lang.annotation.Target;
 public @interface RouteFragment {
     ////路由的Fragment的类
     Class<?> value() default void.class;
+
+    String className() default "";
 }

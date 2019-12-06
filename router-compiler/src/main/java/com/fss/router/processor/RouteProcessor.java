@@ -228,6 +228,16 @@ public class RouteProcessor extends BaseProcessor {
                     type = 0;
                 } else if (types.isSubtype(destinationType, serviceType)) {
                     type = 1;
+                }else if(!route.className().isEmpty()){
+                    if(route.className().toLowerCase().contains("activity")){
+                        type = 0;
+                    }else if(route.className().toLowerCase().contains("service")){
+                        type = 1;
+                    }else {
+                        type = 0;
+                    }
+                }else{
+                    logger.error("");
                 }
 
                 List<AnnotationSpec> methodAnnotationSpecs = new ArrayList<AnnotationSpec>();
@@ -238,6 +248,8 @@ public class RouteProcessor extends BaseProcessor {
                         builder.addMember("value", "$T.class", TypeUtils.getType(route.destination()));
                     } else if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
+                    } else if (!route.className().isEmpty()) {
+                        builder.addMember("className", "\"" + route.className() + "\"");
                     } else {
                         builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }
@@ -279,6 +291,8 @@ public class RouteProcessor extends BaseProcessor {
                         builder.addMember("value", "$T.class", TypeUtils.getType(route.destination()));
                     } else if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
+                    } else if (!route.className().isEmpty()) {
+                        builder.addMember("className", "\"" + route.className() + "\"");
                     } else {
                         builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }

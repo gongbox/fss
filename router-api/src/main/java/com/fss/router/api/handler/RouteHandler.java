@@ -133,6 +133,9 @@ public class RouteHandler implements InvocationHandler {
 
                 //要跳转的Activity
                 Class<?> toClass = routeActivity.value();
+                if (toClass == void.class && !routeActivity.className().isEmpty()) {
+                    toClass = Class.forName(routeActivity.className());
+                }
                 //要跳转的action
                 String action = routeActivity.action();
                 //请求的requestCode
@@ -200,6 +203,9 @@ public class RouteHandler implements InvocationHandler {
                     return null;
                 }
                 Class fragmentMeta = routeFragment.value();
+                if (fragmentMeta == void.class && !routeActivity.className().isEmpty()) {
+                    fragmentMeta = Class.forName(routeActivity.className());
+                }
                 if (fragmentMeta != void.class) {
                     try {
                         Object instance = fragmentMeta.getConstructor().newInstance();
@@ -220,6 +226,9 @@ public class RouteHandler implements InvocationHandler {
 
                 //要跳转的Activity
                 toClass = routeService.value();
+                if (toClass == void.class && !routeActivity.className().isEmpty()) {
+                    toClass = Class.forName(routeActivity.className());
+                }
                 //要跳转的action
                 action = routeService.action();
 

@@ -11,6 +11,8 @@ public @interface RouteActivity {
     //要跳转的Activity
     Class<?> value() default void.class;
 
+    String className() default "";
+
     String action() default "";
 
     int requestCode() default 0;

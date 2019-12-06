@@ -12,6 +12,8 @@ import java.lang.annotation.Target;
 public @interface Route {
     String destination() default "";
 
+    String className() default "";
+
     String group() default "";
 
     String name() default "";
