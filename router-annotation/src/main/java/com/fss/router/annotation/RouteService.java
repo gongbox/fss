@@ -11,7 +11,7 @@ public @interface RouteService {
 
     Class<?> value() default void.class;
 
-    String className() default "";
+    String destination() default "";
 
     String action() default "";
 

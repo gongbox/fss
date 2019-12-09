@@ -217,26 +217,29 @@ public class RouteProcessor extends BaseProcessor {
                 TypeMirror activityType = elementUtils.getTypeElement("android.app.Activity").asType();
                 TypeMirror serviceType = elementUtils.getTypeElement("android.app.Service").asType();
 
-                TypeMirror destinationType;
+                TypeMirror destinationType = null;
                 if (!route.destination().isEmpty()) {
-                    destinationType = elementUtils.getTypeElement(route.destination()).asType();
+                    TypeElement typeElement = elementUtils.getTypeElement(route.destination());
+                    if (typeElement != null) {
+                        destinationType = typeElement.asType();
+                    }
                 } else {
                     destinationType = routeInfo.typeElement.asType();
                 }
 
-                if (types.isSubtype(destinationType, activityType)) {
-                    type = 0;
-                } else if (types.isSubtype(destinationType, serviceType)) {
-                    type = 1;
-                }else if(!route.className().isEmpty()){
-                    if(route.className().toLowerCase().contains("activity")){
+                if (destinationType == null && !route.destination().isEmpty()) {
+                    if (route.destination().toLowerCase().contains("activity")) {
                         type = 0;
-                    }else if(route.className().toLowerCase().contains("service")){
+                    } else if (route.destination().toLowerCase().contains("service")) {
                         type = 1;
-                    }else {
+                    } else {
                         type = 0;
                     }
-                }else{
+                } else if (destinationType != null && types.isSubtype(destinationType, activityType)) {
+                    type = 0;
+                } else if (destinationType != null && types.isSubtype(destinationType, serviceType)) {
+                    type = 1;
+                } else {
                     logger.error("");
                 }
 
@@ -244,12 +247,12 @@ public class RouteProcessor extends BaseProcessor {
                 if (type == 0) {
                     AnnotationSpec.Builder builder = AnnotationSpec.builder(RouteActivity.class);
 
-                    if (!route.destination().isEmpty()) {
-                        builder.addMember("value", "$T.class", TypeUtils.getType(route.destination()));
+                    if (destinationType != null) {
+                        builder.addMember("value", "$T.class", destinationType);
                     } else if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
-                    } else if (!route.className().isEmpty()) {
-                        builder.addMember("className", "\"" + route.className() + "\"");
+                    } else if (!route.destination().isEmpty()) {
+                        builder.addMember("destination", "\"" + route.destination() + "\"");
                     } else {
                         builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }
@@ -287,12 +290,12 @@ public class RouteProcessor extends BaseProcessor {
                     methodAnnotationSpecs.add(methodAnnotationSpec);
                 } else if (type == 1) {
                     AnnotationSpec.Builder builder = AnnotationSpec.builder(RouteService.class);
-                    if (!route.destination().isEmpty()) {
-                        builder.addMember("value", "$T.class", TypeUtils.getType(route.destination()));
+                    if (destinationType != null) {
+                        builder.addMember("value", "$T.class", destinationType);
                     } else if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
-                    } else if (!route.className().isEmpty()) {
-                        builder.addMember("className", "\"" + route.className() + "\"");
+                    } else if (!route.destination().isEmpty()) {
+                        builder.addMember("destination", "\"" + route.destination() + "\"");
                     } else {
                         builder.addMember("value", "$T.class", routeInfo.typeElement);
                     }
