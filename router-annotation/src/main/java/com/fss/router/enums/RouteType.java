@@ -7,49 +7,12 @@ package com.fss.router.enums;
  * @version 1.0
  * @since 16/8/23 22:33
  */
-public enum RouteType {
-    ACTIVITY(0, "android.app.Activity"),
-    SERVICE(1, "android.app.Service"),
-//    PROVIDER(2, "com.alibaba.android.arouter.facade.template.IProvider"),
-    CONTENT_PROVIDER(-1, "android.app.ContentProvider"),
-    BOARDCAST(-1, ""),
-    METHOD(-1, ""),
-    FRAGMENT(-1, "android.app.Fragment"),
-    UNKNOWN(-1, "Unknown route type");
-
-    int id;
-    String className;
-
-    public int getId() {
-        return id;
-    }
-
-    public RouteType setId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public RouteType setClassName(String className) {
-        this.className = className;
-        return this;
-    }
-
-    RouteType(int id, String className) {
-        this.id = id;
-        this.className = className;
-    }
-
-    public static RouteType parse(String name) {
-        for (RouteType routeType : RouteType.values()) {
-            if (routeType.getClassName().equals(name)) {
-                return routeType;
-            }
-        }
-
-        return UNKNOWN;
-    }
+public class RouteType {
+    public static final int ACTIVITY = 0;
+    public static final int SERVICE = 1;
+    public static final int CONTENT_PROVIDER = 2;
+    public static final int BOARDCAST = 3;
+    public static final int METHOD = 4;
+    public static final int FRAGMENT = 5;
+    public static final int UNKNOWN = -1;
 }

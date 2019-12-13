@@ -247,10 +247,10 @@ public class RouteProcessor extends BaseProcessor {
                 if (type == 0) {
                     AnnotationSpec.Builder builder = AnnotationSpec.builder(RouteActivity.class);
 
-                    if (destinationType != null) {
-                        builder.addMember("value", "$T.class", destinationType);
-                    } else if (!route.action().isEmpty()) {
+                    if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
+                    } else if (destinationType != null) {
+                        builder.addMember("value", "$T.class", destinationType);
                     } else if (!route.destination().isEmpty()) {
                         builder.addMember("destination", "\"" + route.destination() + "\"");
                     } else {
@@ -290,10 +290,10 @@ public class RouteProcessor extends BaseProcessor {
                     methodAnnotationSpecs.add(methodAnnotationSpec);
                 } else if (type == 1) {
                     AnnotationSpec.Builder builder = AnnotationSpec.builder(RouteService.class);
-                    if (destinationType != null) {
-                        builder.addMember("value", "$T.class", destinationType);
-                    } else if (!route.action().isEmpty()) {
+                    if (!route.action().isEmpty()) {
                         builder.addMember("action", "\"" + route.action() + "\"");
+                    } else if (destinationType != null) {
+                        builder.addMember("value", "$T.class", destinationType);
                     } else if (!route.destination().isEmpty()) {
                         builder.addMember("destination", "\"" + route.destination() + "\"");
                     } else {

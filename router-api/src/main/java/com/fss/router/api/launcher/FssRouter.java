@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.fss.router.annotation.Autowired;
+import com.fss.router.api.interceptor.IInterceptor;
 import com.fss.router.api.log.ILogger;
 import com.fss.router.api.manager.RouteManager;
 import com.fss.router.api.util.ReflectUtils;
@@ -51,6 +52,15 @@ public class FssRouter {
 
     public static FssRouter getInstance() {
         return fssRouter;
+    }
+
+    /**
+     * 添加拦截器
+     *
+     * @param interceptor
+     */
+    public void addInterceptor(IInterceptor interceptor) {
+        RouteManager.addInterceptor(interceptor);
     }
 
     /**

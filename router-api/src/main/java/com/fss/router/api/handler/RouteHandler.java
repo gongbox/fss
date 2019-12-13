@@ -22,6 +22,8 @@ import com.fss.router.annotation.RouteFragment;
 import com.fss.router.annotation.RouteService;
 import com.fss.router.api.callback.OnActivityResult;
 import com.fss.router.api.manager.RouteManager;
+import com.fss.router.api.model.RouteMeta;
+import com.fss.router.enums.RouteType;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
@@ -49,19 +51,19 @@ public class RouteHandler implements InvocationHandler {
             return method.invoke(this, objects);
         }
 
+        final RouteMeta routeMeta = new RouteMeta();
+
         //获取请求的Route信息
         RouteActivity routeActivity;
         RouteService routeService = null;
         RouteFragment routeFragment = null;
-        Uri data = null;
 
-        int routeType = -1;
         if ((routeActivity = method.getAnnotation(RouteActivity.class)) != null) {
-            routeType = ACTIVITY;
+            routeMeta.setRouteType(RouteType.ACTIVITY);
         } else if ((routeService = method.getAnnotation(RouteService.class)) != null) {
-            routeType = SERVICE;
+            routeMeta.setRouteType(RouteType.SERVICE);
         } else if ((routeFragment = method.getAnnotation(RouteFragment.class)) != null) {
-            routeType = FRAGMENT;
+            routeMeta.setRouteType(RouteType.FRAGMENT);
         } else {
             throw new Exception("this function must be declared with RouteActivity or RouteService annotation!");
         }
@@ -85,7 +87,10 @@ public class RouteHandler implements InvocationHandler {
             //如果defaultValue不为空且name不为空
             if (!TextUtils.isEmpty(defaultValue) && !TextUtils.isEmpty(name)) {
                 //向intent中添加一组值
-                addExtra(bundle, name, formatValue(defaultValue, defaultExtra.type()));
+                Object value = formatValue(defaultValue, defaultExtra.type());
+                addExtra(bundle, name, value);
+                //
+                routeMeta.addParam(name, value);
             }
         }
 
@@ -98,7 +103,10 @@ public class RouteHandler implements InvocationHandler {
             foreach_param:
             for (int i = 1; i < parameterAnnotations.length; i++) {
                 //如果参数类型为 OnActivityResult 并且 requestCode 大于0 时
-                if (parameterTypes[i] == OnActivityResult.class && routeType == ACTIVITY && routeActivity.requestCode() > 0 && objects[i] != null) {
+                if (parameterTypes[i] == OnActivityResult.class &&
+                        routeMeta.getRouteType() == RouteType.ACTIVITY
+                        && routeActivity != null && routeActivity.requestCode() > 0
+                        && objects[i] != null) {
                     RouteManager.setOnActivityResultCallback(routeActivity.requestCode(), (OnActivityResult) objects[i]);
                     continue;
                 }
@@ -107,24 +115,27 @@ public class RouteHandler implements InvocationHandler {
                 for (Annotation annotation : annotations) {
                     if (annotation instanceof Extra) {
                         //向intent中添加一组值
-                        addExtra(bundle, ((Extra) annotation).value(), objects[i]);
+                        String name = ((Extra) annotation).value();
+                        Object value = objects[i];
+                        addExtra(bundle, name, value);
+                        routeMeta.addParam(name, value);
                         continue foreach_param;
                     } else if (annotation instanceof Data) {
                         if (parameterTypes[i] == Uri.class) {
-                            data = (Uri) objects[i];
+                            routeMeta.setData((Uri) objects[i]);
                         }
                         continue foreach_param;
                     }
                 }
 
                 if (parameterTypes[i] == Uri.class) {
-                    data = (Uri) objects[i];
+                    routeMeta.setData((Uri) objects[i]);
                 }
             }
         }
 
-        switch (routeType) {
-            case ACTIVITY:
+        switch (routeMeta.getRouteType()) {
+            case RouteType.ACTIVITY:
 
                 Log.i(TAG, bundle.toString());
 
@@ -132,45 +143,46 @@ public class RouteHandler implements InvocationHandler {
                 intent.putExtras(bundle);
 
                 //要跳转的Activity
-                Class<?> toClass = routeActivity.value();
-                if (toClass == void.class && !routeActivity.destination().isEmpty()) {
-                    toClass = Class.forName(routeActivity.destination());
+                Class<?> destination = routeActivity.value();
+                if (destination == void.class && !routeActivity.destination().isEmpty()) {
+                    destination = Class.forName(routeActivity.destination());
                 }
+                routeMeta.setDestination(destination);
                 //要跳转的action
-                String action = routeActivity.action();
+                routeMeta.setAction(routeActivity.action());
                 //请求的requestCode
-                final int requestCode = routeActivity.requestCode();
+                routeMeta.setRequestCode(routeActivity.requestCode());
                 //
-                String[] categories = routeActivity.category();
+                routeMeta.setCategory(routeActivity.category());
                 //
-                int flags = routeActivity.flags();
+                routeMeta.setFlags(routeActivity.flags());
 
-                String type = routeActivity.type();
+                routeMeta.setType(routeActivity.type());
 
                 final int enterAnim = routeActivity.enterAnim();
                 final int exitAnim = routeActivity.exitAnim();
 
-                if (toClass != void.class) {
-                    intent.setClass(currentContext, toClass);
+                if (destination != void.class) {
+                    intent.setClass(currentContext, destination);
                 }
-                if (!TextUtils.isEmpty(action)) {
-                    intent.setAction(action);
+                if (!TextUtils.isEmpty(routeMeta.getAction())) {
+                    intent.setAction(routeMeta.getAction());
                 }
-                for (String category : categories) {
+                for (String category : routeMeta.getCategory()) {
                     intent.addCategory(category);
                 }
 
-                if (-1 != flags) {
-                    intent.setFlags(flags);
+                if (-1 != routeMeta.getFlags()) {
+                    intent.setFlags(routeMeta.getFlags());
                 } else if (!(currentContext instanceof Activity)) {    // Non activity, need less one flag.
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
 
-                if (!TextUtils.isEmpty(type)) {
-                    if (data != null) {
-                        intent.setDataAndType(data, type);
+                if (!TextUtils.isEmpty(routeMeta.getType())) {
+                    if (routeMeta.getData() != null) {
+                        intent.setDataAndType(routeMeta.getData(), routeMeta.getType());
                     } else {
-                        intent.setType(type);
+                        intent.setType(routeMeta.getType());
                     }
                 }
 
@@ -179,14 +191,18 @@ public class RouteHandler implements InvocationHandler {
                     return intent;
                 }
 
+                //存在拦截则返回
+                if (RouteManager.doIntercept(routeMeta)) {
+                    return null;
+                }
                 // Navigation in main looper.
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
 
                     @Override
                     public void run() {
 
-                        if (requestCode > 0) {  // Need start for result
-                            ActivityCompat.startActivityForResult((Activity) currentContext, intent, requestCode, null);
+                        if (routeMeta.getRequestCode() > 0) {  // Need start for result
+                            ActivityCompat.startActivityForResult((Activity) currentContext, intent, routeMeta.getRequestCode(), null);
                         } else {
                             ActivityCompat.startActivity(currentContext, intent, null);
                         }
@@ -198,17 +214,24 @@ public class RouteHandler implements InvocationHandler {
                 });
 
                 break;
-            case FRAGMENT:
+            case RouteType.FRAGMENT:
                 if (method.getReturnType() == void.class) {
                     return null;
                 }
-                Class fragmentMeta = routeFragment.value();
-                if (fragmentMeta == void.class && !routeActivity.destination().isEmpty()) {
-                    fragmentMeta = Class.forName(routeActivity.destination());
+                destination = routeFragment.value();
+                if (destination == void.class && !routeActivity.destination().isEmpty()) {
+                    destination = Class.forName(routeActivity.destination());
                 }
-                if (fragmentMeta != void.class) {
+                routeMeta.setDestination(destination);
+
+                //存在拦截则返回
+                if (RouteManager.doIntercept(routeMeta)) {
+                    return null;
+                }
+
+                if (destination != void.class) {
                     try {
-                        Object instance = fragmentMeta.getConstructor().newInstance();
+                        Object instance = destination.getConstructor().newInstance();
                         if (instance instanceof Fragment) {
                             ((Fragment) instance).setArguments(bundle);
                         } else if (instance instanceof android.support.v4.app.Fragment) {
@@ -220,24 +243,32 @@ public class RouteHandler implements InvocationHandler {
                     }
                 }
                 break;
-            case SERVICE:
+            case RouteType.SERVICE:
                 // Build intent
                 intent.putExtras(bundle);
 
                 //要跳转的Activity
-                toClass = routeService.value();
-                if (toClass == void.class && !routeActivity.destination().isEmpty()) {
-                    toClass = Class.forName(routeActivity.destination());
+                destination = routeService.value();
+                if (destination == void.class && !routeActivity.destination().isEmpty()) {
+                    destination = Class.forName(routeActivity.destination());
                 }
-                //要跳转的action
-                action = routeService.action();
 
-                if (toClass != void.class) {
-                    intent.setClass(currentContext, toClass);
+                routeMeta.setDestination(destination);
+                //要跳转的action
+                routeMeta.setAction(routeService.action());
+
+                if (destination != void.class) {
+                    intent.setClass(currentContext, destination);
                 }
-                if (!TextUtils.isEmpty(action)) {
-                    intent.setAction(action);
+                if (!TextUtils.isEmpty(routeMeta.getAction())) {
+                    intent.setAction(routeMeta.getAction());
                 }
+
+                //存在拦截则返回
+                if (RouteManager.doIntercept(routeMeta)) {
+                    return null;
+                }
+
                 currentContext.startService(intent);
                 break;
             default:
