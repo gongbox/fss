@@ -1,6 +1,6 @@
 package com.fss.demo.bind;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.view.View;
 
 import com.fss.bind.annotation.BindActivity;

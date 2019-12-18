@@ -1,7 +1,7 @@
 package com.fss.adapter.listview.viewholder;
 
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 

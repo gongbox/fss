@@ -7,10 +7,10 @@ buildscript {
         maven { url 'https://jitpack.io' }
         google()
         jcenter()
-
+        gradlePluginPortal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$android_gradle_version"
+        classpath plugin.android_gradle_plugin
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
         // NOTE: Do not place your project dependencies here; they belong

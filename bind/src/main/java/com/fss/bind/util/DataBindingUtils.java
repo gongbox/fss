@@ -2,7 +2,7 @@ package com.fss.bind.util;
 
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 
 import com.fss.common.util.ReflectUtils;
 

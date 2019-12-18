@@ -1,8 +1,11 @@
-package com.demo;
+package com.fss.demo;
+
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +15,29 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        long time = 1576771200000L;
+        long ONE_HOUR_MILL = 1000 * 60 * 60;
+        long ONE_DAY_MILL = ONE_HOUR_MILL * 24;
+//        long days = TimeUnit.MILLISECONDS.toDays(time);
+//        long millis = TimeUnit.DAYS.toMillis(days);
+        int rawOffset = TimeZone.getDefault().getRawOffset();
+//        System.out.println("days:" + days);
+//        System.out.println("millis:" + millis);
+        System.out.println("rawOffset:" + rawOffset);
+        System.out.println("rawOffset hour:" + rawOffset / ONE_HOUR_MILL);
+//        long hours = TimeUnit.MILLISECONDS.toHours(rawOffset);
+//        System.out.println("hours:" + hours);
+//
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        System.out.println("time format:" + sdf.format(time));
+//        System.out.println("millis format:" + sdf.format(millis + rawOffset));
+
+        long timeA = ((time + 16 * ONE_HOUR_MILL) / ONE_DAY_MILL) * ONE_DAY_MILL;
+        System.out.println("millis format:" + sdf.format(new Date(timeA)));
+    }
+
+    public static String formatDate(Date date, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
     }
 }

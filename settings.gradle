@@ -1,5 +1,5 @@
 include ':app', ':common', ':runpriority', ':base',
         ':router-annotation', ':router-compiler', ':router-api',
-        ':bind-annotation', ':bind',
+        ':bind-annotation', ':bind', ':bind-gradle-plugin',
         ':adapter-listview', ':adapter-recyclerview', ':adapter'
 rootProject.name = 'fss'

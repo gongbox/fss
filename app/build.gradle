@@ -69,6 +69,7 @@ dependencies {
     implementation project(path: ':adapter-recyclerview')
     implementation project(path: ':router-api')
     annotationProcessor project(path: ':router-compiler')
+    testImplementation 'junit:junit:4.12'
 
 //    def fss_version = '+'
 //    implementation "com.github.gongbox.fss:adapter:$fss_version" //适配器

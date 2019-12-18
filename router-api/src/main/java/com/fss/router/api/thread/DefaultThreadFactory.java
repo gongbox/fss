@@ -2,7 +2,7 @@ package com.fss.router.api.thread;
 
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.fss.router.api.launcher.FssRouter;
 import com.fss.router.api.util.Consts;

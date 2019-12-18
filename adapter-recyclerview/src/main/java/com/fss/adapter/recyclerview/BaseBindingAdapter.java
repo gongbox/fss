@@ -1,7 +1,7 @@
 package com.fss.adapter.recyclerview;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 
 
 import com.fss.common.kotlin.Pair;
