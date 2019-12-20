@@ -71,7 +71,7 @@ class BindPlugin : Plugin<Project> {
               project.files(
                   when (processResources) {
                     is GenerateLibraryRFileTask -> processResources.textSymbolOutputFile
-                    is LinkApplicationAndroidResourcesTask -> processResources.textSymbolOutputFile
+                    is LinkApplicationAndroidResourcesTask -> processResources.getTextSymbolOutputFile()
                     else -> throw RuntimeException(
                         "Minimum supported Android Gradle Plugin is 3.3.0")
                   })
