@@ -14,7 +14,10 @@ public @interface BindRoute {
     int viewId();
 
     //要去的Activity
-    Class toActivity() default Object.class;
+    Class toActivity() default void.class;
+
+    //要路由的目标类
+    String destination() default "";
 
     String action() default "";
 

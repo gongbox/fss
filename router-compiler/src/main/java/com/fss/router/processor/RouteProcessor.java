@@ -91,7 +91,7 @@ public class RouteProcessor extends BaseProcessor {
         if (moduleName == null || moduleName.isEmpty()) {
             moduleName = "fss";
         }
-        packageName = "com." + moduleName + ".router";
+        packageName = "com." + moduleName.toLowerCase().replace("-", "").replace("_", "") + ".router";
         apisPackageName = packageName + ".apis";
 
         routeApiPrefix = getOption(options, "ROUTE_API_PREFIX", "", false);

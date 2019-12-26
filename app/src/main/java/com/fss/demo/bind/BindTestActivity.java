@@ -15,8 +15,13 @@ import static com.fss.demo.util.ToastUtils.showToast;
 
 @Route
 @BindActivity(value = R.layout.activity_bind_test, finishViewId = R.id.img_back)
+//@BindRoute(viewId = R.id.btn_route,
+//        action = "com.fss.bind.detail",
+//        extras = {":@value", "value2:789", "value3:(int)[234]"},
+//        enterAnim = android.R.anim.slide_in_left
+//)
 @BindRoute(viewId = R.id.btn_route,
-        action = "com.fss.bind.detail",
+        destination = "com.fss.demo.bind.activity.BindDetailActivity",
         extras = {":@value", "value2:789", "value3:(int)[234]"},
         enterAnim = android.R.anim.slide_in_left
 )
