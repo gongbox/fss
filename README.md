@@ -23,7 +23,7 @@
 ```
 对应模块添加依赖
 ```
-    def fss_version = '1.0.31'
+    def fss_version = '1.0.35'
     implementation "com.github.gongbox.fss:adapter:$fss_version"              //适配器模块
     implementation "com.github.gongbox.fss:bind:$fss_version"                 //绑定
     implementation "com.github.gongbox.fss:runpriority:$fss_version"          //运行优先级
