@@ -35,7 +35,8 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
             "路由参数测试",
             "默认参数路由测试",
             "SERVICE路由测试",
-            "获取返回路由测试"
+            "获取返回路由测试",
+            "根据全类名进行路由"
     );
 
     protected void initView() {
@@ -77,6 +78,9 @@ public class RouteMainActivity extends BaseActivity implements AdapterView.OnIte
                         ToastUtils.showToast("requestCode:" + requestCode + ",resultCode:" + resultCode);
                     }
                 });
+                break;
+            case 6:
+                AppRouteApi.DESTINATION2.naviagetToRouteDestinationActivity(this);
                 break;
         }
     }

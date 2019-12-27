@@ -7,7 +7,7 @@ import com.fss.router.annotation.RouteApi;
 import com.fss.router.annotation.RouteService;
 
 
-@RouteApi("destination2")
+@RouteApi(value = "destination2", basePackage = "com.fss.demo.route")
 public interface IDestinationRouteApi {
     /**
      * 路由到其他模块的Activity，请保证存在再进行路由
@@ -24,4 +24,7 @@ public interface IDestinationRouteApi {
             destination = "com.fss.demo.OtherModuleService"
     )
     void navigateToOtherModuleService(Context context);
+
+    @RouteActivity(destination = ".RouteDestinationActivity")
+    void naviagetToRouteDestinationActivity(Context context);
 }

@@ -40,4 +40,4 @@
     android*.databinding.ViewDataBinding *;
 }
 #router
--keep class com.fss.router.** { *; }
+-keep class com.*.router.** { *; }

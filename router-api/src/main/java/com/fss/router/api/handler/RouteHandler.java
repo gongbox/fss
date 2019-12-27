@@ -18,6 +18,7 @@ import com.fss.router.annotation.DefaultExtra;
 import com.fss.router.annotation.DefaultExtras;
 import com.fss.router.annotation.Extra;
 import com.fss.router.annotation.RouteActivity;
+import com.fss.router.annotation.RouteApi;
 import com.fss.router.annotation.RouteFragment;
 import com.fss.router.annotation.RouteService;
 import com.fss.router.api.callback.OnActivityResult;
@@ -54,6 +55,8 @@ public class RouteHandler implements InvocationHandler {
         final RouteMeta routeMeta = new RouteMeta();
 
         //获取请求的Route信息
+        RouteApi routeApi;
+
         RouteActivity routeActivity;
         RouteService routeService = null;
         RouteFragment routeFragment = null;
@@ -72,6 +75,10 @@ public class RouteHandler implements InvocationHandler {
         if (!(objects[0] instanceof Context)) {
             throw new Exception("the first param must be Context!");
         }
+
+        routeApi = method.getDeclaringClass().getAnnotation(RouteApi.class);
+        String basePackage = routeApi == null ? "" : routeApi.basePackage();
+
         final Context currentContext = (Context) objects[0];
 
         final Intent intent = new Intent();
@@ -145,7 +152,11 @@ public class RouteHandler implements InvocationHandler {
                 //要跳转的Activity
                 Class<?> destination = routeActivity.value();
                 if (destination == void.class && !routeActivity.destination().isEmpty()) {
-                    destination = Class.forName(routeActivity.destination());
+                    String destinationName = routeActivity.destination();
+                    if (destinationName.startsWith(".")) {
+                        destinationName = basePackage + destinationName;
+                    }
+                    destination = Class.forName(destinationName);
                 }
                 routeMeta.setDestination(destination);
                 //要跳转的action
@@ -220,7 +231,11 @@ public class RouteHandler implements InvocationHandler {
                 }
                 destination = routeFragment.value();
                 if (destination == void.class && !routeActivity.destination().isEmpty()) {
-                    destination = Class.forName(routeActivity.destination());
+                    String destinationName = routeActivity.destination();
+                    if (destinationName.startsWith(".")) {
+                        destinationName = basePackage + destinationName;
+                    }
+                    destination = Class.forName(destinationName);
                 }
                 routeMeta.setDestination(destination);
 
@@ -250,7 +265,11 @@ public class RouteHandler implements InvocationHandler {
                 //要跳转的Activity
                 destination = routeService.value();
                 if (destination == void.class && !routeActivity.destination().isEmpty()) {
-                    destination = Class.forName(routeActivity.destination());
+                    String destinationName = routeActivity.destination();
+                    if (destinationName.startsWith(".")) {
+                        destinationName = basePackage + destinationName;
+                    }
+                    destination = Class.forName(destinationName);
                 }
 
                 routeMeta.setDestination(destination);
